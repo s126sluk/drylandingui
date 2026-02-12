@@ -1,0 +1,108 @@
+.how {
+    overflow: hidden;
+    color: var(--dark);
+    &__row {
+        --gap-x: 0;
+        --gap-y: 160px;
+        --padding-x: 0.75rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--gap-y) var(--gap-x);
+        margin-left: calc(var(--padding-x) * -1);
+        margin-right: calc(var(--padding-x) * -1);
+        margin-bottom: 3rem;
+    }
+
+    &__col {
+        width: 100%;
+        padding: 0 var(--padding-x);
+        &:not(:last-child) {
+            --arrow-visibility-y: block;
+            --arrow-offset-y: 1rem;
+        }
+    }
+
+    &-item {
+        --icon-size: 96px;
+        position: relative;
+        z-index: 1;
+
+        &:before {
+            content: "";
+            display: var(--arrow-visibility-y, none);
+            width: 1px;
+            height: calc(var(--gap-y) - var(--arrow-offset-y) * 2);
+            border: 1px dashed var(--green);
+            position: absolute;
+            left: 50%;
+            top: calc(100% + var(--arrow-offset-y));
+        }
+
+        &:after {
+            content: "";
+            display: var(--arrow-visibility-x, none);
+            height: 1px;
+            width: 100%;
+            border: 1px dashed var(--green);
+            position: absolute;
+            left: 50%;
+            top: calc(var(--icon-size) / 2);
+            z-index: -1;
+        }
+
+        &__icon {
+            width: var(--icon-size);
+            height: var(--icon-size);
+            border-radius: 50%;
+            background: var(--green);
+            border: 7px solid var(--softgreen);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+        }
+
+        &__title {
+            margin-bottom: 0.75rem;
+        }
+    }
+
+    @media screen and (min-width: 431px) {
+        &__row {
+            --gap-y: 1.5rem;
+        }
+        &__col {
+            width: 50%;
+
+            &:not(:last-child) {
+                --arrow-visibility-y: none;
+            }
+        }
+    }
+    @media screen and (min-width: 768px) {
+        &__row {
+            margin-bottom: 3rem;
+        }
+    }
+
+    @media screen and (min-width: 992px) {
+        &__row {
+            --padding-x: 1.5rem;
+            margin-bottom: 4rem;
+        }
+        &__col {
+            width: 25%;
+
+            &:not(:last-child) {
+                --arrow-visibility-y: none;
+                --arrow-visibility-x: block;
+            }
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+        &__row {
+            margin-bottom: 5rem;
+        }
+    }
+}

@@ -1,0 +1,62 @@
+.response {
+    &-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 1rem;
+        grid-template-areas: 
+        "T T T T T T T T T T T T"
+        "I I I I I I I I I I I I"
+        "D D D D D D D D D D D D"
+        "N N N N N N N N N N N N"
+        // "B B B B B B B B B B B B"
+        ;
+        &__title {
+            grid-area: T;
+        }
+        &__description {
+            grid-area: D;
+        }
+        &__img {
+            grid-area: I;
+        }
+    }
+
+    @media screen and (min-width: 431px) {
+        &-grid {
+            align-items: center;
+            // grid-template-areas: 
+            // "T T T T T T T T T T T T"
+            // "I I I I I I D D D D D D"
+            // ;
+        }
+    }
+    // @media screen and (min-width: 768px) {
+    //     &-grid {
+    //         grid-template-areas: 
+    //         "T T T T T T T T T T T T"
+    //         "I I I I I D D D D D D D"
+    //         ;
+    //     }
+    // }
+    @media screen and (min-width: 992px) {
+        &-grid {
+            gap: 1rem 2rem;
+            grid-template-areas: 
+            // "I I I I I . . . . . . ."
+            "I I I I I T T T T T T T"
+            "I I I I I D D D D D D D"
+            // "I I I I I . . . . . . ."
+            ;
+        }
+    }
+    @media screen and (min-width: 1200px) {
+        &-grid {
+            gap: 1.5rem 3rem;
+        }
+    }
+    @media screen and (min-width: 1440px) {
+        &-grid {
+            gap: 2rem 4rem;
+        }
+    }
+}

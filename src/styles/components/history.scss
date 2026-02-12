@@ -1,0 +1,55 @@
+.history {
+
+}
+
+.video {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  // background: #000;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* кнопка play */
+.video__play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: 0;
+  color: #fff;
+  font-size: 44px;
+  transition: background 0.3s ease;
+}
+
+.video__play::before {
+  content: "";
+  position: absolute;
+  width: 76px;
+  height: 76px;
+  background: rgba(12, 211, 194, 0.588);
+  border-radius: 50%;
+}
+
+.video__play {
+  z-index: 2;
+}
+
+.video__play span,
+.video__play {
+  pointer-events: auto;
+}
+
+.video__play:hover::before {
+  background: rgba(16, 180, 166, 0.641);
+}
+
+/* iframe */
+.video iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}

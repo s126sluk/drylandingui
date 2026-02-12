@@ -1,0 +1,39 @@
+extends settings/layout
+
+prepend html
+	- const lang = "en";
+
+prepend head
+	- const pageTitle = "DRYSAFE Stop water damage from spreading in minutes"
+	- const themeColor = "#ffffff"
+	- const pageDescription = "Our local technicians respond in 90 mins on average to stop water in its tracks, dry your home and stop mould before it spreads. We look after the mess so you can focus on what matters most, keeping your family safe during this stressful time."
+	- const pageKeywords = ""
+	- const pageUrl = "";
+	- const pageImage = "img/logo.svg";
+	- const twitterImage = "img/logo.svg";
+append head
+append content
+	include mixins/btn
+	include components/header
+	main
+		include components/promo
+		include components/reviews
+		include components/experience
+		include components/how
+		include components/process
+		include components/history
+		include components/recovery
+		include components/community
+		include components/why
+		include components/response
+		
+		
+		include components/protect
+		
+		
+		include components/faq
+		include components/icons
+
+	//- include components/footer
+
+append scripts

@@ -1,0 +1,119 @@
+.promo {
+
+    &__gallery {
+        margin-bottom: 1rem;
+    }
+    &__experience {
+        margin-bottom: 3rem;
+    }
+    &__title {
+        margin-bottom: 0.75rem;
+        margin-top: 0.75rem;
+    }
+    &__description {
+        margin-bottom: 1.5rem;
+    }
+    &__btn {
+        margin-bottom: 3rem;
+    }
+    &__advantages {
+        margin-bottom: 3rem;
+    }
+
+
+
+
+    @media screen and (max-width: 430.5px) {
+        
+        &__gallery {
+            margin-left: -0.75rem;
+            margin-right: -0.75rem;
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        padding-top: 0;
+    }
+
+    @media screen and (min-width: 768px) {
+        &__title {
+            margin-top: 0;
+        }
+    }
+
+
+    @media screen and (min-width: 992px) and (max-width: 1199px) {
+        &__experience {
+            display: flex;
+            align-items: flex-end;
+            gap: 1rem;
+        }
+        &__gallery {
+            width: 50%;
+            margin-bottom: 0;
+        }
+        &__testimonials {
+            width: 50%;
+        }
+    }
+
+
+    @media screen and (min-width: 992px) {
+        &__advantages {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid var(--lightgray);
+        }
+        &__info {
+            background: #fff;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 2px 2px 12px rgba($color: #3C4246, $alpha: 0.12);
+        }
+    }
+
+
+    @media screen and (min-width: 1200px) {
+        padding-top: 60px;
+        &__inner {
+            display: flex;
+            flex-direction: row-reverse;
+            gap: 2rem;
+        }
+        &__info {
+            width: 55%;
+        }
+        &__experience {
+            width: 45%;
+            margin-bottom: 0;
+        }
+        &__title {
+            margin-bottom: 2rem;
+        }
+        &__description {
+            margin-bottom: 2rem;
+        }
+        &__btn {
+            margin-bottom: 2rem;
+        }
+        &__gallery {
+            margin-bottom: 2rem;
+        }
+        
+    }
+
+    @media screen and (min-width: 1540px) {
+        padding-top: 60px;
+        &__info {
+            display: flex;
+            flex-direction: column;
+        }
+        &__advantages {
+            margin-bottom: auto;
+        }
+
+
+    }
+
+}

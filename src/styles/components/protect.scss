@@ -1,0 +1,35 @@
+.protect {
+    &__inner {
+        padding: 32px;
+        border-radius: 50px;
+        background: linear-gradient(to right, #D3E9FF 0%, #EEF5FF 100%);
+        border: 1px solid var(--blue);
+        text-align: center;
+    }
+    &__title {
+        margin-bottom: 1rem;
+    }
+    &__text {
+        margin-bottom: 1rem;
+        font-size: var(--h5);
+    }
+
+    @media screen and (min-width: 768px) {
+                &__inner {
+            padding: 48px;
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+        &__inner {
+            padding: 72px;
+        }
+        &__title {
+            margin-bottom: 1.5rem;
+        }
+        &__text {
+            margin-bottom: 2.5rem;
+            font-size: 28px;
+        }
+    }
+}

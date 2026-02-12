@@ -1,0 +1,45 @@
+
+.container {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 431px) {
+  .container {
+    max-width: 400px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1170px;
+  }
+}
+@media (min-width: 1540px) {
+  .container {
+    max-width: 1500px;
+  }
+}
+// :root {
+//   --bs-breakpoint-xs: 0;
+//   --bs-breakpoint-sm: 576px;
+//   --bs-breakpoint-md: 768px;
+//   --bs-breakpoint-lg: 992px;
+//   --bs-breakpoint-xl: 1200px;
+//   --bs-breakpoint-xxl: 1400px;
+// }
+

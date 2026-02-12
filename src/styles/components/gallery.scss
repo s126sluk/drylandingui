@@ -1,0 +1,41 @@
+.gallery {
+// --swiper-navigation-color: #fff;
+}
+
+.work {
+    display: flex;
+    gap: 0.25rem;
+    &__item {
+        overflow: hidden;
+        position: relative;
+        &:before {
+            display: inline-block;
+            border-radius: 0.75rem;
+            padding: 0.5rem 0.75rem;
+            background: #fff;
+            color: var(--dark);
+            position: absolute;
+            left: 0.75rem;
+            top: 0.75rem;
+            font-size: var(--h5);
+        }
+        &--before {
+            border-radius: 1rem 0 0 1rem;
+            &:before {
+                content: "Before";
+            }
+        }
+        &--after {
+            border-radius: 0 1rem 1rem 0;
+            &:before {
+                content: "After";
+            }
+        }
+    }
+
+    @media screen and (max-width: 430.5px) {
+        &__item {
+            border-radius: 0;
+        }
+    }
+}

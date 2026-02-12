@@ -1,0 +1,65 @@
+.testimonials {
+    // font-family: 'Plus Jakarta Sans';
+    &__header {
+        margin-bottom: 0.75rem;
+        display: flex;  
+        justify-content: center;
+    }
+    &__row {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+     @media screen and (min-width: 992px) and (max-width: 1199px) {
+        &__row {
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        &__col {
+            width: calc(50% - 0.25rem);
+            .card {
+                height: 100%;
+            }
+        }
+
+     }
+
+          @media screen and (min-width: 1200px) {
+        &__header {
+            margin-bottom: 1rem;
+        }
+     }
+
+}
+
+.testimonial {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    &__ava {
+        border-radius: 50%;
+        width: 2rem;
+        height: 2rem;
+        flex-shrink: 0;
+    }
+    &__text {
+        font-size: 14px;
+    }
+
+    @media screen and (min-width: 431px) {
+        &__text {
+            font-size: 1rem;
+        }
+    }
+     @media screen and (min-width: 992px) and (max-width: 1199px) {
+        height: 100%;
+        flex-direction: column;
+        &__text {
+            font-size: 14px;
+        }
+     }
+
+
+}

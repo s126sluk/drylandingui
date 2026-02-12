@@ -1,0 +1,31 @@
+.preference {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    // font-family: 'Plus Jakarta Sans';
+    &__icon {
+        width: 1rem;
+        height: 1.25rem;
+        object-fit: contain;
+        object-position: center;
+        flex-shrink: 0;
+    }
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
+    }
+    // @media screen and (min-width: 768px) {
+    //     flex-direction: row;
+    // }
+
+    @media screen and (min-width: 1200px) {
+        gap: 1rem;
+        // flex-direction: column;
+        &__icon {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    }
+}

@@ -1,0 +1,155 @@
+.why {
+    overflow: hidden;
+    &__equation {
+        margin-bottom: 2.5rem;
+    }
+    &__notification {
+        margin-bottom: 1rem;
+        max-width: 590px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.equation {
+    color: var(--dark);
+    &__row {
+        display: flex;
+    }
+    &__row:first-child &__col:nth-child(2) {
+        border-radius: 1rem 1rem 0 0;
+    }
+    &__row:last-child &__col:nth-child(2) {
+        border-radius: 0 0 1rem 1rem;
+    }
+    &__row:not(:last-child) &__col {
+        border-bottom: 1px solid var(--lightgray);
+    }
+    &__col {
+        --padding-x: 0.5rem;
+        --padding-y: 1.5rem;
+        width: 33%;
+        
+        padding-top: var(--padding-y);
+        padding-bottom: var(--padding-y);
+        display: flex;
+        align-items: center;
+        &:first-child {
+            padding-right: var(--padding-x);
+        }
+        &:nth-child(2) {
+            --icon-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 0C4.49 0 0 4.49 0 10C0 15.51 4.49 20 10 20C15.51 20 20 15.51 20 10C20 4.49 15.51 0 10 0ZM14.78 7.7L9.11 13.37C8.97 13.51 8.78 13.59 8.58 13.59C8.38 13.59 8.19 13.51 8.05 13.37L5.22 10.54C4.93 10.25 4.93 9.77 5.22 9.48C5.51 9.19 5.99 9.19 6.28 9.48L8.58 11.78L13.72 6.64C14.01 6.35 14.49 6.35 14.78 6.64C15.07 6.93 15.07 7.4 14.78 7.7Z' fill='white'/%3E%3C/svg%3E%0A");
+            background: var(--blue);
+            color: #fff;
+            padding-left: var(--padding-x);
+            padding-right: var(--padding-x);
+
+        }
+        &:last-child {
+            padding-left: var(--padding-x);
+            --icon-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22Z' stroke='%23D90D0D' stroke-width='2' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M18.8984 5L4.89844 19' stroke='%23D90D0D' stroke-width='2' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+        }
+    }
+    &__object {
+        text-align: center;
+        width: 100%;
+        
+    }
+    &__property {
+        font-weight: 500;
+        &-info {
+            --icon-size: 1.25rem;
+            position: relative;
+            padding-left: calc(var(--icon-size) * 1.25);
+            &:before {
+                content: "";
+                display: block;
+                width: var(--icon-size);
+                height: var(--icon-size);
+                background: var(--icon-image);
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+        &-value {
+
+        }
+        &-description {
+            display: none;
+        }
+    }
+
+    @media screen and (max-width: 430.5px) {
+
+          &__property {
+            font-size: 12px;
+            &-value {
+                font-size: 12px;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;  
+                -webkit-box-orient: vertical;  
+                overflow: hidden;
+            }
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        &__col {
+            &:first-child {
+                width: 30%;
+            }
+            &:nth-child(2) {
+                width: 35%;
+            }
+            &:last-child {
+                width: 35%;
+            }
+        }
+        &__object {
+            font-size: 18px;
+        }
+        &__property {
+            font-size: 14px;
+            &-value {
+                font-size: 14px;
+            }
+        }
+    }
+
+
+    @media screen and (min-width: 431px) {
+
+
+    }
+    @media screen and (min-width: 768px) {
+                &__col {
+            --padding-x: 1.5rem;
+        }
+                &__property {
+            &-description {
+                display: block;
+            }
+        }
+    }
+    @media screen and (min-width: 992px) {
+        &__col {
+            --padding-x: 2rem;
+            --padding-x: 2rem;
+        }
+    }
+    @media screen and (min-width: 1200px) {
+        &__col {
+            --padding-x: 2.5rem;
+        }
+        &__property {
+            &-info {
+                --icon-size: 2rem;
+            }
+        }
+    }
+}
