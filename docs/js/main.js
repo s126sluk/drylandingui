@@ -2,7 +2,7 @@
     'use strict';
 
     function reviews () {
-      var reviewsSwiper = new Swiper(".reviews-swiper", {
+      let reviewsSwiper = new Swiper(".reviews-swiper", {
         slidesPerView: 1,
         spaceBetween: 16,
         loop: true,
@@ -26,15 +26,15 @@
     }
 
     function accordion () {
-      var accordions = document.querySelectorAll('.accordion');
+      let accordions = document.querySelectorAll('.accordion');
 
-      var _loop = function _loop(a) {
-        var items = accordions[a].querySelectorAll('.accordion-item');
-        var activeItem = accordions[a].querySelector('.accordion-item.active');
+      for (let a = 0; a < accordions.length; a++) {
+        let items = accordions[a].querySelectorAll('.accordion-item');
+        let activeItem = accordions[a].querySelector('.accordion-item.active');
 
-        for (var i = 0; i < items.length; i++) {
+        for (let i = 0; i < items.length; i++) {
           items[i].addEventListener('click', function (e) {
-            var button = e.currentTarget.querySelector('.accordion-item__btn');
+            let button = e.currentTarget.querySelector('.accordion-item__btn');
 
             if (e.currentTarget !== activeItem && !!activeItem) {
               activeItem.classList.remove('active');
@@ -51,27 +51,30 @@
             }
           });
         }
-      };
-
-      for (var a = 0; a < accordions.length; a++) {
-        _loop(a);
       }
     }
 
     function history () {
-      var video = document.querySelector(".video");
-      var play = document.querySelector(".video__play");
+      const video = document.querySelector(".video");
+      const play = document.querySelector(".video__play");
       if (!video || !play) return;
-      var videoId = video.dataset.id;
-      var vimeoHash = "7e4b7653d3"; // статический hash
+      const videoId = video.dataset.id;
+      const vimeoHash = "7e4b7653d3"; // статический hash
 
-      play.addEventListener("click", function () {
-        video.innerHTML = "\n      <iframe\n        src=\"https://player.vimeo.com/video/".concat(videoId, "?h=").concat(vimeoHash, "&autoplay=1&muted=1\"\n        allow=\"autoplay; fullscreen; picture-in-picture\"\n        allowfullscreen\n        loading=\"lazy\"\n      ></iframe>\n    ");
+      play.addEventListener("click", () => {
+        video.innerHTML = `
+      <iframe
+        src="https://player.vimeo.com/video/${videoId}?h=${vimeoHash}&autoplay=1&muted=1"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen
+        loading="lazy"
+      ></iframe>
+    `;
       });
     }
 
     function gallery () {
-      var gallerySwiper = new Swiper(".gallery-swiper", {
+      let gallerySwiper = new Swiper(".gallery-swiper", {
         slidesPerView: 1,
         spaceBetween: 16,
         loop: true,
@@ -83,27 +86,47 @@
     }
 
     function notification () {
-      var counters = document.querySelectorAll(".notification__refresh span");
-      if (!counters.length) return;
-      var timeLeft = 59;
+      // ── Refresh counter (legacy — currently no counter elements in DOM) ──
+      const counters = document.querySelectorAll(".notification__refresh span");
 
-      var updateCounters = function updateCounters() {
-        counters.forEach(function (counter) {
-          counter.textContent = timeLeft;
-        });
-      }; // initial render
+      if (counters.length) {
+        let timeLeft = 59;
 
-
-      updateCounters();
-      setInterval(function () {
-        timeLeft--;
-
-        if (timeLeft < 1) {
-          timeLeft = 59;
-        }
+        const updateCounters = () => {
+          counters.forEach(counter => {
+            counter.textContent = timeLeft;
+          });
+        };
 
         updateCounters();
-      }, 1000);
+        setInterval(() => {
+          timeLeft--;
+
+          if (timeLeft < 1) {
+            timeLeft = 59;
+          }
+
+          updateCounters();
+        }, 1000);
+      } // ── Sticky header scroll shadow ──
+
+
+      const siteHeader = document.querySelector('.site-header');
+
+      if (siteHeader) {
+        const onScroll = () => {
+          if (window.scrollY > 10) {
+            siteHeader.classList.add('is-scrolled');
+          } else {
+            siteHeader.classList.remove('is-scrolled');
+          }
+        };
+
+        window.addEventListener('scroll', onScroll, {
+          passive: true
+        });
+        onScroll(); // initial check
+      }
     }
 
     // import header from './modules/header'
