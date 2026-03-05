@@ -1,5 +1,17 @@
 .history {
+    &__title {
+        font-size: var(--h4);
+    }
 
+    &__video {
+        max-width: 640px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &__btn {
+        margin-top: 1.5rem;
+    }
 }
 
 .video {
