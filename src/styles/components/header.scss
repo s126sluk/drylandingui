@@ -1,14 +1,28 @@
+// ── Sticky wrapper for notification + header ──
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--light);
+    transition: box-shadow 0.3s ease;
+
+    &.is-scrolled {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+}
+
 .header {
-    position: relative;
     width: 100%;
-    margin-top: 1rem;
+    background: var(--light);
+    padding: 0.75rem 0;
+
     &__inner {
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         align-items: center;
         justify-content: space-between;
         gap: 0.75rem;
-    }   
+    }
 
     &__btn {
         .btn {
@@ -19,45 +33,42 @@
             border-radius: 0.75rem;
         }
     }
+
+    // Mobile: make header CTA green to match hero primary CTA
+    @media screen and (max-width: 767px) {
+        &__btn .btn {
+            --border-color: var(--green);
+            background: var(--green);
+            color: var(--light);
+            font-weight: 700;
+
+            &:hover {
+                background: var(--darkgreen);
+            }
+        }
+    }
     &__logo {
         width: 124px;
+        flex-shrink: 0;
     }
-    &__notification {
-        width: 100%;
-    }
-
 
     @media screen and (min-width: 992px) {
+        padding: 1rem 0;
         &__inner {
-            flex-wrap: nowrap;
             background: #fff;
             border-radius: 1rem;
             padding: 1rem;
             box-shadow: 0 0 10px #D5D5D5;
         }
-        &__logo {
-            order: 1;
-
-            flex-shrink: 0;
-        }
-        &__notification {
-            order: 2;
-        }
         &__btn {
-            order: 3;
             flex-shrink: 0;
-        }
-        &__notification {
-            max-width: 590px;
         }
     }
 
     @media screen and (min-width: 1200px) {
-        margin-top: 2rem;
+        padding: 1.25rem 0;
         &__logo {
             width: 178px;
         }
     }
-
 }
-

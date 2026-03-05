@@ -1,15 +1,33 @@
-section.experience.block 
-	.container 
-		.experience-grid 
-			.experience-grid__title 
-				h2.experience__title.text-uppercase.mb-0.text-center.text-lg-left Decades of experience across our technician team, ensuring you are in <span class="text-blue">safe hands</span>
-			.experience-grid__img
-				img.img-rounded.experience__img(src="img/experience-img.jpg" alt="")
-			.experience-grid__description
-				.experience__description Our team members bring several years of hands-on water damage experience, ensuring your home is in the care of true professionals. Unlike companies that use rotating contractors, our technicians are dedicated DrySafe team members who understand Sydney properties inside and out—from older terrace homes in Paddington to modern apartments in Chatswood. They know how water affects local building materials, how Sydney's humidity impacts drying times, and how to work efficiently within insurance requirements. This local expertise means faster, more effective recovery for your home.
-			.experience-grid__notification
-				.experience__notification
-					include notification
-			.experience-grid__btn
-				.experience__btn.text-center 
-					+btn('btn btn-primary btn-rounded btn-large', 'SEND HELP NOW')
+//- 3.2 — Value props section (PM REVIEW: copy is placeholder — tightened from original long paragraph)
+section.experience.block
+    .container
+        h2.experience__title.text-uppercase.text-center Why Sydney Homeowners <span class="text-blue">Trust DrySafe</span>
+        .experience__grid
+            .experience__card
+                .experience__icon
+                    svg(width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg")
+                        path(d="M12 2L4 7V17L12 22L20 17V7L12 2Z" stroke="var(--blue)" stroke-width="1.5" stroke-linejoin="round")
+                        path(d="M9 12L11 14L15 10" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round")
+                h3.experience__card-title Dedicated In-House Team
+                p.experience__card-text No rotating contractors. Our full-time technicians know Sydney properties — from Paddington terraces to Chatswood apartments.
+            .experience__card
+                .experience__icon
+                    svg(width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg")
+                        circle(cx="12" cy="12" r="10" stroke="var(--blue)" stroke-width="1.5")
+                        path(d="M12 6V12L16 14" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round")
+                h3.experience__card-title 60-Minute Average Response
+                p.experience__card-text Water damage accelerates by the hour. We arrive fast, extract water immediately, and start drying before mould takes hold.
+            .experience__card
+                .experience__icon
+                    svg(width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg")
+                        path(d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="var(--blue)" stroke-width="1.5" stroke-linejoin="round")
+                h3.experience__card-title 30+ Years Combined Experience
+                p.experience__card-text Our team understands how Sydney's humidity affects drying times and how to work efficiently within insurance requirements.
+            .experience__card
+                .experience__icon
+                    svg(width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg")
+                        path(d="M9 12H15M9 16H15M17 21H7C5.89543 21 5 20.1046 5 19V5C5 3.89543 5.89543 3 7 3H12.5858C12.851 3 13.1054 3.10536 13.2929 3.29289L18.7071 8.70711C18.8946 8.89464 19 9.149 19 9.41421V19C19 20.1046 18.1046 21 17 21Z" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round")
+                h3.experience__card-title Insurance-Ready Documentation
+                p.experience__card-text We handle the paperwork. Every job includes photo evidence, moisture readings, and reports your insurer needs.
+        .experience__btn.text-center
+            +btn('btn btn-primary btn-rounded btn-large', 'SEND HELP NOW')

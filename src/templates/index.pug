@@ -14,15 +14,17 @@ prepend head
 append head
 append content
 	include mixins/btn
-	include components/header
+	.site-header
+		include components/notification
+		include components/header
 	main
 		include components/promo
 		include components/reviews
+		include components/painpoint
 		include components/experience
 		include components/how
 		include components/process
 		include components/history
-		include components/recovery
 		include components/community
 		include components/why
 		include components/response

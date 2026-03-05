@@ -1,18 +1,71 @@
-section.promo.block 
-    .container 
+section.promo.block
+    .container
         .promo__inner
-            .promo__experience
-                .promo__gallery 
-                    h1.h3.promo__title.text-uppercase.text-center.d-xl-none Stop water damage from spreading in <span class="text-blue">minutes</span>
-                    include gallery 
-                .promo__testimonials 
-                    include testimonials
-            .promo__info
-                h2.h1.promo__title.text-uppercase.text-center.d-none.d-xl-block Stop water damage from spreading in <span class="text-blue">minutes</span>
-                .promo__description Our local technicians respond in 90 mins on average to stop water in its tracks, dry your home and stop mould before it spreads. We look after the mess so you can focus on what matters most, keeping your family safe during this stressful time.
-                .promo__btn.text-center 
-                    +btn('btn btn-primary btn-rounded btn-large', 'SEND HELP NOW')
-                .promo__advantages
-                    include advantages
-                .promo__preference 
-                    include preference
+            //- 1. Before/after image carousel + testimonials (right column on desktop)
+            .promo__gallery
+                include gallery
+
+                //- Testimonial snippets — compact social proof below carousel
+                .promo__snippets
+                    .snippet
+                        img.snippet__avatar(src="img/review-ava-1.jpg", alt="Leora Segal")
+                        .snippet__body
+                            .snippet__text "The guys were very professional. Explained things well. Very quick to respond and get on with job."
+                            .snippet__meta
+                                .snippet__stars
+                                    .rating(style="--star-rating: 5;")
+                                .snippet__name Leora Segal
+                                img.snippet__google(src="img/google-icon.svg", alt="Google")
+                    .snippet
+                        img.snippet__avatar(src="img/review-ava-2.jpg", alt="Phil Kells")
+                        .snippet__body
+                            .snippet__text "They are professional and friendly and keep their promises & commitments. Seems simple, but it's not ..."
+                            .snippet__meta
+                                .snippet__stars
+                                    .rating(style="--star-rating: 5;")
+                                .snippet__name Phil Kells
+                                img.snippet__google(src="img/google-icon.svg", alt="Google")
+                    .snippet
+                        img.snippet__avatar(src="img/review-ava-3.jpg", alt="Kim Crumpton")
+                        .snippet__body
+                            .snippet__text "Promptly contacted us after our insurance claim was lodged. Followed up, and came out to ...."
+                            .snippet__meta
+                                .snippet__stars
+                                    .rating(style="--star-rating: 5;")
+                                .snippet__name Kim Crumpton
+                                img.snippet__google(src="img/google-icon.svg", alt="Google")
+                    .snippet
+                        img.snippet__avatar(src="img/review-ava-4.jpg", alt="Yona Griffin")
+                        .snippet__body
+                            .snippet__text "It was a relief to have them attend and get our premises to a usable state so quickly"
+                            .snippet__meta
+                                .snippet__stars
+                                    .rating(style="--star-rating: 5;")
+                                .snippet__name Yona Griffin
+                                img.snippet__google(src="img/google-icon.svg", alt="Google")
+
+            //- 2–7. Content block: ratings → headline → body → CTA → trust
+            .promo__content
+                //- 1.2 — Google ratings condensed to one line
+                .google-ratings
+                    .rating(style="--star-rating: 5")
+                    img.google-ratings__icon(src="img/google-icon.svg", alt="Google")
+                    span.google-ratings__label Google Reviews — 5.0 Rating
+
+                //- 1.3 — Headline with emotional payoff
+                h1.promo__title Stop Water Damage in Minutes and <span class="text-blue">Protect What Matters Most</span>
+
+                //- 1.4 — Body text shortened to 2-3 sentences
+                .promo__description Water damage spreads fast and every minute counts. DrySafe's certified technicians respond within the hour to extract, dry, and restore — backed by 30+ years of industry experience.
+
+                //- 1.6 — Primary CTA button in hero body
+                .promo__btn
+                    +btn('btn btn-primary btn-rounded btn-large promo__cta', 'SEND HELP NOW')
+                .promo__btn-note.text-center Average response time: under 60 minutes
+
+                //- Trust indicators / risk reduction
+                .promo__trust
+                    .promo__preference
+                        include preference
+                    .promo__advantages
+                        include advantages
