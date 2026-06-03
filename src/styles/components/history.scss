@@ -3,65 +3,52 @@
         font-size: var(--h4);
     }
 
-    &__video {
-        max-width: 640px;
-        margin-left: auto;
-        margin-right: auto;
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        align-items: start;
+    }
+
+    &__card {
+        min-width: 0;
+    }
+
+    &__name {
+        margin-top: 0.75rem;
+        font-weight: 600;
+        font-size: 1rem;
     }
 
     &__btn {
-        margin-top: 1.5rem;
+        margin-top: 2rem;
     }
 }
 
-.video {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  // background: #000;
-  border-radius: 16px;
-  overflow: hidden;
-  cursor: pointer;
+// Uniform 4:3 box for all three testimonial videos. Eddie's source is
+// 16:9 and will letterbox inside this 4:3 frame (thin bars top/bottom);
+// Ned and Chris are 4:3 and fill exactly. The matching box ratio is
+// the point of the design — three equal-size cards.
+.video-card {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #000;
+
+    iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
 }
 
-/* кнопка play */
-.video__play {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  background: transparent;
-  border: 0;
-  color: #fff;
-  font-size: 44px;
-  transition: background 0.3s ease;
-}
-
-.video__play::before {
-  content: "";
-  position: absolute;
-  width: 76px;
-  height: 76px;
-  background: rgba(12, 211, 194, 0.588);
-  border-radius: 50%;
-}
-
-.video__play {
-  z-index: 2;
-}
-
-.video__play span,
-.video__play {
-  pointer-events: auto;
-}
-
-.video__play:hover::before {
-  background: rgba(16, 180, 166, 0.641);
-}
-
-/* iframe */
-.video iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
+@media (max-width: 768px) {
+    .history__grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
 }

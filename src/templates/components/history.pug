@@ -1,9 +1,39 @@
 section.history.block
     .container
-        h2.history__title.text-center.text-uppercase WE'VE HELPED THOUSANDS OF <span class="text-blue">SYDNEY SIDERS</span> LIKE EDDIE
-        .history__video
-            .video(data-id="1157075605")
-                img.video__preview.img-rounded(src="img/history-img.jpg", alt="")
-                button(class="video__play", aria-label="Play video") ▶
+        h2.history__title.text-center.text-uppercase WE'VE HELPED THOUSANDS OF <span class="text-blue">SYDNEY SIDERS</span> — CHECK OUT THEIR STORIES
+        .history__grid
+            .history__card
+                .video-card
+                    iframe(
+                        src="https://player.vimeo.com/video/1157075605?h=7e4b7653d3&title=0&byline=0&portrait=0&dnt=1",
+                        title="drySafe customer testimonial — Eddie",
+                        loading="lazy",
+                        frameborder="0",
+                        allow="autoplay; fullscreen; picture-in-picture",
+                        allowfullscreen
+                    )
+                p.history__name.text-center Eddie
+            .history__card
+                .video-card
+                    iframe(
+                        src="https://player.vimeo.com/video/1197929605?h=dfdf8b1f5c&title=0&byline=0&portrait=0&dnt=1",
+                        title="drySafe customer testimonial — Ned",
+                        loading="lazy",
+                        frameborder="0",
+                        allow="autoplay; fullscreen; picture-in-picture",
+                        allowfullscreen
+                    )
+                p.history__name.text-center Ned
+            .history__card
+                .video-card
+                    iframe(
+                        src="https://player.vimeo.com/video/1197929652?h=5e5cc85942&title=0&byline=0&portrait=0&dnt=1",
+                        title="drySafe customer testimonial — Chris",
+                        loading="lazy",
+                        frameborder="0",
+                        allow="autoplay; fullscreen; picture-in-picture",
+                        allowfullscreen
+                    )
+                p.history__name.text-center Chris
         .history__btn.text-center
             +btn('btn btn-primary btn-rounded btn-large', 'SEND HELP NOW')
