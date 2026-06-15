@@ -206,6 +206,7 @@ br {
     left: 0;
     top: 0;
     background-repeat: repeat-x;
+    background-size: var(--star-size) var(--star-size);
   }
 
   &:before {

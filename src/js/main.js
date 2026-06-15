@@ -5,6 +5,7 @@ import accordion from './modules/accordion'
 import history from './modules/history'
 import gallery from './modules/gallery'
 import notification from './modules/notification'
+import clickforward from './modules/clickforward'
 
 document.addEventListener('DOMContentLoaded', function () {
 	
@@ -14,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	history()
 	gallery()
 	notification()
+	clickforward()
 
 	// AOS.init({
 	// 	offset: 80,
