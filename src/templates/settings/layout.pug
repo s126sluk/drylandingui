@@ -3,6 +3,13 @@ block html
   html(lang=lang)
     head
       block head
+        // Google Ads global site tag (gtag.js) — AW-18192700128
+        script(async src="https://www.googletagmanager.com/gtag/js?id=AW-18192700128")
+        script.
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'AW-18192700128');
         - const domain = "INSERT_YOUR_DOMAIN"
         //- https://your_domain.com/
         meta(charset="UTF-8")
