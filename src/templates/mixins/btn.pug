@@ -2,3 +2,10 @@
 mixin btn(classes, text)
   a(class=classes, href=`https://drysafe.vercel.app`)&attributes(attributes)
     span= text
+
+//- [A4/SMS] Secondary CTA. Display string only in this pass; sms: deeplink is
+//- the vanity number's E.164 form (0485-07-SAFE → +61485077233). Full modal
+//- behaviour lives in the separate SMS Workflow spec.
+mixin smsCta(classes)
+  a.sms-cta(class=classes, href="sms:+61485077233?&body=PRICE")&attributes(attributes)
+    | Text <b>PRICE</b> to 0485-07-SAFE for an instant quote

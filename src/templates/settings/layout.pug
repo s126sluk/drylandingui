@@ -30,6 +30,8 @@ block html
         meta(name="theme-color" content=themeColor)
         title= pageTitle
         link(rel="stylesheet", href="css/style.min.css")
+        //- [A6] Preload the LCP hero before/after slide
+        link(rel="preload", as="image", href="img/work-img-1.jpg")
         link(rel="icon", href="img/favicon.ico", type="image/x-icon")
         //- link(rel="canonical", href= domain + pageUrl)
         meta(name="description", content=pageDescription)

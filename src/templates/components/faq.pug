@@ -4,7 +4,7 @@ section.faq.block
 			.faq-grid__title 
 				h2.faq__title.text-uppercase.mb-0.text-center.text-lg-left Faq
 			.faq-grid__img
-				img.img-rounded.faq__img(src="img/faq-img.jpg" alt="")
+				img.img-rounded.faq__img(loading="lazy", src="img/faq-img.jpg" alt="")
 			.faq-grid__accordion
 				.faq__accordion
 					.accordion
@@ -73,4 +73,5 @@ section.faq.block
 								.h5 Yes, water damage doesn't wait and neither do we. Our team is available around the clock, 365 days a year—including Christmas, Easter, and every public holiday. When you ask for help, we will dispatch a team immediately.
 			.faq-grid__btn
 				.faq__btn.text-center.text-lg-left
-					+btn('btn btn-primary btn-rounded btn-large', 'SEND HELP NOW')
+					+btn('btn btn-primary btn-rounded btn-large', 'Book Now — See Prices')
+					+smsCta('section-sms')
