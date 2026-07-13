@@ -1,0 +1,65 @@
+extends settings/layout
+
+prepend html
+	- const lang = "en";
+
+prepend head
+	- const pageTitle = "Privacy Policy | drySafe"
+	- const themeColor = "#ffffff"
+	- const pageDescription = "How drySafe collects, uses, and protects your personal information when you use our website and water damage services in Sydney."
+	- const pageKeywords = ""
+	- const pageUrl = "privacy.html";
+	- const pageImage = "img/logo.svg";
+	- const twitterImage = "img/logo.svg";
+append head
+append content
+	include mixins/btn
+	.site-header
+		include components/header
+	main
+		section.privacy.block
+			.container
+				.privacy__content
+					h1.privacy__title Privacy Policy
+					p.privacy__updated #[strong Last updated: 14 July 2026]
+
+					p drySafe ("we", "us", "our") operates the website drysafe.sydney and provides emergency water damage and carpet drying services in Sydney, Australia, operated by Ekon Enterprises Pty Ltd trading as drySafe, ACN 061 879 141. This Privacy Policy explains how we collect, use, and protect your personal information when you use our website and services.
+
+					h2 Information we collect
+					p When you use our website and book our services, we may collect:
+					ul
+						li #[strong Contact and booking details] you provide through our online booking process, such as your name, service address, email address, and details about the service you require.
+						li #[strong Payment information], processed securely by our payment provider, Stripe. We do not store your full card details on our systems; card payments are handled directly by Stripe.
+						li #[strong Usage and analytics data], including pages visited, actions taken on our site, device and browser information, and referral information. We collect this to understand how our site is used and to improve it.
+						li #[strong Advertising and attribution data], such as identifiers passed when you arrive from an online advertisement (for example, Google Ads click identifiers), used to measure the effectiveness of our advertising.
+
+					h2 How we use your information
+					p We use your information to:
+					ul
+						li Provide, schedule, and deliver the services you book.
+						li Process payments for those services.
+						li Communicate with you about your booking.
+						li Measure and improve the performance of our website and advertising.
+						li Meet our legal and regulatory obligations.
+
+					h2 How your information is shared
+					p We share personal information only as needed to run our business, including with:
+					ul
+						li #[strong Stripe], to process payments.
+						li #[strong Analytics and advertising providers] (such as PostHog and Google), to measure site and campaign performance. Where possible this data is limited and used in aggregate.
+						li #[strong Service providers] who help us operate our website and business, under obligations of confidentiality.
+						li #[strong Authorities or third parties] where required by law. We do not sell your personal information.
+
+					h2 Data storage and security
+					p We take reasonable steps to protect your personal information from misuse, loss, and unauthorised access. Payment data is handled by Stripe under their security standards. We retain booking and payment records for as long as necessary to provide our services and meet our legal obligations.
+
+					h2 Cookies and tracking
+					p Our website uses cookies and similar technologies for analytics and advertising measurement. You can control cookies through your browser settings; disabling them may affect some site functionality.
+
+					h2 Your rights
+					p You may request access to, correction of, or deletion of the personal information we hold about you, subject to legal requirements. To make a request, contact us using the details below.
+
+					h2 Contact us
+					p If you have questions about this Privacy Policy or how we handle your information, contact us at #[a(href="mailto:noreply@drysafe.sydney") noreply@drysafe.sydney].
+	include components/footer
+append scripts
