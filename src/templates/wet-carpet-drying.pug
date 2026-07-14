@@ -4,9 +4,9 @@ prepend html
 	- const lang = "en";
 
 prepend head
-	- const pageTitle = "Emergency Wet Carpet Drying in Sydney | Book Now — drySafe"
+	- const pageTitle = "Emergency Wet Carpet Drying in Sydney | drySafe"
 	- const themeColor = "#ffffff"
-	- const pageDescription = "Emergency wet carpet drying across Sydney. Book online in about 60 seconds and lock in your arrival time instantly. Fixed package prices from $302 per room, confirmed the moment you book."
+	- const pageDescription = "Emergency wet carpet drying across Sydney. Book online and skip the $499 assessment fee — packages from $302 + GST, with your arrival time confirmed the moment you book."
 	- const pageKeywords = ""
 	- const pageUrl = "wet-carpet-drying.html";
 	- const pageImage = "img/logo.svg";
@@ -18,8 +18,8 @@ append content
 	//- [A1] Wet-carpet campaign variant. Same design system + section stack as the
 	//- main page; only the hero copy is rewritten for emergency carpet-drying intent,
 	//- with "Sydney" native to the headline. promo.pug reads these overrides.
-	- const heroTitle = "Wet Carpet Emergency in Sydney? Book Now — Arrival Time Locked In, in Seconds"
-	- const heroSubhead = "Fast emergency carpet drying across greater Sydney. Fixed package prices, dispatch confirmed the moment you book."
+	- const heroTitleHtml = 'Wet carpet in Sydney? Get your arrival time <span class="text-blue">locked in within seconds</span>'
+	- const heroBodyHtml = 'Emergency carpet drying across greater Sydney. Book online and skip the $499 assessment fee — packages from <b>$302 + GST</b>, with a real dispatch time confirmed the moment you book.'
 
 	.site-header
 		include components/header

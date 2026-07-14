@@ -3,9 +3,17 @@ mixin btn(classes, text)
   a(class=classes, href=`https://drysafe.vercel.app`)&attributes(attributes)
     span= text
 
-//- [A4/SMS] Secondary CTA. Display string only in this pass; sms: deeplink is
-//- the vanity number's E.164 form (0485-07-SAFE → +61485077233). Full modal
-//- behaviour lives in the separate SMS Workflow spec.
-mixin smsCta(classes)
-  a.sms-cta(class=classes, href="sms:+61485077233?&body=PRICE")&attributes(attributes)
-    | Text <b>PRICE</b> to 0485-07-SAFE for an instant quote
+//- Hero primary CTA (Option B): label + inline price after a thin divider.
+//- Same funnel href as +btn so clickforward.js keeps catching it (PostHog).
+mixin btnPrice(classes, label, price)
+  a(class=classes, href=`https://drysafe.vercel.app`)&attributes(attributes)
+    span.btn__label= label
+    span.btn__price= price
+
+//- Two-tier SMS fallback panel (3 placements only: hero, mid, final).
+//- Tap target is the sms: deeplink; full modal behaviour is a separate spec.
+//- "nearly 40%" — the word "nearly" must ALWAYS precede "40%" (ACL/ACCC).
+mixin smsPanel
+  a.sms-panel(href="sms:+61485077233?&body=PRICE")&attributes(attributes)
+    span.sms-panel__hook Not ready yet? Save nearly 40% — text #[span.text-blue PRICE] to #[span.text-blue 0485-07-SAFE]
+    span.sms-panel__sub We'll lock in your online price and send a link so you can book anytime in the next 24 hours — even if you want to shop around first.

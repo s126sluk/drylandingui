@@ -10,29 +10,22 @@ section.promo.block
                     img.google-ratings__icon(src="img/google-icon.svg", alt="Google")
                     span.google-ratings__label Google Reviews — 5.0 Rating
 
-                //- [A5] Headline reframed to the booking-confirmation promise.
-                //- [A1] Variant pages override heroTitle/heroSubhead; main page uses the defaults.
-                - var _heroTitle = (typeof heroTitle !== 'undefined') ? heroTitle : "Book now. Get your arrival time locked in, in just a few seconds"
-                - var _heroSubhead = (typeof heroSubhead !== 'undefined') ? heroSubhead : "Sydney's certified water damage crews. Fixed package prices and a real dispatch time confirmed the moment you book."
-                h1.promo__title= _heroTitle
+                //- Headline: sentence case, two-tone (blue phrase). Variant pages override heroTitleHtml.
+                - var _titleHtml = (typeof heroTitleHtml !== 'undefined') ? heroTitleHtml : 'Book now. Get your arrival time <span class="text-blue">locked in within seconds</span>'
+                h1.promo__title!= _titleHtml
 
-                //- [A2] Sydney surfaced above the fold in the supporting subhead
-                .promo__description= _heroSubhead
+                //- Body: single above-the-fold price mention (Sydney = geo above fold). Variant overrides heroBodyHtml.
+                - var _bodyHtml = (typeof heroBodyHtml !== 'undefined') ? heroBodyHtml : 'Sydney\'s certified water damage crews. Book online and skip the $499 assessment fee — packages from <b>$302 + GST</b>, with a real dispatch time confirmed the moment you book.'
+                .promo__description!= _bodyHtml
 
-                //- [A4] Primary CTA
+                //- Primary CTA — Option B: label + inline price on the green button
                 .promo__btn
-                    +btn('btn btn-primary btn-rounded btn-large promo__cta', 'Book Now — See Prices')
-                .promo__btn-note.text-center Booked in about 60 seconds · fixed package prices · confirmation the moment you book
+                    +btnPrice('btn btn-primary btn-rounded btn-large promo__cta promo__cta--price', 'Complete your booking here', 'from $302 + GST')
 
-                //- [A3] Price anchor adjacent to the primary CTA, above the fold
-                .promo__price
-                    span.promo__price-tag Packages from <b>$302</b> per room
+                //- Two-tier SMS fallback panel (hero placement 1 of 3)
+                +smsPanel()(class="promo__sms-panel")
 
-                //- [A4/SMS] Secondary CTA — display + sms: deeplink (modal behaviour is the separate SMS spec)
-                .promo__sms
-                    +smsCta('promo__sms-link')
-
-                //- [A5] Response time demoted to a single soft supporting line
+                //- Response time demoted to a single soft supporting line
                 .promo__soft.text-center Crews typically on-site within the hour.
 
                 //- Trust indicators / risk reduction

@@ -7,7 +7,8 @@
     &__title {
         line-height: 1.2;
         margin-bottom: 0.75rem;
-        text-transform: uppercase;
+        // Hero H1 is sentence case by deliberate decision — override the global uppercase.
+        text-transform: none;
     }
 
     &__description {
@@ -16,41 +17,15 @@
     }
 
     &__btn {
-        margin-bottom: 0.5rem;
-    }
-
-    &__btn-note {
-        font-size: 14px;
-        color: var(--darkgray);
         margin-bottom: 0.75rem;
     }
 
-    // [A3] Price anchor — sits adjacent to the primary CTA, above the fold
-    &__price {
-        margin-bottom: 0.75rem;
+    // Hero SMS panel placement (panel visuals live in cta.scss)
+    &__sms-panel {
+        margin-bottom: 1rem;
     }
 
-    &__price-tag {
-        display: inline-block;
-        font-weight: 700;
-        font-size: 1rem;
-        color: var(--dark, #1a1a1a);
-        background: #fff7e6;
-        border: 1px solid #f0d18a;
-        border-radius: 0.5rem;
-        padding: 0.4rem 0.75rem;
-
-        b {
-            color: var(--blue);
-        }
-    }
-
-    // [A4/SMS] Secondary CTA
-    &__sms {
-        margin-bottom: 0.75rem;
-    }
-
-    // [A5] Soft supporting response-time line (demoted from headline promise)
+    // Soft supporting response-time line (demoted from headline promise)
     &__soft {
         font-size: 13px;
         font-style: italic;
@@ -110,10 +85,6 @@
         &__description {
             margin-bottom: 0.75rem;
             font-size: 0.9375rem;
-        }
-
-        &__btn-note {
-            margin-bottom: 1rem;
         }
 
         // Hide snippets on mobile to keep above-the-fold tight

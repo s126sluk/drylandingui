@@ -45,26 +45,3 @@
         color: var(--lightgray);
     }
 }
-
-// [A4/SMS] Secondary CTA — shared across hero + section-ends
-.sms-cta {
-    display: inline-block;
-    color: var(--blue);
-    font-size: 0.9375rem;
-    font-weight: 500;
-    text-decoration: none;
-
-    b {
-        font-weight: 700;
-    }
-
-    &:hover,
-    &:focus-visible {
-        text-decoration: underline;
-    }
-}
-
-// Section-end placement gets a little breathing room under the primary button
-.section-sms {
-    margin-top: 0.75rem;
-}
