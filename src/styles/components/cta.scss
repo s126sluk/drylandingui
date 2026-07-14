@@ -1,0 +1,94 @@
+// ── v2 CTA treatments ─────────────────────────────────────────────
+// Primary/nav CTAs are sentence case by deliberate decision — override the
+// global .btn uppercase for these two variants only (btn-secondary is nav-only).
+.btn-primary,
+.btn-secondary {
+    text-transform: none;
+}
+
+// Hero primary CTA — Option B: label + inline price after a thin divider.
+// Rides the existing green .btn-primary (colour/radius/full-width unchanged).
+.btn__label {
+    font-weight: 700;
+}
+
+.btn__price {
+    margin-left: 0.75rem;
+    padding-left: 0.75rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.4);
+    font-weight: 500;
+    font-size: 0.82em;
+    white-space: nowrap;
+}
+
+// Let the price wrap under the label on very narrow full-width buttons
+// rather than overflowing the green pill.
+.promo__cta--price {
+    flex-wrap: wrap;
+    row-gap: 0.1rem;
+    line-height: 1.25;
+
+    @media (max-width: 400px) {
+        .btn__price {
+            margin-left: 0;
+            padding-left: 0;
+            border-left: 0;
+            font-size: 0.8em;
+            opacity: 0.95;
+        }
+    }
+}
+
+// ── Two-tier SMS fallback panel (hero, mid, final) ────────────────
+// Tinted pale-blue panel + thin blue hairline. Flex column: bold hook (tier 1)
+// over muted subtext (tier 2). Controlled line-length so the subtext never runs
+// edge-to-edge on desktop and stacks cleanly at ~390px.
+.sms-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    text-decoration: none;
+    background: #eef5fd;
+    border: 1px solid rgba(36, 136, 234, 0.28);
+    border-radius: 0.5rem;
+    padding: 0.85rem 1rem;
+    max-width: 520px;
+    transition: background 200ms ease;
+
+    &__hook {
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1.35;
+        color: var(--dark);
+    }
+
+    &__sub {
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 1.5;
+        color: var(--darkgray);
+        max-width: 46ch;
+    }
+
+    &:hover,
+    &:focus-visible {
+        background: #e3eefb;
+    }
+
+    // Mobile: full width within its column, subtext free to use the width,
+    // no crowding against the CTA above.
+    @media (max-width: 767px) {
+        max-width: 100%;
+        padding: 0.8rem 0.9rem;
+
+        &__sub {
+            max-width: 100%;
+        }
+    }
+}
+
+// Section-end panels (mid + final) centred under the plain CTA
+.section-sms-panel {
+    margin: 1rem auto 0;
+    text-align: left;
+}

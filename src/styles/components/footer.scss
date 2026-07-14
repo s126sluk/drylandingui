@@ -1,0 +1,47 @@
+// [A5] Restored footer — entity, accreditation, service area, links
+.footer {
+    padding: 2rem 0 2.5rem;
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    &__brand {
+        font-weight: 600;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    &__accreditation,
+    &__service-area {
+        font-size: 0.875rem;
+        color: var(--darkgray);
+        margin-bottom: 0.25rem;
+    }
+
+    &__links {
+        margin-top: 0.75rem;
+        font-size: 0.875rem;
+
+        a {
+            color: var(--blue);
+            text-decoration: none;
+
+            &:hover,
+            &:focus-visible {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &__sep {
+        color: var(--lightgray);
+        margin: 0 0.5rem;
+    }
+
+    &__copy {
+        margin-top: 0.75rem;
+        font-size: 0.8125rem;
+        color: var(--lightgray);
+    }
+}

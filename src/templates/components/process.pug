@@ -4,9 +4,10 @@ section.process.block
 			.process-grid__title 
 				h2.process__title.text-uppercase.mb-0.text-center.text-xl-left <span class="text-blue">KEEPING YOU UPDATED EVERY</span> STEP OF THE WAY
 			.process-grid__img
-				img.img-rounded.process__img(src="img/process-img.jpg" alt="")
+				img.img-rounded.process__img(loading="lazy", src="img/process-img.jpg" alt="")
 			.process-grid__description
 				.process__description From first visit to final sign-off, you'll know exactly what's happening. Our technicians explain findings in plain language, walk you through the plan, and give you options when decisions need to be made. You stay in control — never left wondering.
 			.process-grid__btn
-				.process__btn.text-center 
-					+btn('btn btn-primary btn-rounded btn-large', 'SEND HELP NOW')
+				.process__btn.text-center
+					+btn('btn btn-primary btn-rounded btn-large', 'Complete your booking here')
+					+smsPanel()(class="section-sms-panel")

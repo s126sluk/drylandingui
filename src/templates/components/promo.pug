@@ -1,7 +1,42 @@
 section.promo.block
     .container
         .promo__inner
-            //- 1. Before/after image carousel + testimonials (right column on desktop)
+            //- 2–7. Content block: ratings → headline → CTA → price → SMS → trust
+            //- [A2] Content now precedes the gallery in source so mobile renders H1 first.
+            .promo__content
+                //- 1.2 — Google ratings condensed to one line
+                .google-ratings
+                    .rating(style="--star-rating: 5")
+                    img.google-ratings__icon(src="img/google-icon.svg", alt="Google")
+                    span.google-ratings__label Google Reviews — 5.0 Rating
+
+                //- Headline: sentence case, two-tone (blue phrase). Variant pages override heroTitleHtml.
+                - var _titleHtml = (typeof heroTitleHtml !== 'undefined') ? heroTitleHtml : 'Book now. Get your arrival time <span class="text-blue">locked in within seconds</span>'
+                h1.promo__title!= _titleHtml
+
+                //- Body: single above-the-fold price mention (Sydney = geo above fold). Variant overrides heroBodyHtml.
+                - var _bodyHtml = (typeof heroBodyHtml !== 'undefined') ? heroBodyHtml : 'Sydney\'s certified water damage crews. Book online and skip the $499 assessment fee — packages from <b>$302 + GST</b>, with a real dispatch time confirmed the moment you book.'
+                .promo__description!= _bodyHtml
+
+                //- Primary CTA — Option B: label + inline price on the green button
+                .promo__btn
+                    +btnPrice('btn btn-primary btn-rounded btn-large promo__cta promo__cta--price', 'Complete your booking here', 'from $302 + GST')
+
+                //- Two-tier SMS fallback panel (hero placement 1 of 3)
+                +smsPanel()(class="promo__sms-panel")
+
+                //- Response time demoted to a single soft supporting line
+                .promo__soft.text-center Crews typically on-site within the hour.
+
+                //- Trust indicators / risk reduction
+                .promo__trust
+                    .promo__preference
+                        include preference
+                    .promo__advantages
+                        include advantages
+
+            //- 1. Before/after image carousel + testimonials
+            //- [A2] Gallery moved below the CTA block (was first in source, buried the H1 on mobile).
             .promo__gallery
                 include gallery
 
@@ -43,29 +78,3 @@ section.promo.block
                                     .rating(style="--star-rating: 5;")
                                 .snippet__name Yona Griffin
                                 img.snippet__google(src="img/google-icon.svg", alt="Google")
-
-            //- 2–7. Content block: ratings → headline → body → CTA → trust
-            .promo__content
-                //- 1.2 — Google ratings condensed to one line
-                .google-ratings
-                    .rating(style="--star-rating: 5")
-                    img.google-ratings__icon(src="img/google-icon.svg", alt="Google")
-                    span.google-ratings__label Google Reviews — 5.0 Rating
-
-                //- 1.3 — Headline with emotional payoff
-                h1.promo__title Stop Water Damage in Minutes and <span class="text-blue">Protect What Matters Most</span>
-
-                //- 1.4 — Body text shortened to 2-3 sentences
-                .promo__description Water damage spreads fast and every minute counts. DrySafe's certified technicians respond within the hour to extract, dry, and restore — backed by 30+ years of industry experience.
-
-                //- 1.6 — Primary CTA button in hero body
-                .promo__btn
-                    +btn('btn btn-primary btn-rounded btn-large promo__cta', 'SEND HELP NOW')
-                .promo__btn-note.text-center Average response time: under 60 minutes
-
-                //- Trust indicators / risk reduction
-                .promo__trust
-                    .promo__preference
-                        include preference
-                    .promo__advantages
-                        include advantages

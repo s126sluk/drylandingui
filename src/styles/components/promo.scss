@@ -7,7 +7,8 @@
     &__title {
         line-height: 1.2;
         margin-bottom: 0.75rem;
-        text-transform: uppercase;
+        // Hero H1 is sentence case by deliberate decision — override the global uppercase.
+        text-transform: none;
     }
 
     &__description {
@@ -16,13 +17,20 @@
     }
 
     &__btn {
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.75rem;
     }
 
-    &__btn-note {
-        font-size: 14px;
+    // Hero SMS panel placement (panel visuals live in cta.scss)
+    &__sms-panel {
+        margin-bottom: 1rem;
+    }
+
+    // Soft supporting response-time line (demoted from headline promise)
+    &__soft {
+        font-size: 13px;
+        font-style: italic;
         color: var(--darkgray);
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
     }
 
     // 1.6 — Full-width CTA on mobile
@@ -79,10 +87,6 @@
             font-size: 0.9375rem;
         }
 
-        &__btn-note {
-            margin-bottom: 1rem;
-        }
-
         // Hide snippets on mobile to keep above-the-fold tight
         &__snippets {
             display: none;
@@ -115,9 +119,12 @@
     // ── Large desktop: two-column layout ──
     @media screen and (min-width: 1200px) {
         padding-top: 60px;
+        // [A2] Source order is now content-first (H1 leads on mobile). Was
+        // row-reverse when the gallery came first in the DOM; flipped to row so
+        // the desktop visual (content left, gallery right) is unchanged.
         &__inner {
             display: flex;
-            flex-direction: row-reverse;
+            flex-direction: row;
             gap: 2rem;
         }
         &__content {
