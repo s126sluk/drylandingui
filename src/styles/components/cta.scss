@@ -1,45 +1,121 @@
-// ── v2 CTA treatments ─────────────────────────────────────────────
-// Primary/nav CTAs are sentence case by deliberate decision — override the
-// global .btn uppercase for these two variants only (btn-secondary is nav-only).
-.btn-primary,
-.btn-secondary {
-    text-transform: none;
-}
+// ── v3 primary CTA (Option 2) ─────────────────────────────────────
+// Green vertical gradient derived from the brand green (#228B22): lighter top
+// (#2cb128) → darker bottom (#1d8a1a), same hue. Inset top highlight + soft
+// drop shadow; pressed state drops 1px with a reduced shadow. Existing radius
+// (0.5rem) and full-width hero behaviour preserved.
+.cta {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 14px 22px 12px;
+    line-height: 1.1;
+    background: linear-gradient(180deg, #2cb128 0%, #1d8a1a 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28),
+        0 8px 20px rgba(29, 138, 26, 0.32),
+        0 2px 4px rgba(0, 0, 0, 0.08);
+    transition: transform 0.06s ease, box-shadow 0.06s ease, filter 0.15s ease;
 
-// Hero primary CTA — Option B: label + inline price after a thin divider.
-// Rides the existing green .btn-primary (colour/radius/full-width unchanged).
-.btn__label {
-    font-weight: 700;
-}
+    &:hover {
+        filter: brightness(1.03);
+        color: #fff;
+    }
 
-.btn__price {
-    margin-left: 0.75rem;
-    padding-left: 0.75rem;
-    border-left: 1px solid rgba(255, 255, 255, 0.4);
-    font-weight: 500;
-    font-size: 0.82em;
-    white-space: nowrap;
-}
+    &:active {
+        transform: translateY(1px);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
+            0 3px 8px rgba(29, 138, 26, 0.3);
+    }
 
-// Let the price wrap under the label on very narrow full-width buttons
-// rather than overflowing the green pill.
-.promo__cta--price {
-    flex-wrap: wrap;
-    row-gap: 0.1rem;
-    line-height: 1.25;
+    &:focus-visible {
+        outline: 2px solid rgba(29, 138, 26, 0.6);
+        outline-offset: 2px;
+    }
 
-    @media (max-width: 400px) {
-        .btn__price {
-            margin-left: 0;
-            padding-left: 0;
-            border-left: 0;
-            font-size: 0.8em;
-            opacity: 0.95;
-        }
+    &__label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-size: 17px;
+        font-weight: 800;
+        letter-spacing: 0.2px;
+    }
+
+    &__arrow {
+        flex-shrink: 0;
+    }
+
+    &__sub {
+        margin-top: 4px;
+        font-size: 13px;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.92);
     }
 }
 
-// ── Two-tier SMS fallback panel (hero, mid, final) ────────────────
+// Hero: full width on mobile (rides .promo__cta width), auto on large desktop.
+.cta.promo__cta {
+    display: flex;
+    width: 100%;
+    min-height: 48px;
+}
+
+// Stripe trust microline — sits beneath the hero button, muted grey + lock icon.
+.cta-trust {
+    margin-top: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--darkgray);
+
+    &__icon {
+        flex-shrink: 0;
+    }
+}
+
+// ── Compact top-nav CTA ───────────────────────────────────────────
+// "Book now" — single line, never wraps; tight padding + slight polish.
+.navbtn {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    white-space: nowrap;
+    font-size: 14.5px;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    padding: 10px 18px;
+    border-radius: 11px;
+    background: linear-gradient(180deg, #2cb128, #1d8a1a);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        0 3px 8px rgba(29, 138, 26, 0.3);
+    transition: transform 0.06s ease, filter 0.15s ease;
+
+    &:hover {
+        filter: brightness(1.03);
+        color: #fff;
+    }
+
+    &:active {
+        transform: translateY(1px);
+    }
+
+    &:focus-visible {
+        outline: 2px solid rgba(29, 138, 26, 0.6);
+        outline-offset: 2px;
+    }
+}
+
+// ── Two-tier SMS fallback panel (hero, mid, final) — FROZEN ────────
 // Tinted pale-blue panel + thin blue hairline. Flex column: bold hook (tier 1)
 // over muted subtext (tier 2). Controlled line-length so the subtext never runs
 // edge-to-edge on desktop and stacks cleanly at ~390px.
@@ -75,8 +151,6 @@
         background: #e3eefb;
     }
 
-    // Mobile: full width within its column, subtext free to use the width,
-    // no crowding against the CTA above.
     @media (max-width: 767px) {
         max-width: 100%;
         padding: 0.8rem 0.9rem;

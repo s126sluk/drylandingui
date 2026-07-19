@@ -1,16 +1,43 @@
+//- ── Centralized primary-CTA destination (item 7) ──────────────────
+//- ONE place to change the funnel destination. The coming funnel-wiring
+//- flip is a one-line edit here. Value stays exactly what is live today.
+//- Every primary CTA below routes through this, so the href always contains
+//- "drysafe.vercel.app" and clickforward.js keeps firing PostHog cta_clickthrough.
+- var CTA_HREF = 'https://drysafe.vercel.app'
 
 mixin btn(classes, text)
-  a(class=classes, href=`https://drysafe.vercel.app`)&attributes(attributes)
+  a(class=classes, href=CTA_HREF)&attributes(attributes)
     span= text
 
-//- Hero primary CTA (Option B): label + inline price after a thin divider.
-//- Same funnel href as +btn so clickforward.js keeps catching it (PostHog).
-mixin btnPrice(classes, label, price)
-  a(class=classes, href=`https://drysafe.vercel.app`)&attributes(attributes)
-    span.btn__label= label
-    span.btn__price= price
+//- ── v3 primary CTA (Option 2) ─────────────────────────────────────
+//- Right-arrow chevron used inside the label.
+mixin ctaArrow
+  svg.cta__arrow(width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true")
+    path(d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round")
 
-//- Two-tier SMS fallback panel (3 placements only: hero, mid, final).
+//- Primary CTA. `sub` = optional white price sub-line (hero only; falsy = omit).
+mixin ctaPrimary(classes, sub)
+  a.cta(class=classes, href=CTA_HREF)&attributes(attributes)
+    span.cta__label
+      | Lock in my arrival time
+      +ctaArrow
+    if sub
+      span.cta__sub= sub
+
+//- Stripe trust microline — hero only, rendered beneath the button.
+mixin ctaTrust
+  .cta-trust
+    svg.cta-trust__icon(width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true")
+      rect(x="4" y="10" width="16" height="11" rx="2.5" stroke="currentColor" stroke-width="2")
+      path(d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2")
+    | Secure Stripe checkout
+
+//- Compact top-nav CTA. Single line, never wraps.
+mixin navBtn(classes)
+  a.navbtn(class=classes, href=CTA_HREF)&attributes(attributes)
+    | Book now
+
+//- Two-tier SMS fallback panel (3 placements only: hero, mid, final) — FROZEN.
 //- Tap target is the sms: deeplink; full modal behaviour is a separate spec.
 //- "nearly 40%" — the word "nearly" must ALWAYS precede "40%" (ACL/ACCC).
 mixin smsPanel

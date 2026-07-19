@@ -11,16 +11,17 @@ section.promo.block
                     span.google-ratings__label Google Reviews — 5.0 Rating
 
                 //- Headline: sentence case, two-tone (blue phrase). Variant pages override heroTitleHtml.
-                - var _titleHtml = (typeof heroTitleHtml !== 'undefined') ? heroTitleHtml : 'Book now. Get your arrival time <span class="text-blue">locked in within seconds</span>'
+                - var _titleHtml = (typeof heroTitleHtml !== 'undefined') ? heroTitleHtml : 'Water damage gets worse by the minute — <span class="text-blue">book a certified crew now.</span>'
                 h1.promo__title!= _titleHtml
 
                 //- Body: single above-the-fold price mention (Sydney = geo above fold). Variant overrides heroBodyHtml.
                 - var _bodyHtml = (typeof heroBodyHtml !== 'undefined') ? heroBodyHtml : 'Sydney\'s certified water damage crews. Book online and skip the $499 assessment fee — packages from <b>$302 + GST</b>, with a real dispatch time confirmed the moment you book.'
                 .promo__description!= _bodyHtml
 
-                //- Primary CTA — Option B: label + inline price on the green button
+                //- Primary CTA — v3 Option 2: label + arrow, white price sub-line, Stripe trust line below
                 .promo__btn
-                    +btnPrice('btn btn-primary btn-rounded btn-large promo__cta promo__cta--price', 'Complete your booking here', 'from $302 + GST')
+                    +ctaPrimary('promo__cta cta--hero', 'from $302 + GST · 60-second booking')
+                    +ctaTrust
 
                 //- Two-tier SMS fallback panel (hero placement 1 of 3)
                 +smsPanel()(class="promo__sms-panel")

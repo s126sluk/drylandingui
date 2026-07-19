@@ -1,23 +1,40 @@
-.gallery 
-    .swiper.gallery-swiper 
-        .swiper-wrapper 
+.gallery
+    .swiper.gallery-swiper
+        .swiper-wrapper
+            //- Pair 1 — bathroom flood (LCP slide: eager + preloaded in layout head)
             .swiper-slide
                 .work
                     .work__item.work__item--before
-                        img.work__img(src="img/work-img-1.jpg", alt="")
+                        img.work__img(src="img/ba1-bathroom-before.jpg", alt="Water-damaged bathroom floor before drying — real drySafe job")
                     .work__item.work__item--after
-                        img.work__img(src="img/work-img-1-1.jpg", alt="")
+                        img.work__img(src="img/ba1-bathroom-after.jpg", alt="Bathroom dried with drySafe equipment — real drySafe job")
+            //- Pair 2 — flooded apartment, beige carpet
             .swiper-slide
-                .work 
+                .work
                     .work__item.work__item--before
-                        img.work__img(src="img/work-img-2.jpg", alt="")
+                        img.work__img(loading="lazy", src="img/ba2-apartment-before.jpg", alt="Flooded apartment carpet before drying — real drySafe job")
                     .work__item.work__item--after
-                        img.work__img(src="img/work-img-2-1.jpg", alt="")
+                        img.work__img(loading="lazy", src="img/ba2-apartment-after.jpg", alt="Apartment carpet dried and restored — real drySafe job")
+            //- Pair 3 — wet carpet apartment
             .swiper-slide
-                .work 
+                .work
                     .work__item.work__item--before
-                        img.work__img(src="img/work-img-3.jpg", alt="")
+                        img.work__img(loading="lazy", src="img/ba3-carpet-before.jpg", alt="Wet apartment carpet before drying — real drySafe job")
                     .work__item.work__item--after
-                        img.work__img(src="img/work-img-3-1.jpg", alt="")
+                        img.work__img(loading="lazy", src="img/ba3-carpet-after.jpg", alt="Apartment carpet dried and restored — real drySafe job")
+            //- Pair 4 — kids' study, timber floor
+            .swiper-slide
+                .work
+                    .work__item.work__item--before
+                        img.work__img(loading="lazy", src="img/ba4-study-before.jpg", alt="Water-damaged timber floor in study before drying — real drySafe job")
+                    .work__item.work__item--after
+                        img.work__img(loading="lazy", src="img/ba4-study-after.jpg", alt="Study timber floor dried and restored — real drySafe job")
+            //- Pair 5 — charcoal carpet, extraction
+            .swiper-slide
+                .work
+                    .work__item.work__item--before
+                        img.work__img(loading="lazy", src="img/ba5-charcoal-before.jpg", alt="Water-damaged charcoal carpet before extraction — real drySafe job")
+                    .work__item.work__item--after
+                        img.work__img(loading="lazy", src="img/ba5-charcoal-after.jpg", alt="Charcoal carpet dried after water extraction — real drySafe job")
         .swiper-button-prev.swiper-button
         .swiper-button-next.swiper-button
