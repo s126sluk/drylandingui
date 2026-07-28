@@ -1,7 +1,16 @@
 footer.footer.text-center
     .container
         .card.card-white.card-rounded
-            .footer__brand <span class="text-blue">drySafe</span> · IICRC Certified Firm
+            .footer__brand <span class="text-blue">drySafe</span>
+            //- [v4] Accreditation logos replace the "· IICRC Certified Firm" text line.
+            //- Both PNGs are transparent, so they sit flat on the white footer card.
+            //- Sized for legibility, not matched heights: the RIA lockup stacks a
+            //- wordmark over two text bars and needs ~1.6x the IICRC height before its
+            //- wording reads. Widths land within ~8px of each other, so the pair still
+            //- balances. Not linked, by request.
+            .footer__accreditation
+                img.footer__logo.footer__logo--iicrc(loading="lazy", src="img/iicrc-certified.png", width="300", height="110", alt="IICRC Certified Firm")
+                img.footer__logo.footer__logo--ria(loading="lazy", src="img/ria-member.png", width="2785", height="1688", alt="Restoration Industry Association Australasia — Member")
             .footer__service-area Servicing greater Sydney, 7 days
             .footer__links
                 a(href="#") Terms
