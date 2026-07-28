@@ -12,11 +12,75 @@
         margin-bottom: 0.5rem;
     }
 
-    &__accreditation,
     &__service-area {
         font-size: 0.875rem;
         color: var(--darkgray);
         margin-bottom: 0.25rem;
+    }
+
+    // [v4] Accreditation logo row — IICRC + RIA Australasia, centred.
+    // Sized by legibility rather than by matching heights. IICRC is a wide
+    // 2.7:1 lockup, RIA is a 1.65:1 stack (wordmark over two text bars), so
+    // equal heights would leave the RIA wording unreadable. Heights below put
+    // the two at near-identical widths (~153px vs ~145px) for balanced weight,
+    // and align-items:center puts them on a common centre line.
+    &__accreditation {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem 2rem;
+        margin: 0.75rem 0 1rem;
+    }
+
+    &__logo {
+        display: block;
+        width: auto;
+        // Transparent PNGs — no plate needed against the white footer card.
+        height: auto;
+    }
+
+    &__logo--iicrc {
+        height: 60px;
+    }
+
+    &__logo--ria {
+        height: 86px;
+    }
+
+    // ── Mobile: shrink the pair so it still fits the card on one row ──
+    // The two ranges below are deliberately mutually exclusive rather than
+    // relying on source order: css-mqpacker regroups @media blocks in the
+    // bundle and does NOT preserve a descending max-width cascade (it emitted
+    // the 375.5px block *before* the 430.5px one), so an overlapping narrower
+    // query would silently lose. Exclusive ranges are order-independent.
+    @media screen and (max-width: 430.5px) {
+        &__accreditation {
+            gap: 0.75rem 1.5rem;
+        }
+    }
+
+    // ~376–430px (incl. 390px): ~285px of the 316px available, so the pair
+    // sits side by side with real margin instead of jammed to the card edges.
+    @media screen and (min-width: 375.51px) and (max-width: 430.5px) {
+        &__logo--iicrc {
+            height: 50px;
+        }
+        &__logo--ria {
+            height: 76px;
+        }
+    }
+
+    // Narrow phones: one step further down so 360px keeps its side margins.
+    // Below ~340px the row runs out of room and flex-wrap drops it to a
+    // centred vertical stack on its own.
+    @media screen and (max-width: 375.5px) {
+        &__logo--iicrc {
+            height: 44px;
+        }
+        &__logo--ria {
+            height: 68px;
+        }
     }
 
     &__links {
@@ -39,8 +103,19 @@
         margin: 0 0.5rem;
     }
 
+    // [v4] Pricing disclaimer — the footnote every "$302 + GST*" points at.
+    // Muted and small, but line-length constrained to 46ch so it stays
+    // readable rather than running the full width of the footer card.
+    &__disclaimer {
+        margin: 0.75rem auto 0;
+        max-width: 46ch;
+        font-size: 11px;
+        line-height: 1.55;
+        color: var(--lightgray);
+    }
+
     &__copy {
-        margin-top: 0.75rem;
+        margin-top: 0.5rem;
         font-size: 0.8125rem;
         color: var(--lightgray);
     }
