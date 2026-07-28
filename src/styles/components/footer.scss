@@ -103,8 +103,19 @@
         margin: 0 0.5rem;
     }
 
+    // [v4] Pricing disclaimer — the footnote every "$302 + GST*" points at.
+    // Muted and small, but line-length constrained to 46ch so it stays
+    // readable rather than running the full width of the footer card.
+    &__disclaimer {
+        margin: 0.75rem auto 0;
+        max-width: 46ch;
+        font-size: 11px;
+        line-height: 1.55;
+        color: var(--lightgray);
+    }
+
     &__copy {
-        margin-top: 0.75rem;
+        margin-top: 0.5rem;
         font-size: 0.8125rem;
         color: var(--lightgray);
     }

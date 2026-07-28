@@ -15,16 +15,16 @@ section.promo.block
                 h1.promo__title!= _titleHtml
 
                 //- Body: single above-the-fold price mention (Sydney = geo above fold). Variant overrides heroBodyHtml.
-                - var _bodyHtml = (typeof heroBodyHtml !== 'undefined') ? heroBodyHtml : 'Sydney\'s certified water damage crews. Book online and skip the $499 assessment fee — packages from <b>$302 + GST</b>, with a real dispatch time confirmed the moment you book.'
+                - var _bodyHtml = (typeof heroBodyHtml !== 'undefined') ? heroBodyHtml : 'Sydney\'s certified water damage crews. Book online and skip the $499 assessment fee — packages from <b>$302 + GST*</b>, with a real dispatch time confirmed the moment you book.'
                 .promo__description!= _bodyHtml
 
                 //- Primary CTA — v3 Option 2: label + arrow, white price sub-line, Stripe trust line below
                 .promo__btn
-                    +ctaPrimary('promo__cta cta--hero', 'from $302 + GST · 60-second booking')
+                    +ctaPrimary('promo__cta cta--hero', 'from $302 + GST* · 60-second booking')
                     +ctaTrust
 
                 //- Two-tier SMS fallback panel (hero placement 1 of 3)
-                +smsPanel()(class="promo__sms-panel")
+                +smsPanel('hero')(class="promo__sms-panel")
 
                 //- Trust indicators / risk reduction
                 .promo__trust

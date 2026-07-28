@@ -115,10 +115,11 @@
     }
 }
 
-// ── Two-tier SMS fallback panel (hero, mid, final) — FROZEN ────────
+// ── SMS fallback panel (hero, mid, final) ─────────────────────────
 // Tinted pale-blue panel + thin blue hairline. Flex column: bold hook (tier 1)
-// over muted subtext (tier 2). Controlled line-length so the subtext never runs
-// edge-to-edge on desktop and stacks cleanly at ~390px.
+// over muted subtext (tier 2), then the action chip (tier 3). Controlled
+// line-length so the subtext never runs edge-to-edge on desktop and stacks
+// cleanly at ~390px.
 //
 // [v4] Box alignment, not text alignment. The v3 pass centred the *text* inside
 // the panel (text-align + margin-inline on __sub) and that still holds at every
@@ -142,7 +143,8 @@
     width: 100%;
     max-width: 100%;
     margin-inline: auto;
-    transition: background 200ms ease;
+    // No hover/transition on the panel any more: it is a plain div now, and
+    // the tap target moved to .sms-chip which carries its own states.
 
     &__hook {
         font-size: 15px;
@@ -161,16 +163,93 @@
         margin-inline: auto;
     }
 
-    &:hover,
-    &:focus-visible {
-        background: #e3eefb;
-    }
-
     @media (max-width: 767px) {
         padding: 0.8rem 0.9rem;
 
         &__sub {
             max-width: 100%;
+        }
+    }
+
+    // ── Tier 3: the action chip ───────────────────────────────────
+    // This anchor IS the sms: deeplink (moved off the old whole-panel <a>).
+    // Base state is the mobile pill; the desktop rule below strips the button
+    // dressing. Deliberately nested under .sms-panel so the chip can only ever
+    // style a real panel instance — and note the only other rules in the repo
+    // touching .sms-panel are .promo__sms-panel (margin) and .section-sms-panel
+    // (margin); nothing targets its descendants, so there is no override to
+    // fight here.
+    .sms-chip {
+        // align-self, not margin-inline, so the pill shrink-wraps its label
+        // inside the panel's stretch-by-default flex column.
+        align-self: center;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        // Panel gap is 0.35rem; +0.35rem lands the chip ~11px below the subtext.
+        margin-top: 0.35rem;
+        padding: 10px 18px;
+        border: 1.6px solid var(--blue);
+        border-radius: 999px;
+        background: #fff;
+        color: var(--blue);
+        font-size: 14.5px;
+        font-weight: 800;
+        line-height: 1.2;
+        text-decoration: none;
+        cursor: pointer;
+        box-shadow: 0 3px 10px rgba(36, 136, 234, 0.18);
+        transition: transform 0.06s ease, background 0.15s ease;
+
+        &:hover {
+            background: #f4f9fe;
+            color: var(--blue);
+        }
+
+        &:active {
+            transform: translateY(1px);
+        }
+
+        &:focus-visible {
+            outline: 2px solid rgba(36, 136, 234, 0.6);
+            outline-offset: 2px;
+        }
+    }
+
+    .sms-chip__icon,
+    .sms-chip__arrow {
+        flex-shrink: 0;
+    }
+
+    // ── Desktop: same anchor, no button dressing ──────────────────
+    // A pill this size reads as a dead button on a pointer device, so at the
+    // site's 768px breakpoint the chip degrades to emphasised blue text with
+    // the message icon. Same words, same href, same event. The arrow is
+    // dropped (per spec) since there is no tap affordance to signal.
+    // Only ONE media query is involved and base rules always precede the
+    // packed @media blocks in the bundle, so css-mqpacker's reordering (which
+    // bit the footer logo tiers) cannot invert this pair.
+    @media screen and (min-width: 768px) {
+        .sms-chip {
+            padding: 0;
+            border: none;
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none;
+            margin-top: 0.5rem;
+
+            &:hover {
+                background: transparent;
+                text-decoration: underline;
+            }
+
+            &:active {
+                transform: none;
+            }
+        }
+
+        .sms-chip__arrow {
+            display: none;
         }
     }
 }

@@ -37,10 +37,24 @@ mixin navBtn(classes)
   a.navbtn(class=classes, href=CTA_HREF)&attributes(attributes)
     | Book now
 
-//- Two-tier SMS fallback panel (3 placements only: hero, mid, final) — FROZEN.
-//- Tap target is the sms: deeplink; full modal behaviour is a separate spec.
+//- SMS fallback panel (3 placements only: hero, mid, final).
 //- "nearly 40%" — the word "nearly" must ALWAYS precede "40%" (ACL/ACCC).
-mixin smsPanel
-  a.sms-panel(href="sms:+61485077233?&body=PRICE")&attributes(attributes)
-    span.sms-panel__hook Not ready yet? Save nearly 40% — text #[span.text-blue PRICE] to #[span.text-blue 0485-07-SAFE]
+//-
+//- [v4] Option B "action chip". Was a single whole-panel <a> with the deeplink
+//- on the container and the phone number buried mid-sentence in the hook — a
+//- tap target with no affordance. Now: hook → subtext → chip, where the chip is
+//- the anchor and carries the sms: href UNCHANGED, moved verbatim off the old
+//- container. Panel itself is now a plain div.
+//-
+//- `placement` is hero | mid | final and rides through to the
+//- sms_deeplink_tap PostHog event via data-sms-placement (see js/modules/smsdeeplink).
+mixin smsPanel(placement)
+  .sms-panel&attributes(attributes)
+    span.sms-panel__hook Not ready yet? Save nearly 40%
     span.sms-panel__sub We'll lock in your online price and send a link so you can book anytime in the next 24 hours — even if you want to shop around first.
+    a.sms-chip(href="sms:+61485077233?&body=PRICE", data-sms-placement=placement)
+      svg.sms-chip__icon(width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true")
+        path(d="M21 12c0 4.1-4 7.4-9 7.4-1 0-2-.13-2.9-.38L4 21l1.6-3.6C4 16 3 14.1 3 12c0-4.1 4-7.4 9-7.4s9 3.3 9 7.4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round")
+      span.sms-chip__label Text PRICE to 0485-07-SAFE
+      svg.sms-chip__arrow(width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true")
+        path(d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round")
