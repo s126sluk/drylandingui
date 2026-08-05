@@ -1,0 +1,33 @@
+extends _post
+
+prepend head
+  - const slug = "water-stain-on-ceiling"
+  - const _meta = (typeof posts !== 'undefined' ? posts : []).find(function (p) { return p.slug === slug; }) || {}
+  - const pageTitle = _meta.title
+  - const pageDescription = _meta.description
+
+block article
+  article.blog-post
+    h1 What a Water Stain on Your Ceiling Actually Means
+    p.disclaimer
+      em This article is for general information only and isn't specific advice. Every water-damage situation is different — for your circumstances, seek professional guidance.
+    p A brown ring, a yellowish patch, a faint tide-line across the plaster — a water stain is your ceiling telling you that water has been through it at some point. What it doesn't tell you on its own is whether the problem is over or still going. Here's how to read one.
+    h2 First question: is it active or old?
+    p The most useful thing to work out is whether water is still arriving. An active stain grows, darkens, or comes back after rain or after someone's used water upstairs, and the plaster may feel cool, soft or damp — in a bad case it bulges or drips. An old, resolved stain from a leak that's already been fixed stays the same size week to week and feels dry and firm. If you're not sure, mark the edge with a pencil and check it over a few days and after the next rain: a stain that has crept past your line is active.
+    h2 What the colour, shape and spread tell you
+    p The look of a stain hints at the story behind it:
+    ul
+      li #[strong Rings with a darker edge] — brown or yellow tide-lines usually mean repeated wetting and drying over time; water has come and gone more than once, leaving a mark at each high point.
+      li #[strong A single patch that appeared quickly] — points to a recent, one-off event, like a burst pipe or an overflow from above.
+      li #[strong Lines up with rain] — suggests the roof or gutters. #[strong Appears regardless of weather] — points to plumbing running above the ceiling.
+      li #[strong Spreading, sagging or soft to the touch] — means water is still present and moving, not a historical mark.
+    h2 Why the surface can't be trusted on its own
+    p Here's the catch with reading a stain: the mark on the plasterboard is only the underside of the wet area, and it can fade or dry on the surface while the material behind it is still holding water. A stain that looks "settled" isn't proof the problem's over. Ceiling water also travels further above the plaster than most people expect — our guide to #[a(href='/blog/ceiling-water-damage') ceiling water damage] covers where it goes and why that hidden spread is what does the lasting damage.
+    h2 Repaint, or dry it first?
+    p Once you've read the stain, the decision comes down to a single question: can you be sure the area behind it is actually dry?
+    ul
+      li #[strong If you can] — the leak's fixed, the area's been checked as dry, and the stain is old, stable and firm — it's a cosmetic job: a stain-blocking sealer and a repaint. The key words are #[em checked as dry], not "looks dry."
+      li #[strong If you can't] — the stain is active, growing or soft, or you simply don't know — then painting is premature and the fresh coat won't last. The moisture has to come out and be confirmed gone first. Our overview of #[a(href='/blog/ceiling-water-damage') ceiling water damage] explains what proper drying involves and why covering up a damp ceiling fails.
+    h2 The bottom line
+    p A water stain is a symptom, not the whole story — the real question is always whether the area behind it is still wet. If water's active, our guide to #[a(href='/blog/ceiling-leak') dealing with a ceiling leak] walks through the first steps. drySafe is fully self-serve — check availability and book online in a few minutes, so drying can start before a stain turns into a bigger repair.
+    a.btn-primary(href='https://drysafe.sydney') Book online

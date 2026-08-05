@@ -1,0 +1,27 @@
+extends _post
+
+prepend head
+  - const slug = "fixing-water-damage"
+  - const _meta = (typeof posts !== 'undefined' ? posts : []).find(function (p) { return p.slug === slug; }) || {}
+  - const pageTitle = _meta.title
+  - const pageDescription = _meta.description
+
+block article
+  article.blog-post
+    h1 Fixing Water Damage: What It Actually Takes to Put It Right
+    p.disclaimer
+      em This article is for general information only and isn't specific advice. Every water-damage situation is different — for your circumstances, seek professional guidance.
+    p Once the water's stopped and the panic's settled, the question becomes: how do I actually fix this? Fixing water damage is less about patching what you can see and more about getting the hidden moisture out first. Here's what putting it right really involves.
+    h2 You can't fix over wet
+    p The most common mistake is repairing too soon — fresh paint over a damp wall, new underlay onto a wet subfloor. If the materials underneath are still holding moisture, the repair fails: paint bubbles, boards warp, and you end up doing it twice. Fixing water damage properly always starts with drying, not patching.
+    h2 Drying comes first — and "dry" is measured
+    p Before any repair, the affected materials need to be back to their normal dry standard — not just dry to the touch. That means extracting the water, then running air movers and dehumidifiers to pull moisture out of the underlay, subfloor and wall cavities, and confirming with moisture meters that it's genuinely gone. Proper drying is the part that makes the repair last. For how the whole process works, see our guide to #[a(href='/blog/water-damage') water damage].
+    h2 What you can fix yourself — and what you can't
+    p A small, clean-water spill you caught early and dried quickly is often something you can handle: mop it, dry it, and keep an eye on it. It's beyond a DIY fix when the water was contaminated, a large area is soaked, it reached walls or the subfloor, or it sat for more than a day. At that point the moisture has gone where a household setup can't reach it, and the repair depends on drying you can't verify without the right gear.
+    h2 Then repair or replace — in the right order
+    p Once the structure is confirmed dry, fixing means dealing with what the water actually damaged: replacing saturated underlay, re-laying or replacing carpet, patching or replacing gyprock, repainting. Some things clean up and come good; porous materials that soaked up contaminated water usually don't. A proper assessment early on tells you which is which, so you're not throwing out what could have been saved — or keeping what shouldn't be.
+    h2 How long it really takes
+    p Fixing water damage isn't a same-day patch job. The drying alone runs a few days for a moderate soak and longer for a big one, and repairs only start once the readings confirm the materials are dry. Planning for that up front — rather than rushing to patch and repaint — is what saves you doing the whole job twice.
+    h2 Getting it fixed properly
+    p The thing that decides how much of this you can avoid is speed, and doing the drying right. The sooner proper drying starts, the less there is to repair afterwards. drySafe is fully self-serve — check availability and book online in a few minutes, so drying can be underway before the damage sets in.
+    a.btn-primary(href='https://drysafe.sydney') Book online
