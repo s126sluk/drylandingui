@@ -1,0 +1,29 @@
+extends _post
+
+prepend head
+  - const slug = "house-flooded-what-to-expect"
+  - const _meta = (typeof posts !== 'undefined' ? posts : []).find(function (p) { return p.slug === slug; }) || {}
+  - const pageTitle = _meta.title
+  - const pageDescription = _meta.description
+
+block article
+  article.blog-post
+    h1 My House Flooded — What to Expect From Here
+    p.disclaimer
+      em This article is for general information only and isn't specific advice. Every water-damage situation is different — for your circumstances, seek professional guidance.
+    p The water's stopped, the panic's easing, and now you're staring at a soaked home wondering what happens next. Recovering a flooded house is a process, not a single job — here's the realistic arc, so you know what's coming and where the real work is.
+    h2 Start with the immediate stuff
+    p If it's still an active emergency — water coming in, electrical risk, contaminated water — deal with that first: stay safe, stop the source if you can, and photograph everything before you move things. Our guide to #[a(href='/blog/emergency-water-damage') emergency water damage] covers the first-minutes steps. Once it's safe and the water's stopped, the recovery proper begins.
+    h2 The assessment sets the scope
+    p Before anything gets dried or thrown out, the damage needs a proper look: how far the water actually travelled (it spreads well beyond the visible wet patch), how contaminated it was, and how long it sat. Floodwater from outside is dirtier than a burst pipe, which changes what can be kept. This assessment decides the whole recovery — what's salvageable, what has to go, and how long drying will take.
+    h2 Drying comes before repairs — and it takes days
+    p This is the part people underestimate. You can't repair a flooded home until it's genuinely dry, and "dry" is measured, not guessed. Extraction pulls the standing water; then air movers and dehumidifiers run continuously to draw moisture out of the underlay, subfloor and wall cavities, with moisture meters confirming it's back to the normal dry standard. For a whole-home flood that's typically several days, sometimes longer — the equipment stays on until the readings are met, noisy as it is.
+    h2 Then repairs, in the right order
+    p Once it's confirmed dry, recovery moves to putting things back: replacing saturated underlay and carpet, patching gyprock, repainting, and dealing with anything the water ruined. Some things clean up and come good; porous items soaked in contaminated floodwater usually don't. Our guide to #[a(href='/blog/fixing-water-damage') fixing water damage] covers the repair stage in detail.
+    h2 Keep the insurance side moving
+    p Recovery usually runs alongside an insurance claim, so hold on to your photos of the damage and any drying records the restorer provides — good documentation makes the claim smoother. It's worth letting your insurer know early, rather than after everything's already dried out and cleared away.
+    h2 How long until life's back to normal?
+    p Honestly, it depends on the scale — a contained flood in one room is a different job to a whole house. Drying is days; repairs can run longer depending on what needs replacing and trades' availability. The single biggest thing that shortens it is starting fast: the sooner proper drying is underway, the less spreads and the less there is to rebuild.
+    h2 Getting recovery started
+    p If your house has flooded, the fastest way to limit the damage is to get proper drying going before it sets in. drySafe is fully self-serve — check availability and book online in a few minutes. For the full picture of how water damage works, see our guide to #[a(href='/blog/water-damage') water damage].
+    a.btn-primary(href='https://drysafe.sydney') Book online

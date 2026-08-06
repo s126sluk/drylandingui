@@ -1,26 +1,29 @@
-//- DRAFT — drySafe blog. NOT built/deployed: src/blog/ is outside the gulp
-//- markup glob (src/templates/*.pug), so this file is inert until integrated.
-//- Target keyword: wet carpet drying (Cluster A pillar) | ~560 words | voice.md pass applied
-//- Meta title: Wet Carpet Drying: How Long It Takes & How to Save Your Carpet
-//- Meta description: Soaked carpet? How professional wet carpet drying works, realistic timelines by damage class, and when a carpet can be saved. Book & pay online.
-//- Pending before publish: template into layout, add Article/FAQ schema, hero image, internal links.
-article.blog-post
-  h1 Wet Carpet Drying: What to Expect and How Long It Really Takes
-  p If you've walked in and felt that cold squelch underfoot — usually a burst flexi-hose under the sink, the most common water claim in Aussie homes — the first question is always the same: how long until this is dry, and will the carpet survive? Here's the straight version.
-  h2 Why the first day matters most
-  p Water doesn't sit politely on top of a carpet. It soaks straight through the fibres into the underlay beneath — a sponge by design — and spreads across the subfloor, tracking under skirting boards and into wall bases. The carpet you can see often looks fine while the underlay stays saturated for days. That hidden water is what causes odour and lifting backing, and it's why acting in the first 24–48 hours makes the biggest difference to whether a carpet is saved or replaced.
-  h2 Can your carpet be saved?
-  p Mostly it comes down to how clean the water was and how long it sat. Clean water (a burst supply line, rainwater) caught early has good odds of saving the carpet and the underlay. Grey water from a washing-machine or dishwasher overflow often leaves the carpet fine but the saturated underlay replaced. Contaminated water — sewage, or flood water from outside — generally can't be kept for health reasons, whatever the timing. A proper look on arrival tells you which one you're dealing with before any drying starts.
-  h2 How long drying really takes
-  p Drying time depends on how much water is trapped and across how much of the room — what the IICRC S500 standard calls the Class of damage:
-  ul
-    li Class 1 (2–3 days): the minor stuff — a small area, water barely spread.
-    li Class 2 (3–5 days): a significant soak — water has wicked up the walls under 60cm and the carpet and underlay are saturated. Most wet-carpet jobs sit here.
-    li Class 3 (5–7+ days): major bursts where a lot of the room is wet, sometimes from above.
-    li Class 4 (1–3+ weeks): specialty drying for water trapped in deep pockets — timber floors, wall cavities, a concrete slab.
-  p Anyone promising it'll be dry by tomorrow is guessing. The class sets the timeline, not the sales pitch.
-  h2 Why "feels dry" isn't dry
-  p Surface-dry and actually-dry are different things. The moisture that matters is bound water, held deep inside the material. Aussie homes make this slow: gyprock wicks water up 30–60cm, timber framing needs drying back to within 2–3% of its normal dry standard, and slab homes hold moisture for a long time. Where you are matters too — humidity in Sydney's wetter months keeps moisture in the air longer, so dehumidifiers do a lot of the work alongside the air movers. The job's finished when moisture meters confirm the home is back to its dry standard — measured and documented, not guessed. It might be noisy, but don't switch the equipment off early; it needs to run until those readings are met.
-  h2 What to do right now
-  p If you can do it safely: turn the water off at the mains, lift furniture legs off the wet carpet, and get air moving. Then don't wait it out — the clock is the thing that decides how much can be saved. drySafe is fully self-serve: check availability, get an instant quote and book online in a few minutes, day or night — so drying can be underway before the water spreads any further.
-  a.btn-primary(href='https://drysafe.sydney') Book online
+extends _post
+
+prepend head
+  - const slug = "wet-carpet-drying-guide"
+  - const _meta = (typeof posts !== 'undefined' ? posts : []).find(function (p) { return p.slug === slug; }) || {}
+  - const pageTitle = _meta.title
+  - const pageDescription = _meta.description
+
+block article
+  article.blog-post
+    h1 Wet Carpet Drying: What to Expect and How Long It Really Takes
+    p If you've walked in and felt that cold squelch underfoot — usually a burst flexi-hose under the sink, the most common water claim in Aussie homes — the first question is always the same: how long until this is dry, and will the carpet survive? Here's the straight version.
+    h2 Why the first day matters most
+    p Water doesn't sit politely on top of a carpet. It soaks straight through the fibres into the underlay beneath — a sponge by design — and spreads across the subfloor, tracking under skirting boards and into wall bases. The carpet you can see often looks fine while the underlay stays saturated for days. That hidden water is what causes odour and lifting backing, and it's why acting in the first 24–48 hours makes the biggest difference to whether a carpet is saved or replaced.
+    h2 Can your carpet be saved?
+    p Mostly it comes down to how clean the water was and how long it sat. Clean water (a burst supply line, rainwater) caught early has good odds of saving the carpet and the underlay. Grey water from a washing-machine or dishwasher overflow often leaves the carpet fine but the saturated underlay replaced. Contaminated water — sewage, or flood water from outside — generally can't be kept for health reasons, whatever the timing. A proper look on arrival tells you which one you're dealing with before any drying starts.
+    h2 How long drying really takes
+    p Drying time depends on how much water is trapped and across how much of the room — what the IICRC S500 standard calls the Class of damage:
+    ul
+      li Class 1 (2–3 days): the minor stuff — a small area, water barely spread.
+      li Class 2 (3–5 days): a significant soak — water has wicked up the walls under 60cm and the carpet and underlay are saturated. Most wet-carpet jobs sit here.
+      li Class 3 (5–7+ days): major bursts where a lot of the room is wet, sometimes from above.
+      li Class 4 (1–3+ weeks): specialty drying for water trapped in deep pockets — timber floors, wall cavities, a concrete slab.
+    p Anyone promising it'll be dry by tomorrow is guessing. The class sets the timeline, not the sales pitch.
+    h2 Why "feels dry" isn't dry
+    p Surface-dry and actually-dry are different things. The moisture that matters is bound water, held deep inside the material. Aussie homes make this slow: gyprock wicks water up 30–60cm, timber framing needs drying back to within 2–3% of its normal dry standard, and slab homes hold moisture for a long time. Where you are matters too — humidity in Sydney's wetter months keeps moisture in the air longer, so dehumidifiers do a lot of the work alongside the air movers. The job's finished when moisture meters confirm the home is back to its dry standard — measured and documented, not guessed. It might be noisy, but don't switch the equipment off early; it needs to run until those readings are met.
+    h2 What to do right now
+    p If the source is still running, a licensed plumber can shut it off. Lifting furniture legs off the wet carpet and getting air moving both help in the meantime. Then don't wait it out — the clock is the thing that decides how much can be saved. drySafe is fully self-serve: check availability, get an instant quote and book online in a few minutes, day or night — so drying can be underway before the water spreads any further.
+    a.btn-primary(href='https://drysafe.sydney') Book online

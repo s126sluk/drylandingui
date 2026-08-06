@@ -1,0 +1,30 @@
+extends _post
+
+prepend head
+  - const slug = "emergency-water-damage"
+  - const _meta = (typeof posts !== 'undefined' ? posts : []).find(function (p) { return p.slug === slug; }) || {}
+  - const pageTitle = _meta.title
+  - const pageDescription = _meta.description
+
+block article
+  article.blog-post
+    h1 Emergency Water Damage: What to Do in the First Minutes
+    p.disclaimer
+      em This article is for general information only and isn't specific advice. Every water-damage situation is different — for your circumstances, seek professional guidance.
+    p When water's actively getting into your home — a pipe's burst, the laundry's overflowing, a storm's coming through the ceiling — the first few minutes genuinely matter. Here's a calm, quick run-through of what to do while the water's still flowing, and how to tell a real emergency from something that can wait.
+    h2 Make it safe first
+    p Before you deal with the water, deal with the risks. Don't step into standing water if there's any chance it's near power points, cords, or appliances — water and electricity are the real danger, this is where you should seriously consider a licensed electrician to assess the risks and handle it the right way. If the water is contaminated — sewage, or floodwater from outside — stay out of it and keep kids and pets clear; that's a health risk, not just a mess.
+    h2 Stop the water at its source
+    p The faster you stop the flow, the less there is to deal with. For a burst flexi-hose or a plumbing failure, turn off the water at the mains — usually the meter at the front of the property. For an overflowing appliance, switch it off and close its tap. A roof or storm leak you can't stop at the source: contain what you can with a bucket or a tarp, and focus on moving valuables clear.
+    h2 Slow the damage while you sort help
+    p Once it's safe and the source is off, a few quick moves buy you time:
+    ul
+      li Lift what you can off the wet floor — furniture legs, rugs, boxes, anything that soaks up water or stains.
+      li Get standing water out with a mop, towels, or a wet-and-dry vacuum.
+      li Open up and get air moving if it's dry outside; if it's humid, that's a job for proper drying gear rather than open windows.
+      li Photograph everything before you move too much — useful for your insurer later.
+    h2 Is it actually an emergency?
+    p Not every spill is a crisis. A small, clean-water spill you've caught quickly and dried is usually fine to handle yourself. Treat it as urgent — act now, get help — if any of these are true: the water's still spreading, it's reached walls or gone under the floor, it's contaminated, a large area is soaked, or it's been wet for hours. Water damage gets harder and more expensive to reverse the longer it sits, so when in doubt, move quickly rather than wait and see.
+    h2 Getting help fast
+    p The single biggest thing you control is speed. The sooner proper drying starts, the more of your home and belongings can be saved. drySafe is fully self-serve — check availability and book online in a few minutes, so drying can be underway before the water spreads any further. For the bigger picture on how water damage works and what restoration involves, see our guide to #[a(href='/blog/water-damage') water damage].
+    a.btn-primary(href='https://drysafe.sydney') Book online

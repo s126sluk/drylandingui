@@ -1,34 +1,36 @@
-//- DRAFT — drySafe blog. NOT built/deployed: src/blog/ is outside the gulp
-//- markup glob (src/templates/*.pug), so this file is inert until integrated.
-//- Target keyword: water damage (Cluster B PILLAR) | ~568 words | voice.md pass applied
-//- Meta title: Water Damage: A Homeowner's Guide — Types, First Steps & When to Get Help
-//- Meta description: What causes water damage, why it spreads further than it looks, the three water categories, what to do first, and when it's a job for proper drying. Book online.
-//- Internal links → Cluster A "carpet flood damage" + "wet carpet drying"; Cluster B supporting posts link UP here. Confirm hrefs vs final URL structure.
-//- Pending before publish: template into layout, add Article/FAQ schema, image.
-article.blog-post
-  h1 Water Damage: A Homeowner's Guide to Types, First Steps, and When to Get Help
-  p Water damage is one of the most common — and most expensive — things that goes wrong in an Australian home. A burst flexi-hose, an overflowing machine, a storm that gets in: the water arrives fast and spreads further than it looks. Here's the plain-English overview — what causes it, what it does, and what to actually do about it.
-  h2 The common causes
-  p Most water damage comes from one of a few places: a burst flexi-hose or failed plumbing connection (the number-one water claim in Australia), an appliance overflow (washing machine, dishwasher, or hot-water system), a roof or gutter that lets storm water in, or rising water from outside during heavy rain. Different sources, same problem: water where it shouldn't be, soaking into the building.
-  h2 Why it spreads further than you think
-  p The wet patch you can see is the smallest part of it. Water wicks into porous materials — carpet and underlay, plasterboard, timber framing — and travels along the path of least resistance: under skirting, into wall cavities, across the subfloor. Gyprock can draw moisture 30–60cm up a wall in a couple of days. Water damage is really about the water you can't see, which is why drying the surface alone doesn't fix it.
-  h2 The three categories (they decide what's safe)
-  p Restorers grade water by how contaminated it is, and it matters more than how much there is:
-  ul
-    li Category 1 — clean: from a supply line or tap.
-    li Category 2 — grey: some contaminants, like a washing-machine overflow.
-    li Category 3 — black: grossly contaminated — sewage, or storm and floodwater from outside — and a genuine health risk.
-  p The category shapes what can be dried and kept versus what has to be removed. For how this plays out with a soaked carpet specifically, see our guide to #[a(href='/blog/carpet-flood-damage') carpet flood damage].
-  h2 What to do first
-  p In the first hour, a few things make the biggest difference:
-  ol
-    li Safety first — don't enter standing water if there's any electrical risk; switch off at the mains if you can reach it safely.
-    li Stop the source — turn off the water at the meter if it's a plumbing failure.
-    li Document it — photograph everything before you move or mop, for your insurance claim.
-    li Start removing water and getting air moving — the sooner drying begins, the more can be saved.
-  h2 Drying it out — properly
-  p Getting a home genuinely dry is more than a few fans. It means extracting the water first, then running air movers and dehumidifiers together to pull moisture out of the materials, and confirming with moisture meters that the structure is back to its normal dry standard — measured and documented, not judged by feel. Soaked carpet has its own timeline — see our guide to #[a(href='/blog/wet-carpet-drying-guide') wet carpet drying].
-  h2 When to get help
-  p A small, clean spill caught quickly you can often handle yourself. But if the area is large, the water was contaminated, it reached walls or the subfloor, or it's been wet for more than a day, it's past a DIY job — proper drying gear and a proper assessment are what stop a wet floor from becoming a structural repair.
-  p If water's come through your home, drySafe can get proper drying underway before the damage spreads any further. We're fully self-serve — check availability and book online in a few minutes.
-  a.btn-primary(href='https://drysafe.sydney') Book online
+extends _post
+
+prepend head
+  - const slug = "water-damage"
+  - const _meta = (typeof posts !== 'undefined' ? posts : []).find(function (p) { return p.slug === slug; }) || {}
+  - const pageTitle = _meta.title
+  - const pageDescription = _meta.description
+
+block article
+  article.blog-post
+    h1 Water Damage: A Homeowner's Guide to Types, First Steps, and When to Get Help
+    p Water damage is one of the most common — and most expensive — things that goes wrong in an Australian home. A burst flexi-hose, an overflowing machine, a storm that gets in: the water arrives fast and spreads further than it looks. Here's the plain-English overview — what causes it, what it does, and what to actually do about it.
+    h2 The common causes
+    p Most water damage comes from one of a few places: a burst flexi-hose or failed plumbing connection (the number-one water claim in Australia), an appliance overflow (washing machine, dishwasher, or hot-water system), a roof or gutter that lets storm water in, or rising water from outside during heavy rain. Different sources, same problem: water where it shouldn't be, soaking into the building.
+    h2 Why it spreads further than you think
+    p The wet patch you can see is the smallest part of it. Water wicks into porous materials — carpet and underlay, plasterboard, timber framing — and travels along the path of least resistance: under skirting, into wall cavities, across the subfloor. Gyprock can draw moisture 30–60cm up a wall in a couple of days. Water damage is really about the water you can't see, which is why drying the surface alone doesn't fix it.
+    h2 The three categories (they decide what's safe)
+    p Restorers grade water by how contaminated it is, and it matters more than how much there is:
+    ul
+      li Category 1 — clean: from a supply line or tap.
+      li Category 2 — grey: some contaminants, like a washing-machine overflow.
+      li Category 3 — black: grossly contaminated — sewage, or storm and floodwater from outside — and a genuine health risk.
+    p The category shapes what can be dried and kept versus what has to be removed. For how this plays out with a soaked carpet specifically, see our guide to #[a(href='/blog/carpet-flood-damage') carpet flood damage].
+    h2 What to do first
+    p In the first hour, a few things make the biggest difference:
+    ol
+      li Safety first — don't enter standing water if there's any electrical risk; if there is, keep clear and get a licensed electrician to make it safe.
+      li Stop the source — for a plumbing failure, a licensed plumber can shut off the supply.
+      li Document it — photograph everything before you move or mop, for your insurance claim.
+      li Start removing water and getting air moving — the sooner drying begins, the more can be saved.
+    h2 Drying it out — properly
+    p Getting a home genuinely dry is more than a few fans. It means extracting the water first, then running air movers and dehumidifiers together to pull moisture out of the materials, and confirming with moisture meters that the structure is back to its normal dry standard — measured and documented, not judged by feel. Soaked carpet has its own timeline — see our guide to #[a(href='/blog/wet-carpet-drying-guide') wet carpet drying].
+    h2 When to get help
+    p A small, clean spill caught quickly you can often handle yourself. But if the area is large, the water was contaminated, it reached walls or the subfloor, or it's been wet for more than a day, it's past a DIY job — proper drying gear and a proper assessment are what stop a wet floor from becoming a structural repair.
+    p If water's come through your home, drySafe can get proper drying underway before the damage spreads any further. We're fully self-serve — check availability and book online in a few minutes.
+    a.btn-primary(href='https://drysafe.sydney') Book online

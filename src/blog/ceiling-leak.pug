@@ -1,0 +1,32 @@
+extends _post
+
+prepend head
+  - const slug = "ceiling-leak"
+  - const _meta = (typeof posts !== 'undefined' ? posts : []).find(function (p) { return p.slug === slug; }) || {}
+  - const pageTitle = _meta.title
+  - const pageDescription = _meta.description
+
+block article
+  article.blog-post
+    h1 Ceiling Leak: What to Do When Water's Coming Through
+    p.disclaimer
+      em This article is for general information only and isn't specific advice. Every water-damage situation is different — for your circumstances, seek professional guidance.
+    p Water coming through your ceiling — dripping from a light fitting, a bulge spreading across the plaster, or a stain that's growing while you watch — is one of those problems where the first hour matters. Here's what to do, in order, and what's better left to a professional.
+    h2 First, treat the area as an electrical hazard
+    p Ceiling lights, downlights, fans and wiring sit exactly where the water pools, and water with electricity is the real danger here — more than the damage itself. If water is near a light fitting or coming through one, don't touch the switches in that room, and treat the affected area as live. Keep everyone clear and get a licensed electrician to make it safe first.
+    h2 Don't stand under a bulge
+    p Waterlogged plasterboard gets heavy fast, and a sagging or bulging ceiling can come down without much warning. Don't poke it, don't stand under it, and keep kids and pets out of the room. If the ceiling is bulging or sagging, keep everyone clear and wait for a builder or licensed tradesperson to release it safely — it's not worth risking yourself to relieve it.
+    h2 Contain the water, if you can do it safely
+    p Once the area's safe, catch what you can: a bucket or bin under the drip, towels to soak up the spread, and move furniture and rugs out from under it, keeping well clear of anything electrical. Lay down plastic to protect the floor below. The goal is just to limit how far the water travels while you sort out the source — not to fix anything yet.
+    h2 Work out where the water's coming from
+    p A ceiling leak is a symptom, and stopping it depends on the cause. The usual sources are:
+    ul
+      li #[strong Roof or gutter] — rain getting in during a storm or heavy Sydney downpour. The leak lines up with the weather.
+      li #[strong A pipe above] — a burst or slowly weeping pipe in the ceiling or the floor above. The leak happens regardless of rain.
+      li #[strong An overflow upstairs] — a bathroom, laundry or kitchen above running over. The leak tracks with someone using water upstairs.
+    p If it's plumbing, the supply feeding the leak needs to be shut off to stop more water coming through — that's a job for a licensed plumber, who can also trace where it's getting in. If it's the roof, there's usually nothing to be safely done from inside mid-storm — the roof itself is a job for a roofer once things have dried out.
+    h2 Then get it properly dried — don't just wait for it to dry on its own
+    p This is the step that's easy to skip and expensive to get wrong. The stain you can see is the small part: water spreads sideways through insulation and along the joists, so the wet area above the plasterboard is usually much bigger than the mark below — and it holds moisture long after the surface looks dry. Painting or patching a ceiling that's still damp underneath just means doing it twice; the paint bubbles and the stain bleeds back through. Proper drying pulls the moisture out of the plaster, insulation and cavity with air movers and dehumidifiers, and moisture meters confirm it's actually back to the home's normal dry standard before any repair starts.
+    h2 When it's past a DIY job
+    p A faint, dry, historical stain from a leak that's already been fixed may just need repainting. But if water is active, the plaster is bulging, the wet area is spreading, or it's anywhere near electrics, it's past a mop-and-bucket job — get proper drying and an assessment going quickly, before the damage spreads into the floor below. For the bigger picture on causes, risks and repair, see our guide to #[a(href='/blog/ceiling-water-damage') ceiling water damage]. drySafe is fully self-serve — check availability and book online in a few minutes.
+    a.btn-primary(href='https://drysafe.sydney') Book online

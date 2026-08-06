@@ -1,0 +1,36 @@
+extends _post
+
+prepend head
+  - const slug = "ceiling-water-damage"
+  - const _meta = (typeof posts !== 'undefined' ? posts : []).find(function (p) { return p.slug === slug; }) || {}
+  - const pageTitle = _meta.title
+  - const pageDescription = _meta.description
+
+block article
+  article.blog-post
+    h1 Ceiling Water Damage: Causes, Risks and What to Do
+    p.disclaimer
+      em This article is for general information only and isn't specific advice. Every water-damage situation is different — for your circumstances, seek professional guidance.
+    p A brown ring on the ceiling, a bulge in the plaster, or water actually dripping through a light fitting — ceiling water damage shows up in a few ways, and it's rarely as small as it looks. Here's what causes it, why it's riskier than damage at floor level, and what to do about it.
+    h2 What ceiling water damage actually is
+    p Ceiling water damage is water reaching your ceiling from above and soaking into the plaster, the insulation, and the cavity between floors. The stain or damp patch you can see is usually the smallest part — water spreads sideways through insulation and along the joists, so the wet area above the plasterboard is often much larger than the mark below. That hidden spread is why a small stain can point to a much bigger problem.
+    h2 Common causes
+    p Most ceiling water damage comes from one of a few sources:
+    ul
+      li A roof or gutter that lets water in during a storm or heavy Sydney rain.
+      li A burst or slowly leaking pipe running through the ceiling or the floor above.
+      li An overflow from an upstairs bathroom, laundry or kitchen.
+    p Working out which one it is matters, because a roof issue and an upstairs plumbing issue are stopped in completely different ways.
+    h2 Why a wet ceiling is riskier than a wet floor
+    p Ceilings carry hazards a soaked floor doesn't:
+    ul
+      li #[strong Electrics.] Ceiling lights, fans and wiring sit right where the water pools. Water and electricity together are the real danger — treat the affected area as live until you know otherwise.
+      li #[strong Sagging and collapse.] Waterlogged plasterboard gets heavy, and a bulging or drooping ceiling can give way — so it's not something to stand under or poke at.
+      li #[strong Hidden moisture.] Insulation and timber above the plaster soak up water and hold it long after the surface looks dry, which is where the lasting damage happens.
+    h2 What to do
+    p The short version: keep clear of the electrical risk, don't stand under a sagging patch, contain the drips if you safely can, and work out where the water's coming from so it can be stopped. Then the focus shifts to drying — because a ceiling that looks dry on the surface usually isn't. (Our guide to #[a(href='/blog/ceiling-leak') dealing with a ceiling leak] walks through the first steps in detail.)
+    h2 Why proper drying matters (before any repair)
+    p This is the part that's easy to get wrong. Painting or patching a ceiling that's still damp underneath just means doing it twice — the paint bubbles and the stain bleeds back through. Proper drying pulls the moisture out of the plaster, insulation and cavity with air movers and dehumidifiers, and confirms it's gone with moisture meters against the home's normal dry standard. Only then is it safe to repair. Getting the drying right is what stops a small stain turning into a replaced ceiling.
+    h2 When to get help
+    p A faint, dry, historical stain from an old fixed leak may just need repainting. But if water is active, the plaster is bulging, the area is large, or it's anywhere near electrics, it's past a DIY job — get proper drying and an assessment going quickly. drySafe is fully self-serve — check availability and book online in a few minutes, so drying can start before the damage spreads further. For the bigger picture on water damage generally, see our guide to #[a(href='/blog/water-damage') water damage].
+    a.btn-primary(href='https://drysafe.sydney') Book online

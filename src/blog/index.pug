@@ -1,0 +1,32 @@
+//- Blog index — reverse-chronological list of PUBLISHED posts only, generated
+//- from src/blog/posts.js (no hard-coded list). A post appears here only once
+//- its `published` date is set. With nothing published the list is empty and
+//- the page still renders as a valid, styled page.
+extends _post
+
+prepend head
+  - const slug = ""
+  - const pageTitle = "drySafe Blog — Water Damage & Drying Guides"
+  - const pageDescription = "Plain-English guides on water damage, wet carpet, flooding and ceiling leaks — what to do and how proper drying works. Book online."
+
+block article
+  article.blog-index
+    h1 drySafe Blog
+    -
+      var published = (typeof posts !== 'undefined' ? posts : [])
+        .filter(function (p) { return p.published; })
+        .sort(function (a, b) { return String(b.published).localeCompare(String(a.published)); });
+    if published.length === 0
+      p No posts published yet — check back soon.
+    else
+      ul.blog-index__list
+        each p in published
+          li.blog-index__item
+            if p.image
+              a.blog-index__thumb-link(href="/blog/" + p.slug + "/")
+                img.blog-index__thumb(src="/img/blog/" + p.image, alt=p.alt, loading="lazy", width="2400", height="1350")
+            h2.blog-index__title
+              a(href="/blog/" + p.slug + "/")= p.title
+            p.blog-index__date
+              time(datetime=p.published)= p.published
+            p.blog-index__excerpt= p.description

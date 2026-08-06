@@ -1,0 +1,36 @@
+// Blog hero image + index thumbnails. Structural only — reuses the site's 1rem
+// card rounding; introduces no new colours or fonts. Images are supplied 16:9
+// (2400×1350); aspect-ratio + object-fit hold the shape and prevent layout shift.
+
+.blog-post__hero {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.blog-index__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.blog-index__item {
+  margin-bottom: 2rem;
+}
+
+.blog-index__thumb-link {
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.blog-index__thumb {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 1rem;
+}
