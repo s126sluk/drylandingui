@@ -2,6 +2,16 @@
 // card rounding; introduces no new colours or fonts. Images are supplied 16:9
 // (2400×1350); aspect-ratio + object-fit hold the shape and prevent layout shift.
 
+// Justify body prose for clean block edges. hyphens:auto (page is lang="en")
+// breaks long words so justification doesn't open up ragged inter-word gaps,
+// which matters most on mobile's narrow column. The disclaimer and list items
+// stay left-aligned — justifying a 2-line note or short list items looks worse.
+.blog-post p:not(.disclaimer) {
+  text-align: justify;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
 .blog-post__hero {
   display: block;
   width: 100%;
