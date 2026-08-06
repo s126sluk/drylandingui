@@ -17,9 +17,9 @@ module.exports = [
     "slug": "wet-carpet-drying-guide",
     "title": "Wet Carpet Drying: How Long It Takes & How to Save Your Carpet",
     "description": "Soaked carpet? How professional wet carpet drying works, realistic timelines by damage class, and when a carpet can be saved. Book & pay online.",
-    "published": null,
-    "image": null,
-    "alt": null
+    "published": "2026-08-06",
+    "image": "wet-carpet-drying-guide.jpg",
+    "alt": "A large wet patch spread across pale living-room carpet after a water leak"
   },
   {
     "slug": "how-to-dry-wet-carpet",
