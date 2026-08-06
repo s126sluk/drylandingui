@@ -5,10 +5,50 @@
 .blog-post__hero {
   display: block;
   width: 100%;
+  // height:auto is REQUIRED — without it the img's height="1350" attribute
+  // fixes the box at 1350px tall, which overrides aspect-ratio and makes
+  // object-fit:cover crop the image. With height:auto the 16/9 aspect-ratio
+  // computes the box from the width, so a 16:9 source renders uncropped.
+  height: auto;
   aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: 1rem;
   margin-bottom: 1.5rem;
+}
+
+// The in-article booking CTA. The posts use `a.btn-primary`, but the site has
+// no .btn-primary style (nav/hero CTAs use .navbtn/.cta mixins), so the link
+// rendered unstyled. Match the site's primary-button language (same green
+// gradient, weight and shadow as .navbtn), scoped to the blog so it can't
+// affect other pages that happen to use the class.
+.blog-post .btn-primary {
+  display: inline-block;
+  margin-top: 0.5rem;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 0.2px;
+  padding: 13px 26px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #2cb128, #1d8a1a);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 3px 8px rgba(29, 138, 26, 0.3);
+  transition: transform 0.06s ease, filter 0.15s ease;
+
+  &:hover {
+    filter: brightness(1.03);
+    color: #fff;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(29, 138, 26, 0.6);
+    outline-offset: 2px;
+  }
 }
 
 .blog-index__list {
