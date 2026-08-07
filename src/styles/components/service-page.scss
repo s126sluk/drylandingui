@@ -29,12 +29,17 @@
     text-align: left;
   }
 
-  // Before/after proof band.
+  // Before/after proof band. Stacked 1-per-row on mobile, side-by-side from
+  // the tablet breakpoint up (the pair is too small to read at phone width).
   &__ba {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 1rem;
     margin: 1rem 0;
+
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 
   &__ba-item {
