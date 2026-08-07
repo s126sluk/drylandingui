@@ -1,0 +1,64 @@
+//- TEMPLATE STUB — proves the service-page pipeline only. NOT real content and
+//- NOT for publishing (services.js wires it published:null). The real
+//- "Emergency Water Damage Restoration Sydney" page is a separate content task
+//- built on this same template with Charity's approved copy. Placeholder copy
+//- below is on-brand but generic; swap wholesale for real pages.
+extends _service
+
+prepend head
+  - const slug = "example-service"
+  - const _meta = (typeof services !== 'undefined' ? services : []).find(function (p) { return p.slug === slug; }) || {}
+  - const pageTitle = _meta.title
+  - const pageDescription = _meta.description
+
+block service-body
+  //- Re-lookup in body scope so the FAQ mixin gets the registry faq array.
+  - var _svc = (typeof services !== 'undefined' ? services : []).find(function (p) { return p.slug === slug; }) || {}
+
+  h1 Example Service Page — drySafe Service Page Standard
+
+  p.service-page__lede This is a template stub that demonstrates the drySafe Service Page Standard: a single content file plus a registry entry, rendered into the shared site chrome with the cached stylesheet, JSON-LD, canonical and OG tags. Replace this copy wholesale for a real service page.
+
+  a.btn-primary(href='https://drysafe.vercel.app/get-started?utm_source=website') Book &amp; pay online
+
+  //- ── Pricing anchor ─────────────────────────────────────────────
+  section.service-page__pricing
+    h2 What it costs
+    p Transparent, per-room pricing you can see before you book — from #[strong $302 + GST*]. Booking online locks in your price, and self-serve booking is how homeowners save nearly 40% against a typical call-out.
+    ul
+      li #[strong drySafe Basic] — emergency water extraction, air movers, and a surface moisture assessment.
+      li #[strong drySafe Care] — adds dehumidification and documented moisture analytics through to a verified dry standard.
+    p.service-page__disclaimer *From-prices are per room and exclude GST, any after-hours surcharge and package upgrades. After-hours surcharges are calculated at the time of booking based on drySafe's business-hours schedule.
+
+  //- ── Proof band ─────────────────────────────────────────────────
+  section.service-page__proof
+    h2 The work, and who stands behind it
+    .service-page__ba
+      figure.service-page__ba-item
+        img(loading="lazy", src="img/ba3-carpet-before.jpg", alt="Water-damaged carpet before drying", width="800", height="600")
+        figcaption Before
+      figure.service-page__ba-item
+        img(loading="lazy", src="img/ba3-carpet-after.jpg", alt="The same carpet dried and restored", width="800", height="600")
+        figcaption After
+    blockquote.service-page__quote
+      p “The team arrived on time and the work was set up professionally and efficiently. Their friendly and polite manner left me with great impressions.”
+      cite — Eddie Lee, Google review
+    .service-page__accreditation
+      img.service-page__logo(loading="lazy", src="img/iicrc-certified.png", alt="IICRC certified", width="300", height="110")
+      img.service-page__logo(loading="lazy", src="img/ria-member.png", alt="Restoration Industry Association Australasia member", width="2785", height="1688")
+
+  a.btn-primary(href='https://drysafe.vercel.app/get-started?utm_source=website') Book &amp; pay online
+
+  //- ── FAQ (from the registry — same source as the FAQPage JSON-LD) ─
+  +serviceFaq(_svc.faq)
+
+  //- ── Internal links (both directions) ───────────────────────────
+  section.service-page__links
+    h2 Related reading
+    ul
+      li For the full overview, see our guide to #[a(href='/blog/water-damage') water damage].
+      li Soaked carpet? See #[a(href='/blog/wet-carpet-drying-guide') wet carpet drying] and #[a(href='/blog/carpet-flood-damage') carpet flood damage].
+
+  //- ── Final CTA ──────────────────────────────────────────────────
+  p If water's come through your Sydney home, don't wait it out — drySafe is fully self-serve, so drying can be underway before it spreads any further.
+  a.btn-primary(href='https://drysafe.vercel.app/get-started?utm_source=website') Book &amp; pay online
