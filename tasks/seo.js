@@ -1,28 +1,31 @@
 const gulp = require("gulp");
 const sitemap = require("gulp-sitemap");
 const robots = require("gulp-robots");
-const { paths, heldServicePages } = require('./settings');
+const { paths } = require('./settings');
 const posts = require('../src/blog/posts');
+const services = require('../src/services/services');
 
 const siteUrl = "https://drysafe.sydney";
 
 // Генерация sitemap.xml
-// Root pages + the blog listing are always included. Blog POSTS are included
-// only once published (they have a `published` date in src/blog/posts.js) — an
-// unpublished post is built but must NOT be advertised to search engines.
+// Root pages + the blog listing are always included. Blog POSTS and SERVICE
+// pages are included only once published (they carry a `published` date in
+// their registries) — an unpublished page is built but must NOT be advertised
+// to search engines. `published: null` is the single gating source of truth.
 function generateSitemap() {
-  // Include everything, then exclude only the UNPUBLISHED blog post pages.
+  // Include everything, then exclude only the UNPUBLISHED pages.
   // (Excluding — rather than excluding-all-then-re-adding — keeps every included
   // file on the same base as the `**` glob, so its sitemap URL stays correct.)
-  const unpublished = posts
+  const unpublishedPosts = posts
     .filter(p => !p.published)
     .map(p => `!${paths.build.main}/blog/${p.slug}/index.html`);
-  // Held service pages are also kept out of the sitemap until they're cleared.
-  const heldPages = heldServicePages.map(f => `!${paths.build.main}/${f}`);
+  const unpublishedServices = services
+    .filter(s => !s.published)
+    .map(s => `!${paths.build.main}/services/${s.slug}/index.html`);
   return gulp.src([
     `${paths.build.main}/**/*.html`,
-    ...unpublished,
-    ...heldPages
+    ...unpublishedPosts,
+    ...unpublishedServices
   ], { read: false })
     .pipe(sitemap({ siteUrl }))
     .pipe(gulp.dest(paths.build.main));

@@ -1,0 +1,101 @@
+//- Service-page layout. The service-page equivalent of src/blog/_post.pug:
+//- wraps a page's `block service-body` in the real site chrome by extending the
+//- shared site layout and reusing the live header, footer, CSS and fonts.
+//- Not compiled as a page itself (the service task iterates the registry and
+//- skips _*.pug).
+//-
+//- Assets in the shared layout are root-relative (css/…, img/…, js/…). `base
+//- href="/"` (emitted before the stylesheet link via prepend head) makes every
+//- relative URL resolve from the site root, so a page served at
+//- /services/<slug>/ still finds the shared cached stylesheet — no inlining.
+//-
+//- Per-page metadata comes from src/services/services.js (`services` local),
+//- looked up by slug. This layout emits canonical + OG + JSON-LD (Service,
+//- LocalBusiness, FAQPage). The FAQ array in the registry is the SINGLE source
+//- for BOTH the visible accordion (+serviceFaq) and the FAQPage JSON-LD.
+//-
+//- Expects the extending page to set, in its own `prepend head`:
+//-   slug, pageTitle, pageDescription   (pages look these up from services.js)
+extends ../templates/settings/layout
+
+prepend html
+  - const lang = "en"
+
+prepend head
+  base(href="/")
+  - const pageKeywords = ""
+  - const themeColor = "#ffffff"
+
+append head
+  - var _svc = (typeof services !== 'undefined' ? services : []).find(function (p) { return p.slug === slug; }) || {}
+  //- Alt is mandatory whenever a page sets a hero image (mirrors tasks/blog.js).
+  - if (_svc.image && !_svc.alt) throw new Error('Service page "' + (slug || '?') + '" sets image "' + _svc.image + '" but has no alt text — alt is required.')
+  - var _canonical = "https://drysafe.sydney/services/" + slug + "/"
+  link(rel="canonical", href=_canonical)
+  meta(property="og:title", content=pageTitle)
+  meta(property="og:description", content=pageDescription)
+  meta(property="og:type", content="website")
+  meta(property="og:url", content=_canonical)
+  if _svc.image
+    meta(property="og:image", content="https://drysafe.sydney/img/services/" + _svc.image)
+    meta(property="og:image:alt", content=_svc.alt)
+  //- JSON-LD. Built as plain objects and emitted unescaped (!=) so quotes/&
+  //- survive as valid JSON.
+  -
+    var _ld = {
+      service: {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": _svc.title || pageTitle,
+        "name": pageTitle,
+        "description": pageDescription,
+        "url": _canonical,
+        "areaServed": "Greater Sydney, NSW",
+        "provider": { "@type": "LocalBusiness", "name": "drySafe", "url": "https://drysafe.sydney" }
+      },
+      localBusiness: {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "drySafe",
+        "legalName": "Ekon Enterprises Pty Ltd",
+        "url": "https://drysafe.sydney",
+        "image": "https://drysafe.sydney/img/logo.svg",
+        "areaServed": "Greater Sydney, NSW",
+        "address": { "@type": "PostalAddress", "addressLocality": "North Parramatta", "addressRegion": "NSW", "addressCountry": "AU" },
+        "priceRange": "$$"
+      },
+      faqPage: {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": (_svc.faq || []).map(function (f) {
+          return { "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } };
+        })
+      }
+    }
+  script(type="application/ld+json")!= JSON.stringify(_ld.service)
+  script(type="application/ld+json")!= JSON.stringify(_ld.localBusiness)
+  if (_svc.faq && _svc.faq.length)
+    script(type="application/ld+json")!= JSON.stringify(_ld.faqPage)
+
+//- Visible FAQ accordion, driven by the same registry faq array as the JSON-LD.
+//- Native <details>/<summary> — accessible and needs no JS. Available to the
+//- extending page's block (mixins declared in the layout are in scope there).
+mixin serviceFaq(items)
+  if (items && items.length)
+    section.service-page__faq
+      h2 Frequently asked questions
+      each item in items
+        details.service-faq__item
+          summary.service-faq__q= item.q
+          .service-faq__a
+            p= item.a
+
+append content
+  include ../templates/mixins/btn
+  .site-header
+    include ../templates/components/header
+  main
+    article.service-page
+      .container
+        block service-body
+  include ../templates/components/footer

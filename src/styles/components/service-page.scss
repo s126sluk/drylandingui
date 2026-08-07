@@ -1,0 +1,147 @@
+// Service-page structural styles. Reuses the site's container/card language;
+// introduces no new fonts or brand colours. Kept scoped under .service-page so
+// nothing here leaks into other pages.
+
+.service-page {
+  // Readable measure for long-form service copy (matches the blog feel).
+  h1 {
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  p {
+    text-align: justify;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+
+  &__lede {
+    font-size: 1.05rem;
+  }
+
+  &__disclaimer {
+    font-size: 0.85rem;
+    opacity: 0.75;
+    text-align: left;
+  }
+
+  // Before/after proof band.
+  &__ba {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+  &__ba-item {
+    margin: 0;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 1rem;
+    }
+
+    figcaption {
+      margin-top: 0.35rem;
+      font-weight: 700;
+      text-align: center;
+    }
+  }
+
+  &__quote {
+    margin: 1.5rem 0;
+    padding: 1rem 1.25rem;
+    border-left: 4px solid #1d8a1a;
+
+    p {
+      text-align: left;
+      font-style: italic;
+    }
+
+    cite {
+      display: block;
+      margin-top: 0.5rem;
+      font-style: normal;
+      font-weight: 700;
+    }
+  }
+
+  &__accreditation {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  &__logo {
+    height: 64px;
+    width: auto;
+  }
+
+  // FAQ accordion — native <details>/<summary>, no JS needed.
+  &__faq {
+    margin-top: 2rem;
+  }
+}
+
+.service-faq__item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0.75rem 0;
+}
+
+.service-faq__q {
+  cursor: pointer;
+  font-weight: 700;
+  list-style: none;
+}
+
+.service-faq__q::-webkit-details-marker {
+  display: none;
+}
+
+.service-faq__a p {
+  text-align: left;
+  margin-top: 0.5rem;
+}
+
+// The in-page booking CTA. Like the blog, the site has no .btn-primary style of
+// its own (nav/hero CTAs use .navbtn/.cta mixins), so scope a primary button to
+// the service page that matches the site's green .navbtn language.
+.service-page .btn-primary {
+  display: inline-block;
+  margin: 1rem 0;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 0.2px;
+  padding: 13px 26px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #2cb128, #1d8a1a);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 3px 8px rgba(29, 138, 26, 0.3);
+  transition: transform 0.06s ease, filter 0.15s ease;
+
+  &:hover {
+    filter: brightness(1.03);
+    color: #fff;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(29, 138, 26, 0.6);
+    outline-offset: 2px;
+  }
+}
