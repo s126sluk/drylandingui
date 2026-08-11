@@ -1,0 +1,19 @@
+//- [CP4 v9] Shared FAQ machinery. faqItem takes the question + a unique id and
+//- a block body (real v3 sign-off copy — rich paragraphs/lists). Collapsible
+//- via the site accordion.js. faqCluster wraps sprinkled pairs.
+mixin faqItem(q, uid)
+	.accordion-item.card.card-primary-outline
+		.accordion-item__header
+			h3.h4.accordion-item__title= q
+			button.accordion-item__btn.btn.btn-small.btn-transparent(type="button" aria-expanded="false" aria-controls="faq-body-" + uid id="faq-btn-" + uid)
+				span.sr-only Toggle cards
+				svg.icon(width="16" height="16")
+					use(href="#caret-down")
+		.accordion-item__body(id="faq-body-" + uid role="region" aria-labelledby="faq-btn-" + uid)
+			.faq-body
+				block
+
+mixin faqClusterOpen
+	.faq-mini
+		.accordion
+			block

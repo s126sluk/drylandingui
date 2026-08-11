@@ -1,0 +1,22 @@
+//- [CP4 v7] Chris's case study in the hero right column (SS88 11 Aug —
+//- interim while Beau's video is located). Video URL set on the page via
+//- beauVideoUrl (var name retained for compatibility). No quote/name shown.
+.beau-hero
+	.beau-hero__kicker Hear about Chris's experience
+	if (typeof beauVideoUrl !== 'undefined' && beauVideoUrl)
+		.video-card
+			iframe(
+				src=beauVideoUrl,
+				title="drySafe customer testimonial — Chris",
+				loading="lazy",
+				frameborder="0",
+				allow="autoplay; fullscreen; picture-in-picture",
+				allowfullscreen
+			)
+	else
+		.videocase__poster
+			svg.videocase__play(width="52" height="52" viewBox="0 0 24 24" fill="none" aria-hidden="true")
+				circle(cx="12" cy="12" r="10.5" stroke="currentColor" stroke-width="1.6")
+				path(d="M10 8.5v7l6-3.5z" fill="currentColor")
+			.videocase__poster-label Chris's video case study
+			.videocase__poster-sub Video slot ready — awaiting Vimeo URL

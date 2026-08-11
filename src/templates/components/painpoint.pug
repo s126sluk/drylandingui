@@ -1,46 +1,65 @@
-//- 3.1 — Before/after pain point section
-//- [v4] Now uses the real job photos (ba1–ba3, shared with the hero carousel —
-//- same files, no duplicates). Suburb attributions were removed with the old
-//- AI-generated images: they were illustrative, and against a real photo they
-//- would read as a location claim. Copy describes only what is visible in the
-//- frame — no suburb, no timeframe, no invented detail.
+//- 3.1 — Before/after pain point section (PM REVIEW: copy is placeholder)
 section.painpoint.block
     .container
-        h2.painpoint__title.text-uppercase.text-center See the Damage We <span class="text-blue">Reverse Every Day</span>
-        p.painpoint__subtitle.text-center Water damage doesn't wait — and neither do we. Here's what fast, professional restoration looks like.
+        - var _ppTitle = (typeof isMould !== 'undefined' && isMould) ? 'See the Mould We <span class="text-blue">Remove Every Day</span>' : 'See the Damage We <span class="text-blue">Reverse Every Day</span>'
+        - var _ppSub = (typeof isMould !== 'undefined' && isMould) ? "Surface mould treated properly — HEPA vacuumed, treated, and verified. Here's what certified remediation looks like." : "Water damage doesn't wait — and neither do we. Here's what fast, professional restoration looks like."
+        - var _isM = (typeof isMould !== 'undefined' && isMould)
+        - var _pp1altB = _isM ? 'Bedroom wall with mould growth before remediation' : 'Standing water across a tiled bathroom floor before drying — real drySafe job'
+        - var _pp1altA = _isM ? 'Bedroom wall after drySafe mould remediation' : 'The same bathroom floor dry, with drySafe drying equipment running — real drySafe job'
+        - var _pp2altB = _isM ? 'Bathroom ceiling with mould growth before remediation' : 'Saturated beige carpet in an apartment living area before drying — real drySafe job'
+        - var _pp2altA = _isM ? 'Bathroom ceiling after drySafe mould remediation' : 'Apartment living area with a drySafe dehumidifier running on the dried carpet — real drySafe job'
+        - var _pp3altB = _isM ? 'Terrace rooms with surface mould before remediation' : 'Wet patches along an apartment hallway carpet before drying — real drySafe job'
+        - var _pp3altA = _isM ? 'Terrace rooms after drySafe mould remediation' : 'Hallway and bedroom carpet dried with drySafe air movers and a dehumidifier — real drySafe job'
+        //- [v4] Water uses the REAL job photos landed in 5c48f89. The bundle
+        //- shipped the pre-v4 stock work-img-* set for both lines; mould keeps
+        //- those until its own photo set is signed off.
+        - var _pp1imgB = _isM ? 'img/work-img-1.jpg'   : 'img/ba1-bathroom-before.jpg'
+        - var _pp1imgA = _isM ? 'img/work-img-1-1.jpg' : 'img/ba1-bathroom-after.jpg'
+        - var _pp2imgB = _isM ? 'img/work-img-2.jpg'   : 'img/ba2-apartment-before.jpg'
+        - var _pp2imgA = _isM ? 'img/work-img-2-1.jpg' : 'img/ba2-apartment-after.jpg'
+        - var _pp3imgB = _isM ? 'img/work-img-3.jpg'   : 'img/ba3-carpet-before.jpg'
+        - var _pp3imgA = _isM ? 'img/work-img-3-1.jpg' : 'img/ba3-carpet-after.jpg'
+        h2.painpoint__title.text-uppercase.text-center!= _ppTitle
+        p.painpoint__subtitle.text-center= _ppSub
         .painpoint__grid
             .painpoint__card
                 .painpoint__images
                     .painpoint__img.painpoint__img--before
-                        img(loading="lazy", src="img/ba1-bathroom-before.jpg", alt="Standing water across a tiled bathroom floor before drying — real drySafe job")
+                        img(loading="lazy", src=_pp1imgB, alt=_pp1altB)
                         span.painpoint__label Before
                     .painpoint__img.painpoint__img--after
-                        img(loading="lazy", src="img/ba1-bathroom-after.jpg", alt="The same bathroom floor dry, with drySafe drying equipment running — real drySafe job")
+                        img(loading="lazy", src=_pp1imgA, alt=_pp1altA)
                         span.painpoint__label After
                 .painpoint__context
-                    h3.painpoint__heading Flooded Bathroom — Standing Water on the Floor
-                    p.painpoint__detail Water pooled across the tiled bathroom floor and spread out toward the doorway. We extracted it and left drying equipment running on site until the floor was dry.
+                    - var _pp1h = (typeof isMould !== 'undefined' && isMould) ? 'Bedroom Wall Mould — Marrickville' : 'Flooded Bathroom — Standing Water on the Floor'
+                    - var _pp1d = (typeof isMould !== 'undefined' && isMould) ? 'Condensation had driven mould growth across the bedroom wall. HEPA vacuumed, treated with antimicrobial, and S520 remediated in a single attendance.' : 'Water pooled across the tiled bathroom floor and spread out toward the doorway. We extracted it and left drying equipment running on site until the floor was dry.'
+                    h3.painpoint__heading= _pp1h
+                    p.painpoint__detail= _pp1d
             .painpoint__card
                 .painpoint__images
                     .painpoint__img.painpoint__img--before
-                        img(loading="lazy", src="img/ba2-apartment-before.jpg", alt="Saturated beige carpet in an apartment living area before drying — real drySafe job")
+                        img(loading="lazy", src=_pp2imgB, alt=_pp2altB)
                         span.painpoint__label Before
                     .painpoint__img.painpoint__img--after
-                        img(loading="lazy", src="img/ba2-apartment-after.jpg", alt="Apartment living area with a drySafe dehumidifier running on the dried carpet — real drySafe job")
+                        img(loading="lazy", src=_pp2imgA, alt=_pp2altA)
                         span.painpoint__label After
                 .painpoint__context
-                    h3.painpoint__heading Soaked Carpet in an Apartment Living Area
-                    p.painpoint__detail Water spread through the living-area carpet and left it saturated underfoot. We set a dehumidifier up on site and ran it until the carpet was dry again.
+                    - var _pp2h = (typeof isMould !== 'undefined' && isMould) ? 'Bathroom Ceiling Mould — Chatswood' : 'Soaked Carpet in an Apartment Living Area'
+                    - var _pp2d = (typeof isMould !== 'undefined' && isMould) ? 'Poor ventilation had left mould across the bathroom ceiling and window tracks. Treated to the ceiling line with furniture protected throughout.' : 'Water spread through the living-area carpet and left it saturated underfoot. We set a dehumidifier up on site and ran it until the carpet was dry again.'
+                    h3.painpoint__heading= _pp2h
+                    p.painpoint__detail= _pp2d
             .painpoint__card
                 .painpoint__images
                     .painpoint__img.painpoint__img--before
-                        img(loading="lazy", src="img/ba3-carpet-before.jpg", alt="Wet patches along an apartment hallway carpet before drying — real drySafe job")
+                        img(loading="lazy", src=_pp3imgB, alt=_pp3altB)
                         span.painpoint__label Before
                     .painpoint__img.painpoint__img--after
-                        img(loading="lazy", src="img/ba3-carpet-after.jpg", alt="Hallway and bedroom carpet dried with drySafe air movers and a dehumidifier — real drySafe job")
+                        img(loading="lazy", src=_pp3imgA, alt=_pp3altA)
                         span.painpoint__label After
                 .painpoint__context
-                    h3.painpoint__heading Wet Carpet Running Down an Apartment Hallway
-                    p.painpoint__detail Water soaked its way along the hallway carpet and through into the bedroom. Air movers and a dehumidifier ran across both rooms until the carpet was dry.
+                    - var _pp3h = (typeof isMould !== 'undefined' && isMould) ? 'Multi-Room Mould — Paddington' : 'Wet Carpet Running Down an Apartment Hallway'
+                    - var _pp3d = (typeof isMould !== 'undefined' && isMould) ? 'Surface mould had taken hold across several rooms of a terrace. Each room assessed, HEPA vacuumed and treated, with before and after photos in the report.' : 'Water soaked its way along the hallway carpet and through into the bedroom. Air movers and a dehumidifier ran across both rooms until the carpet was dry.'
+                    h3.painpoint__heading= _pp3h
+                    p.painpoint__detail= _pp3d
         .painpoint__btn.text-center
             +ctaPrimary('')

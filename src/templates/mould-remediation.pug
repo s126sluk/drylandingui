@@ -1,0 +1,65 @@
+extends settings/layout
+
+prepend html
+	- const lang = "en";
+
+prepend head
+	- const pageTitle = "Book Mould Remediation Online in Sydney | drySafe"
+	- const themeColor = "#ffffff"
+	- const pageDescription = "Book certified Sydney mould remediation online in seconds. HEPA vacuum and TGA-listed anti-microbial treatment for walls and ceilings — see your package price upfront and book now."
+	- const pageKeywords = ""
+	- const pageUrl = "";
+	- const pageImage = "img/logo.svg";
+	- const twitterImage = "img/logo.svg";
+
+	//- [CP4] Declared here (earliest block, as var) so every typeof guard in
+	//- layout/mixins/components sees them — const-in-content hits pug's TDZ.
+	- var isMould = true
+	- var ctaLabel = 'Book now'
+	- var ctaSuppressSub = true
+	- var ctaHrefOverride = '#packages'
+	- var beauVideoUrl = 'https://player.vimeo.com/video/1197929652?h=5e5cc85942&title=0&byline=0&portrait=0&dnt=1'
+	- var heroTitleHtml = 'A healthy home is <span class="text-blue">a mould-free home.</span>'
+	- var heroBodyHtml = 'Fixed packages, no call-out surprises, and your attendance time confirmed the moment you book. Every job documented with before and after photos.'
+	- var heroCtaSub = ''
+append head
+append content
+	//- [CP4] Mould service line — v2 per SS88 landing tweaks (items 1–7).
+	//- All page vars are declared in `prepend head` above. Hero copy variants
+	//- (items 1–2) live in the CP4 change list — swap the chosen pair into
+	//- heroTitleHtml / heroBodyHtml there. Set beauVideoUrl there to activate
+	//- Beau's video (item 6).
+	include mixins/btn
+	include components/picker-mould
+	include components/faq-mini
+
+	.site-header
+		include components/header
+	main
+		include components/promo
+		include components/reviews
+		include components/beforeafter-mould
+		include components/experience
+		section.block.faq-mini-band
+			.container
+				include components/faq-cluster-a
+		include components/how
+		include components/packages-mould
+		include components/process
+		include components/community
+		include components/why
+		section.block.faq-mini-band
+			.container
+				include components/faq-cluster-b
+		include components/response
+
+
+		include components/protect
+
+
+		include components/faq-mould
+		include components/icons
+
+	include components/footer
+
+append scripts

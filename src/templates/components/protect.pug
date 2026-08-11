@@ -2,6 +2,7 @@ section.protect.block
     .container 
         .protect__inner
             h2.protect__title PEACE OF MIND PROTECTION, <span class="text-blue">EACH AND EVERY TIME</span>
-            .protect__text All of our works completed across all of our projects are validated by our internal quality assurance protocol to give you peace of mind and protection that you are in safe, capable hands.
+            - var _protX = (typeof isMould !== 'undefined' && isMould) ? 'Every remediation we complete is validated against our internal quality assurance protocol, with before and after photographs of each treated surface, so you can see exactly what was done and know you are in safe, capable hands.' : 'All of our works completed across all of our projects are validated by our internal quality assurance protocol to give you peace of mind and protection that you are in safe, capable hands.'
+            .protect__text= _protX
             .protect__btn 
                 +ctaPrimary('')

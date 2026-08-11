@@ -7,6 +7,7 @@ import gallery from './modules/gallery'
 import notification from './modules/notification'
 import clickforward from './modules/clickforward'
 import smsdeeplink from './modules/smsdeeplink'
+import mouldPackages from './modules/mouldPackages'
 
 document.addEventListener('DOMContentLoaded', function () {
 	
@@ -18,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	notification()
 	clickforward()
 	smsdeeplink()
+	mouldPackages()
 
 	// AOS.init({
 	// 	offset: 80,

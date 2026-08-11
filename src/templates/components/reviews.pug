@@ -2,7 +2,8 @@
 section.reviews.overflow-hidden.block
     .container
         //- 2.4 — Benefit-driven section headline (PM to provide final copy)
-        h2.reviews__title.text-center Trusted by Hundreds of Sydney Homeowners to Stop Water Damage Fast
+        - var _revTitle = (typeof isMould !== 'undefined' && isMould) ? 'Trusted by Hundreds of Sydney Homeowners to Remove Mould Properly' : 'Trusted by Hundreds of Sydney Homeowners to Stop Water Damage Fast'
+        h2.reviews__title.text-center= _revTitle
         .reviews__swiper
             .swiper.reviews-swiper.overflow-visible
                 .swiper-wrapper

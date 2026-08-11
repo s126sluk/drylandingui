@@ -31,7 +31,9 @@ block html
         title= pageTitle
         link(rel="stylesheet", href="css/style.min.css")
         //- [A6] Preload the LCP hero before/after slide
-        link(rel="preload", as="image", href="img/ba1-bathroom-before.jpg")
+        //- [CP4] Hero gallery preload is water-only; mould uses a placeholder panel
+        unless (typeof isMould !== 'undefined' && isMould)
+            link(rel="preload", as="image", href="img/ba1-bathroom-before.jpg")
         link(rel="icon", href="img/favicon.ico", type="image/x-icon")
         //- link(rel="canonical", href= domain + pageUrl)
         meta(name="description", content=pageDescription)
@@ -47,7 +49,7 @@ block html
         //- meta(name="twitter:description", content=pageDescription)
         //- meta(name="twitter:image", content= domain + twitterImage)
         block fonts
-    body
+    body(class=(typeof isMould !== 'undefined' && isMould) ? 'page-mould' : undefined)
       block content
       block scripts
         script(src="js/libs.js?v=2.0.2", defer)

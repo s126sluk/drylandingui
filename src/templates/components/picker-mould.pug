@@ -1,0 +1,126 @@
+//- [CP4] Reusable compact package picker + value bullets (landing v3, item 7).
+//- One mixin, five placements (hero + 4 down-page). All instances share one
+//- state and one order modal (owned by packages-mould.pug) via
+//- src/js/modules/mouldPackages.js — [data-mpk-picker] roots repaint together.
+//-
+//- Value-bullet copy is drawn from SS88's differentiator/education document
+//- (HEPA / TGA antimicrobials / AFD / LGR / unseen spores). Claims kept
+//- faithful to that source: 99.97% @ 0.3 microns, 2–10 micron spores,
+//- 24–48hr establishment, <60% humidity, TGA hospital-grade listing,
+//- removal-not-killing principle. No medical-outcome promises.
+
+mixin mpkIcon(name)
+	if name === 'hepa'
+		svg.mpkm__icon(width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true")
+			path(d="M4 5h16M6 9h12M8 13h8M10 17h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round")
+			circle(cx="12" cy="20.4" r="1.4" fill="currentColor")
+	else if name === 'shield'
+		svg.mpkm__icon(width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true")
+			path(d="M12 3l7 3v5c0 4.8-3 8.4-7 10-4-1.6-7-5.2-7-10V6l7-3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round")
+			path(d="M9 12l2.2 2.2L15.5 9.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round")
+	else if name === 'layers'
+		svg.mpkm__icon(width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true")
+			path(d="M12 3l9 5-9 5-9-5 9-5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round")
+			path(d="M3 13l9 5 9-5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round")
+	else if name === 'fan'
+		svg.mpkm__icon(width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true")
+			circle(cx="12" cy="12" r="2" stroke="currentColor" stroke-width="1.8")
+			path(d="M12 10c0-3 1.5-5 3.5-5S19 7 17 9c-1.2 1.2-3.4 1-5 1zM14 12c3 0 5 1.5 5 3.5S16.9 19 15 17c-1.2-1.2-1-3.4-1-5zM12 14c0 3-1.5 5-3.5 5S5 17 7 15c1.2-1.2 3.4-1 5-1zM10 12c-3 0-5-1.5-5-3.5S7.1 5 9 7c1.2 1.2 1 3.4 1 5z" stroke="currentColor" stroke-width="1.4")
+	else if name === 'eye'
+		svg.mpkm__icon(width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true")
+			path(d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round")
+			circle(cx="12" cy="12" r="2.6" stroke="currentColor" stroke-width="1.8")
+			path(d="M4 20L20 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round")
+	else if name === 'drop'
+		svg.mpkm__icon(width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true")
+			path(d="M12 3s6 6.6 6 11a6 6 0 0 1-12 0c0-4.4 6-11 6-11z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round")
+			path(d="M9.5 13.5a2.6 2.6 0 0 0 2.5 2.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round")
+	else if name === 'clock'
+		svg.mpkm__icon(width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true")
+			circle(cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8")
+			path(d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round")
+	else
+		svg.mpkm__icon(width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true")
+			path(d="M6 3h9l3 3v15H6V3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round")
+			path(d="M9 11l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round")
+
+mixin mouldPicker(setKey, hideKicker)
+	-
+		var _mpkSets = {
+			s1: [
+				{ icon: 'hepa',   lead: 'True HEPA filtration', text: 'Sealed systems that capture 99.97% of particles down to 0.3 microns. A household vacuum doesn\'t clean mould — it fires invisible spores into your air.' },
+				{ icon: 'shield', lead: 'Hospital-grade antimicrobials', text: 'TGA-listed products with wetting agents that penetrate porous materials where mould\'s roots live.' },
+				{ icon: 'layers', lead: 'Removed, not just "killed"', text: 'Dead spores are still allergens. Professional remediation physically removes contamination instead of painting over it.' },
+			],
+			s2: [
+				{ icon: 'fan',   lead: 'Air quarantine during works', text: 'Our air filtration devices run while we work, designed to capture disturbed spores and help keep them out of the rest of your home.' },
+				{ icon: 'eye',   lead: 'The mould you can\'t see', text: 'Spores are microscopic — far smaller than a human hair — and a visible patch can shed them well beyond the room it\'s in.' },
+				{ icon: 'layers', lead: 'No broadcast events', text: 'Dry-scrubbing, fans and ordinary vacuums can spread spores beyond the original patch. Controlled removal is designed to keep the problem contained while it\'s taken away.' },
+			],
+			s3: [
+				{ icon: 'drop',  lead: 'We treat the cause', text: 'Mould is a symptom — moisture is the disease. Dehumidification dries the materials themselves, not just the air, so the colony doesn\'t simply return.' },
+				{ icon: 'clock', lead: 'The 24–48 hour rule', text: 'Mould can establish on wet materials within a day or two, and thrives above 60% humidity.' },
+				{ icon: 'doc',   lead: 'Verified and documented', text: 'Readings recorded, every treated surface photographed before and after, and a works report emailed when we\'re done.' },
+			],
+			s4: [
+				{ icon: 'hepa',   lead: 'Sealed HEPA systems', text: 'Certified filtration that removes spores instead of recirculating them.' },
+				{ icon: 'shield', lead: 'TGA-listed antimicrobials', text: 'Hospital-grade chemistry, applied with proper dwell time — not supermarket bleach.' },
+				{ icon: 'doc',    lead: 'Photographed and reported', text: 'Before and after evidence of every surface we treat, in your emailed report.' },
+			],
+		}
+		var _mpkBul = setKey ? _mpkSets[setKey] : null
+	.mpkm(data-mpk-picker)
+		if _mpkBul
+			.mpkm__value
+				each b in _mpkBul
+					.mpkm__bullet
+						+mpkIcon(b.icon)
+						.mpkm__bullet-text
+							strong= b.lead
+							= ' — ' + b.text
+		.mpkm__chooser
+			//- [CP4 v5] Cards mirror the water ordering-page format (SS88 10 Aug):
+			//- full feature ladder on BOTH cards — included = tick, excluded =
+			//- struck-through cross. Care first with Most Popular band, per water.
+			//- [CP4 v6] Ladder per Notion "Full Activity List (Mould)"
+			//- (collection 51f6dd91…, fetched 10 Aug). S520 sandwich REMOVED from
+			//- the spec; Care's differentiators are now AFD operation + furniture
+			//- protection/encapsulation. Names verbatim from the spec.
+			-
+				var _mpkFeat = [
+					{ n: 'Visual mould assessment', b: true, c: true },
+					{ n: 'Surface HEPA vacuum of vertical surfaces', b: true, c: true },
+					{ n: 'Anti-microbial application to vertical surfaces', b: true, c: true },
+					{ n: 'Air filtration device (AFD) operation', b: false, c: true },
+					{ n: 'Furniture protection / encapsulation', b: false, c: true },
+				]
+			unless hideKicker
+				.mpkm__kicker Choose your package
+			.mpkm__cards
+				.mpkm__card.mpkm__card--care
+					.mpkm__ribbon Most popular
+					.mpkm__head.mpkm__head--care drySafe Care (Mould)
+					ul.mpkm__list
+						each f in _mpkFeat
+							li.mpkm__item(class=f.c ? 'is-in is-in--care' : 'is-out')
+								span.mpkm__mark= f.c ? '\u2713' : '\u00d7'
+								span.mpkm__item-text= f.n
+					.mpkm__pricebar
+						span.mpkm__price-from from 
+						span.mpkm__price-val $590
+						span.mpkm__price-unit  + GST
+					button.mpkm__go.cta(type="button" data-select="care")
+						span.cta__label Book now
+				.mpkm__card.mpkm__card--basic
+					.mpkm__head.mpkm__head--basic Basic Savings (Mould)
+					ul.mpkm__list
+						each f in _mpkFeat
+							li.mpkm__item(class=f.b ? 'is-in is-in--basic' : 'is-out')
+								span.mpkm__mark= f.b ? '\u2713' : '\u00d7'
+								span.mpkm__item-text= f.n
+					.mpkm__pricebar
+						span.mpkm__price-from from 
+						span.mpkm__price-val $425
+						span.mpkm__price-unit  + GST
+					button.mpkm__go.cta(type="button" data-select="basic")
+						span.cta__label Book now

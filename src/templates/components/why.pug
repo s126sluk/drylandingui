@@ -30,15 +30,19 @@ section.why.block.section-blue
                             .equation__property-description Backed by years of training
                     .equation__col
                         .equation__property-info
-                            .equation__property-value.text-medium.h5 Band-aid approach
-                            .equation__property-description Limited staff offering surface level fixes
+                            - var _whyBad = (typeof isMould !== 'undefined' && isMould) ? 'Wipe and paint over' : 'Band-aid approach'
+                            - var _whyBadX = (typeof isMould !== 'undefined' && isMould) ? 'Surface cleaning that leaves spores behind' : 'Limited staff offering surface level fixes'
+                            .equation__property-value.text-medium.h5= _whyBad
+                            .equation__property-description= _whyBadX
                 .equation__row 
                     .equation__col
                         .equation__property.text-medium.h4 Arrival of techniques
                     .equation__col
                         .equation__property-info
-                            .equation__property-value.text-medium.h5 Prompt & Immediate
-                            .equation__property-description Reducing the spread of damage
+                            - var _whyArr = (typeof isMould !== 'undefined' && isMould) ? 'Confirmed attendance time' : 'Prompt & Immediate'
+                            - var _whyArrX = (typeof isMould !== 'undefined' && isMould) ? 'Booked to the hour, not a vague window' : 'Reducing the spread of damage'
+                            .equation__property-value.text-medium.h5!= _whyArr
+                            .equation__property-description= _whyArrX
                     .equation__col
                         .equation__property-info
                             .equation__property-value.text-medium.h5 Vague scheduling windows

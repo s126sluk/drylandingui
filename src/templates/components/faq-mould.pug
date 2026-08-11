@@ -1,0 +1,49 @@
+//- [CP4 v9] Bottom FAQ — restructured after SS88's screenshots: accordion is a
+//- controlled VERTICAL list (the legacy faq grid rendered items as crushed
+//- columns), and the s4 picker + SMS panel sit in a full-width band below the
+//- grid rather than inside a cell. Copy verbatim from drysafe_landing_faq_v3.
+//- "How long will the works take?" DISCARDED — not in the v3 list.
+section.faq.block 
+	.container 
+		.faq-grid 
+			.faq-grid__title 
+				h2.faq__title.text-uppercase.mb-0.text-center.text-lg-left Faq
+			.faq-grid__img
+				img.img-rounded.faq__img(loading="lazy", src="img/faq-img.jpg" alt="")
+			.faq-grid__accordion
+				.faq-list
+					.accordion
+						+faqItem('Will the mould come back?', 'f0')
+							p Honest answer: nobody can promise you it won't, and you should be wary of anyone who does.
+							p Mould needs moisture. Where the moisture comes back, growth can come back with it. That's the whole thing in one sentence.
+							p What we do is address what's there now and apply our remediation techniques to the affected materials. What decides whether it returns is the moisture source — a leak that's been properly repaired, waterproofing that's been made good, ventilation that actually moves air, humidity that's kept in a sensible range. Where the source is dealt with, a return in the same spot is far less likely. Where it isn't, it can return regardless of what's been applied to the surface, and that's true of any operator's work, not just ours.
+							p So we'll tell you what we found and what we think is driving the moisture, what sits inside our scope, and what needs another trade. If the driver is something we can't fix, you'll hear that from us plainly rather than after the fact.
+						+faqItem('What surfaces can be treated?', 'f1')
+							p Broadly, it comes down to how absorbent the material is.
+							p #[strong Generally treatable in place] — hard and semi-porous surfaces: painted walls and ceilings, tiles and grout, glass, metal, sealed timber, window frames and sills, skirtings, vanities, cabinetry, hard flooring.
+							p #[strong Assessed case by case] — absorbent materials that have taken water in: carpet and underlay, insulation, plasterboard that's been wet through, particleboard and chipboard, soft furnishings and some untreated timbers. Depending on how far it's gone, these are either treatable in place or recommended for removal. That's a scope conversation we have with you before anything comes out.
+							p Where a surface is within scope, we apply a sanitising agent, a disinfectant or an antimicrobial appropriate to that material, along with the rest of our remediation techniques.
+							p #[strong Outside our scope] — we don't carry out plumbing repairs, waterproofing, electrical work or the rebuild afterwards.
+						+faqItem("Why does my place smell musty when I can't see anything?", 'f2')
+							p That smell is worth taking seriously rather than covering with an air freshener.
+							p It's produced by growth that's active somewhere — and if you can't see it, it's usually behind or beneath something. The regular candidates: inside a wall cavity after a slow leak, under carpet and underlay, beneath a vanity or kitchen kickboard, in the subfloor or roof space, inside a wardrobe on an external wall, or in the seal of a washing machine.
+							p Visible growth is only ever part of the picture, which is why an assessment involves moisture readings rather than a walk-around and a look. Materials can read wet well past the point they feel dry to touch.
+						+faqItem("Can't I just deal with it myself?", 'f3')
+							p Sometimes, yes — and we'd rather tell you that than sell you something you don't need.
+							p A small isolated patch on a hard, non-porous surface — a bit of grout, a painted bathroom wall in a room with no exhaust fan — is often within reach of a homeowner with decent ventilation and the right product.
+							p Where it stops being a DIY job:
+							ul
+								li #[strong It keeps coming back in the same spot.] That's a moisture source, not a surface problem, and no amount of wiping changes it.
+								li #[strong It's on or in absorbent materials] — plasterboard, carpet, insulation, timber. Surface products don't get into a material that has taken water in. You clear what you can see and leave what you can't.
+								li #[strong You don't know where the water came from.]
+								li #[strong Someone in the household has a health concern about it.] That's a conversation to have with a doctor before you go near it, not after.
+							p On bleach, since it comes up constantly: in our experience it changes the appearance on a hard surface and does very little on a porous one. If a patch comes back looking the same a few weeks later, it was never a surface problem to begin with.
+						+faqItem('Do I need testing done first?', 'f4')
+							p Not always — and it's worth being clear about what testing is for.
+							p Where there's visible growth and an obvious moisture source, testing often doesn't change what needs to happen. You can see the problem and you know where the water came from.
+							p Where it earns its place is when you need something #[strong documented] rather than described: a written record of conditions before and after works, a situation where two parties disagree, a purchase decision, or a case where you need evidence rather than an opinion. It also has a role when there's a smell or a symptom and nothing visible — when the real question is whether something is happening somewhere you can't see.
+							p What we won't do is tell you that a result means something about your health. A reading is a reading — interpreting it in relation to a person is a matter for a medical practitioner, not us.
+		//- [CP4 v9] Conversion band below the grid — full width, centred SMS
+		.picker-band
+			+mouldPicker('s4')
+			+smsPanel()(class="section-sms-panel")

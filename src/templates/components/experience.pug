@@ -15,19 +15,23 @@ section.experience.block
                     svg(width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg")
                         circle(cx="12" cy="12" r="10" stroke="var(--blue)" stroke-width="1.5")
                         path(d="M12 6V12L16 14" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round")
-                h3.experience__card-title 60-Minute Average Response
-                p.experience__card-text Water damage accelerates by the hour. We arrive fast, extract water immediately, and start drying before mould takes hold.
+                - var _exp2t = (typeof isMould !== 'undefined' && isMould) ? 'Contained, Controlled Remediation' : '60-Minute Average Response'
+                - var _exp2x = (typeof isMould !== 'undefined' && isMould) ? 'HEPA filtration and antimicrobial treatment applied in the right sequence, so spores are removed rather than spread.' : 'Water damage accelerates by the hour. We arrive fast, extract water immediately, and start drying before mould takes hold.'
+                h3.experience__card-title= _exp2t
+                p.experience__card-text= _exp2x
             .experience__card
                 .experience__icon
                     svg(width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg")
                         path(d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="var(--blue)" stroke-width="1.5" stroke-linejoin="round")
+                - var _exp3x = (typeof isMould !== 'undefined' && isMould) ? "Our team understands how Sydney's humidity drives mould growth, and how to treat it so it does not simply return." : "Our team understands how Sydney's humidity affects drying times and how to work efficiently within insurance requirements."
                 h3.experience__card-title 30+ Years Combined Experience
-                p.experience__card-text Our team understands how Sydney's humidity affects drying times and how to work efficiently within insurance requirements.
+                p.experience__card-text= _exp3x
             .experience__card
                 .experience__icon
                     svg(width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg")
                         path(d="M9 12H15M9 16H15M17 21H7C5.89543 21 5 20.1046 5 19V5C5 3.89543 5.89543 3 7 3H12.5858C12.851 3 13.1054 3.10536 13.2929 3.29289L18.7071 8.70711C18.8946 8.89464 19 9.149 19 9.41421V19C19 20.1046 18.1046 21 17 21Z" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round")
+                - var _exp4x = (typeof isMould !== 'undefined' && isMould) ? 'Every job includes before and after photo evidence, the surfaces treated, and a works report you can share with your landlord, agent or insurer.' : 'We handle the paperwork. Every job includes photo evidence, moisture readings, and reports your insurer needs.'
                 h3.experience__card-title Insurance-Ready Documentation
-                p.experience__card-text We handle the paperwork. Every job includes photo evidence, moisture readings, and reports your insurer needs.
+                p.experience__card-text= _exp4x
         .experience__btn.text-center
             +ctaPrimary('')

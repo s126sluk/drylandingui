@@ -1,3 +1,9 @@
+//- [CP4] Alt text is service-aware. The IMAGES are still real water-damage jobs —
+//- mould before/after photography is an outstanding content item. When mould photos
+//- land, swap the src values under the isMould branch; alt text is already generic.
+- var _isM = (typeof isMould !== 'undefined' && isMould)
+- var _galt = _isM ? 'Surface mould before drySafe remediation — real drySafe job' : null
+- var _galtA = _isM ? 'Surface treated and remediated by drySafe — real drySafe job' : null
 .gallery
     .swiper.gallery-swiper
         .swiper-wrapper
@@ -5,36 +11,36 @@
             .swiper-slide
                 .work
                     .work__item.work__item--before
-                        img.work__img(src="img/ba1-bathroom-before.jpg", alt="Water-damaged bathroom floor before drying — real drySafe job")
+                        img.work__img(src="img/ba1-bathroom-before.jpg", alt=(_galt || "Water-damaged bathroom floor before drying — real drySafe job"))
                     .work__item.work__item--after
-                        img.work__img(src="img/ba1-bathroom-after.jpg", alt="Bathroom dried with drySafe equipment — real drySafe job")
+                        img.work__img(src="img/ba1-bathroom-after.jpg", alt=(_galtA || "Bathroom dried with drySafe equipment — real drySafe job"))
             //- Pair 2 — flooded apartment, beige carpet
             .swiper-slide
                 .work
                     .work__item.work__item--before
-                        img.work__img(loading="lazy", src="img/ba2-apartment-before.jpg", alt="Flooded apartment carpet before drying — real drySafe job")
+                        img.work__img(loading="lazy", src="img/ba2-apartment-before.jpg", alt=(_galt || "Flooded apartment carpet before drying — real drySafe job"))
                     .work__item.work__item--after
-                        img.work__img(loading="lazy", src="img/ba2-apartment-after.jpg", alt="Apartment carpet dried and restored — real drySafe job")
+                        img.work__img(loading="lazy", src="img/ba2-apartment-after.jpg", alt=(_galtA || "Apartment carpet dried and restored — real drySafe job"))
             //- Pair 3 — wet carpet apartment
             .swiper-slide
                 .work
                     .work__item.work__item--before
-                        img.work__img(loading="lazy", src="img/ba3-carpet-before.jpg", alt="Wet apartment carpet before drying — real drySafe job")
+                        img.work__img(loading="lazy", src="img/ba3-carpet-before.jpg", alt=(_galt || "Wet apartment carpet before drying — real drySafe job"))
                     .work__item.work__item--after
-                        img.work__img(loading="lazy", src="img/ba3-carpet-after.jpg", alt="Apartment carpet dried and restored — real drySafe job")
+                        img.work__img(loading="lazy", src="img/ba3-carpet-after.jpg", alt=(_galtA || "Apartment carpet dried and restored — real drySafe job"))
             //- Pair 4 — kids' study, timber floor
             .swiper-slide
                 .work
                     .work__item.work__item--before
-                        img.work__img(loading="lazy", src="img/ba4-study-before.jpg", alt="Water-damaged timber floor in study before drying — real drySafe job")
+                        img.work__img(loading="lazy", src="img/ba4-study-before.jpg", alt=(_galt || "Water-damaged timber floor in study before drying — real drySafe job"))
                     .work__item.work__item--after
-                        img.work__img(loading="lazy", src="img/ba4-study-after.jpg", alt="Study timber floor dried and restored — real drySafe job")
+                        img.work__img(loading="lazy", src="img/ba4-study-after.jpg", alt=(_galtA || "Study timber floor dried and restored — real drySafe job"))
             //- Pair 5 — charcoal carpet, extraction
             .swiper-slide
                 .work
                     .work__item.work__item--before
-                        img.work__img(loading="lazy", src="img/ba5-charcoal-before.jpg", alt="Water-damaged charcoal carpet before extraction — real drySafe job")
+                        img.work__img(loading="lazy", src="img/ba5-charcoal-before.jpg", alt=(_galt || "Water-damaged charcoal carpet before extraction — real drySafe job"))
                     .work__item.work__item--after
-                        img.work__img(loading="lazy", src="img/ba5-charcoal-after.jpg", alt="Charcoal carpet dried after water extraction — real drySafe job")
+                        img.work__img(loading="lazy", src="img/ba5-charcoal-after.jpg", alt=(_galtA || "Charcoal carpet dried after water extraction — real drySafe job"))
         .swiper-button-prev.swiper-button
         .swiper-button-next.swiper-button

@@ -1,0 +1,278 @@
+// [CP4] Mould landing additions: videocase, gallery placeholder, packages + modal.
+// Inert on water pages (classes unused there).
+
+.videocase {
+	&__title { margin-bottom: 32px; }
+	&__grid {
+		display: grid; gap: 28px; align-items: center;
+		@media (min-width: 992px) { grid-template-columns: 7fr 5fr; }
+	}
+	&__media .video-card { aspect-ratio: 16 / 9; }
+	&__poster {
+		aspect-ratio: 16 / 9; border-radius: 16px; border: 2px dashed #b9c8da;
+		background: #f2f7fc; display: flex; flex-direction: column; align-items: center;
+		justify-content: center; gap: 8px; color: #2488EA; text-align: center; padding: 16px;
+	}
+	&__poster-label { font-weight: 700; color: #1a1a1a; }
+	&__poster-sub { font-size: 13px; color: #5f6b7a; }
+	&__quote-text { font-size: 20px; line-height: 1.5; font-weight: 500; margin-bottom: 14px; }
+	&__quote-name { font-weight: 700; }
+	&__quote-meta { font-size: 13px; color: #5f6b7a; margin-bottom: 18px; }
+}
+
+.gallery--placeholder { display: flex; }
+.gallery-placeholder {
+	width: 100%; aspect-ratio: 4 / 3; border-radius: 16px; border: 2px dashed #b9c8da;
+	background: rgba(255, 255, 255, .82); display: flex; flex-direction: column;
+	align-items: center; justify-content: center; gap: 8px; color: #2488EA;
+	text-align: center; padding: 20px;
+	&__title { font-weight: 700; color: #1a1a1a; }
+	&__sub { font-size: 13px; color: #5f6b7a; max-width: 300px; }
+}
+
+.mpk {
+	&__title { margin-bottom: 10px; }
+	&__sub { color: #5f6b7a; margin-bottom: 24px; }
+	&__rooms { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 26px; }
+	&__room {
+		border: 1.5px solid #d5dde7; background: #fff; color: #5f6b7a; border-radius: 999px;
+		padding: 9px 18px; font-size: 14px; font-weight: 600; cursor: pointer;
+		transition: all .15s ease;
+		&.is-active { background: #1a1a1a; border-color: #1a1a1a; color: #fff; }
+	}
+	&__grid {
+		display: grid; gap: 20px; max-width: 760px; margin: 0 auto;
+		@media (min-width: 768px) { grid-template-columns: 1fr 1fr; }
+	}
+	&__card { padding: 26px 24px; position: relative; display: flex; flex-direction: column; }
+	&__card--featured { outline: 2.5px solid #2488EA; }
+	&__ribbon {
+		position: absolute; top: -13px; left: 24px; background: #2488EA; color: #fff;
+		font-size: 11.5px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase;
+		padding: 5px 12px; border-radius: 999px;
+	}
+	&__name { font-size: 19px; margin-bottom: 8px; }
+	&__price-val { font-size: 32px; font-weight: 800; color: #1a1a1a; }
+	&__price-unit { font-size: 14px; color: #5f6b7a; }
+	&__price-per { display: block; font-size: 12.5px; color: #5f6b7a; margin-top: 2px; min-height: 16px; }
+	&__features {
+		list-style: none; padding: 0; margin: 16px 0 22px; flex: 1;
+		li {
+			position: relative; padding-left: 26px; margin-bottom: 9px; font-size: 14.5px; line-height: 1.45;
+			&::before { content: "✓"; position: absolute; left: 0; top: 0; color: #228B22; font-weight: 800; }
+		}
+	}
+	&__select { width: 100%; justify-content: center; }
+	&__fine { font-size: 12.5px; color: #5f6b7a; margin-top: 18px; }
+}
+
+.mpk-modal {
+	position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 16px;
+	&[hidden] { display: none; }
+	&__overlay { position: absolute; inset: 0; background: rgba(12, 22, 36, .58); }
+	&__dialog {
+		position: relative; background: #fff; border-radius: 18px; width: 100%; max-width: 460px;
+		max-height: 92vh; overflow: auto; padding: 26px 24px;
+	}
+	&__close {
+		position: absolute; top: 10px; right: 14px; border: 0; background: none;
+		font-size: 26px; color: #5f6b7a; cursor: pointer; line-height: 1;
+	}
+	&__title { font-size: 20px; margin-bottom: 12px; }
+	&__summary { background: #f2f7fc; border-radius: 12px; padding: 12px 14px; margin-bottom: 16px; }
+	&__pkg { font-weight: 700; }
+	&__meta { font-size: 13px; color: #5f6b7a; }
+	&__rooms { display: flex; align-items: center; gap: 10px; margin-top: 8px; font-size: 14px; }
+	&__step {
+		width: 30px; height: 30px; border-radius: 8px; border: 1.5px solid #d5dde7;
+		background: #fff; font-size: 16px; cursor: pointer;
+	}
+	&__count { font-weight: 700; min-width: 18px; text-align: center; }
+	&__form { display: flex; flex-direction: column; gap: 10px; }
+	&__input {
+		border: 1.5px solid #d5dde7; border-radius: 10px; padding: 11px 13px; font-size: 14.5px; width: 100%;
+		&:focus { outline: none; border-color: #2488EA; }
+	}
+	&__check {
+		display: flex; gap: 9px; align-items: flex-start; font-size: 12.5px; color: #444; line-height: 1.5;
+		input { margin-top: 2px; flex: none; }
+	}
+	&__total { display: flex; justify-content: space-between; font-size: 15px; padding-top: 10px; border-top: 1px solid #e3e8ef; }
+	&__total-val { font-weight: 800; }
+	&__pay { width: 100%; justify-content: center; }
+	&__notice {
+		background: #FAEEDA; color: #633806; border-radius: 10px; padding: 10px 12px;
+		font-size: 12.5px; line-height: 1.55;
+		&[hidden] { display: none; }
+	}
+}
+
+.beforeafter__wrap { max-width: 720px; margin: 0 auto; }
+
+.promo__picker { margin-bottom: 18px; .cta-trust { margin-top: 10px; } }
+
+.mpkm {
+	&__value { display: grid; gap: 14px; margin-bottom: 20px;
+		@media (min-width: 768px) { grid-template-columns: 1fr 1fr 1fr; gap: 18px; } }
+	&__bullet { display: flex; gap: 11px; align-items: flex-start; }
+	&__icon { flex: none; color: #2488EA; margin-top: 1px; }
+	&__bullet-text { font-size: 13.5px; line-height: 1.55; color: #333;
+		strong { display: block; font-size: 14.5px; color: #1a1a1a; margin-bottom: 2px; } }
+	&__kicker { font: 700 12px/1 system-ui; letter-spacing: .8px; text-transform: uppercase; color: #5f6b7a; margin-bottom: 10px; }
+	&__pills { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 14px; }
+	&__pills .mpk__room { padding: 7px 14px; font-size: 13px; }
+	&__cards { display: grid; gap: 12px;
+		@media (min-width: 560px) { grid-template-columns: 1fr 1fr; } }
+	&__card { position: relative; background: #fff; border: 1.5px solid #d5dde7; border-radius: 14px; padding: 16px;
+		display: flex; flex-direction: column; }
+	&__card--featured { border-color: #2488EA; box-shadow: 0 0 0 1.5px #2488EA inset; }
+	&__flag { position: absolute; top: -10px; left: 14px; background: #2488EA; color: #fff;
+		font: 700 10px/1 system-ui; letter-spacing: .5px; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; }
+	&__name { font-weight: 700; font-size: 14.5px; margin-bottom: 4px; }
+	&__price-val { font-size: 24px; font-weight: 800; color: #1a1a1a; }
+	&__price-unit { font-size: 12.5px; color: #5f6b7a; }
+	&__per { font-size: 11.5px; color: #5f6b7a; min-height: 15px; margin: 2px 0 10px; }
+	&__go { width: 100%; justify-content: center; padding-top: 10px; padding-bottom: 10px;
+		.cta__label { font-size: 14px; } }
+	// picker inside sections keeps its own card feel on tinted backgrounds
+	.videocase &, .community &, .response &, .faq & { background: transparent; }
+}
+.videocase__picker, .mpkm { margin-top: 22px; }
+
+// [CP4 v4] mould-page-only overrides (body.page-mould)
+.page-mould .sms-panel { display: block; margin-left: auto; margin-right: auto; text-align: center; max-width: 520px; }
+
+.beau-hero {
+	&__kicker { font: 700 13px/1 system-ui; letter-spacing: .8px; text-transform: uppercase; color: #5f6b7a; margin-bottom: 12px; }
+	.videocase__poster { aspect-ratio: 16 / 9; }
+	&__quote { font-size: 15px; line-height: 1.55; font-weight: 500; margin-top: 14px; }
+	&__name { font-weight: 700; margin-top: 8px; }
+	&__meta { font-size: 12.5px; color: #5f6b7a; }
+}
+
+.faq-draft { cursor: default; }
+.faq-draft__q { color: #C0392B; }
+
+.mpkm__price-from, .mpk__price-from { font-size: 13px; color: #5f6b7a; font-weight: 600; margin-right: 2px; }
+.beforeafter__picker { max-width: 900px; margin: 26px auto 0; }
+
+// [CP4 v5] Water-format package cards: header bands + incl/excl ladder
+.mpkm__card { padding: 0; overflow: hidden; border-radius: 14px; }
+.mpkm__card--care { border-color: #d5dde7; box-shadow: none; }
+.mpkm__ribbon {
+	position: static; border-radius: 0; width: 100%; text-align: center;
+	background: #F2A33C; color: #fff; font: 800 11.5px/1 system-ui;
+	letter-spacing: 1px; text-transform: uppercase; padding: 8px 10px;
+}
+.mpkm__head {
+	color: #fff; font-weight: 700; font-size: 16px; padding: 12px 16px;
+	&--care { background: #4a9b4a; }
+	&--basic { background: #2F6FE4; }
+}
+.mpkm__list { list-style: none; margin: 0; padding: 12px 16px 4px; }
+.mpkm__item {
+	display: flex; gap: 10px; align-items: flex-start;
+	font-size: 14px; line-height: 1.4; padding: 6px 0;
+	.mpkm__mark { flex: none; width: 16px; text-align: center; font-weight: 800; }
+	&.is-in--care .mpkm__mark { color: #228B22; }
+	&.is-in--basic .mpkm__mark { color: #2F6FE4; }
+	&.is-out { color: #9aa5b1;
+		.mpkm__mark { color: #b6bec9; font-weight: 600; }
+		.mpkm__item-text { text-decoration: line-through; } }
+}
+.mpkm__pricebar { padding: 6px 16px 0; }
+.mpkm__go { margin: 12px 16px 16px; width: calc(100% - 32px); }
+
+// [CP4 v7] hero carousel, Nicole card, FAQ mini bands
+.gallery--mould-hero { margin: 18px 0 20px; position: relative;
+	.work__img { aspect-ratio: 4 / 3; object-fit: cover; }
+	.work__caption { text-align: center; font-size: 12.5px; color: #5f6b7a; margin-top: 8px; font-weight: 600; }
+}
+.nicole-card { margin: 16px 0 14px; padding: 16px;
+	.review__headline { font-size: 15px; margin-bottom: 4px; }
+	.review__text { font-size: 13.5px; line-height: 1.5; }
+	.review__footer { margin-top: 10px; }
+}
+.faq-mini-band { padding-top: 0; }
+.faq-mini { max-width: 760px; margin: 0 auto; }
+
+// [CP4 v8] hero proof row, compact Nicole, equal-square carousel, pending FAQ
+.hero-proof { display: grid; gap: 14px; margin: 16px 0 6px; align-items: stretch;
+	@media (min-width: 768px) { grid-template-columns: 5fr 6fr; } }
+
+.nicole-card { background: #fff; border: 0.5px solid #e3e8ef; border-radius: 14px;
+	padding: 14px 16px; box-shadow: 0 2px 10px rgba(20,35,60,.05);
+	&__title { font-size: 14.5px; font-weight: 700; margin: 0 0 4px; }
+	&__stars { margin-bottom: 6px; }
+	&__text { font-size: 13px; line-height: 1.5; color: #333; }
+	&__name { font-weight: 700; font-size: 12.5px; margin-top: 8px; }
+}
+
+.gallery--mould-hero { position: relative; margin: 0;
+	.mba { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+	.mba__item { position: relative; aspect-ratio: 1 / 1; border-radius: 12px; overflow: hidden; }
+	.mba__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+	.mba__label { position: absolute; top: 8px; left: 8px; background: #fff; color: #1a1a1a;
+		font: 700 11px/1 system-ui; padding: 5px 10px; border-radius: 999px; box-shadow: 0 1px 5px rgba(0,0,0,.18); }
+	.mba__label--after { background: #4a9b4a; color: #fff; }
+	.mba__caption { text-align: center; font-size: 12px; color: #5f6b7a; font-weight: 600; margin-top: 7px; }
+	.swiper-button { top: 42%; }
+	.swiper-button-prev { left: -6px; }
+	.swiper-button-next { right: -6px; }
+}
+
+.faq-pending { color: #8b95a1; font-style: italic; }
+.faq-mini .accordion-item { margin-bottom: 10px; }
+
+// [CP4 v8.1] HERO BLOW-OUT FIX (SS88 screenshot 11 Aug):
+// 1. grid children need min-width:0 or an oversized carousel crushes Nicole's
+//    column to min-content (fr tracks default to minmax(auto, fr)).
+// 2. the carousel lost .gallery's width/overflow containment when it moved to
+//    its own classes — self-contained containment restored here, and the
+//    slides are sized so the block renders correctly even before (or without)
+//    Swiper initialising: one full-width slide visible, others clipped.
+.hero-proof > * { min-width: 0; }
+.gallery--mould-hero { width: 100%; max-width: 100%;
+	.swiper { position: relative; overflow: hidden; width: 100%; }
+	.swiper-wrapper { display: flex; }
+	.swiper-slide { flex: 0 0 100%; width: 100%; max-width: 100%; box-sizing: border-box; }
+}
+
+// [CP4 v9] cohesive section formatting: full-width picker bands, vertical FAQ
+// list, rich answer bodies, video-card containment
+.picker-band { margin-top: 30px;
+	.section-sms-panel { margin-top: 22px; } }
+
+.faq-list { display: flex; flex-direction: column; max-width: 100%;
+	.accordion { display: flex; flex-direction: column; gap: 12px; } }
+.faq-mini .accordion { display: flex; flex-direction: column; gap: 12px; }
+
+.faq-body { font-size: 14.5px; line-height: 1.6; color: #333; padding-top: 4px;
+	p { margin: 0 0 10px; }
+	ul { margin: 0 0 10px; padding-left: 20px; }
+	li { margin-bottom: 7px; }
+	> :last-child { margin-bottom: 0; } }
+
+.beau-hero .video-card { position: relative; aspect-ratio: 16 / 9; height: auto;
+	overflow: hidden; border-radius: 16px; background: #000;
+	iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; } }
+
+// [CP4 v9.1] SMS panel hook + sub ran together in mid/final placements
+.page-mould .sms-panel__hook, .page-mould .sms-panel__sub { display: block; }
+.page-mould .sms-panel__hook { margin-bottom: 5px; }
+
+// [CP4 v5-spec] modal package switcher + stepper + math line
+.mpk-modal__pkgs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+.mpk-modal__pkgopt { position: relative; text-align: left; background: #fff; cursor: pointer;
+	border: 1.5px solid #d5dde7; border-radius: 12px; padding: 12px 12px 10px; transition: all .12s ease;
+	&-flag { position: absolute; top: -9px; left: 10px; background: #F2A33C; color: #fff;
+		font: 800 9.5px/1 system-ui; letter-spacing: .5px; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; }
+	&-name { display: block; font-weight: 700; font-size: 13.5px; margin-bottom: 3px; }
+	&-hint { display: block; font-size: 11.5px; color: #5f6b7a; }
+	&--basic.is-selected { border-color: #2F6FE4; box-shadow: 0 0 0 1.5px #2F6FE4 inset; background: #f4f8ff; }
+	&--care.is-selected  { border-color: #4a9b4a; box-shadow: 0 0 0 1.5px #4a9b4a inset; background: #f4faf4; }
+}
+.mpk-modal__rooms { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; font-size: 14px;
+	&-label { font-weight: 700; } }
+.mpk-modal__mathline { font-size: 13px; color: #41506b; background: #f2f7fc; border-radius: 10px;
+	padding: 9px 12px; margin-bottom: 14px; font-variant-numeric: tabular-nums; }

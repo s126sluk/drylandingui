@@ -1,0 +1,55 @@
+//- [CP4 v8] Before/after carousel rebuilt as an equal-square block (SS88
+//- 11 Aug pm): two identical squares per slide, own .mba classes so the water
+//- gallery's collage styling can't skew the sizing. Still uses the
+//- .gallery-swiper shell so gallery.js drives it unchanged. Suburb captions
+//- map to the supplied order — CONFIRM mapping.
+.gallery--mould-hero
+	.swiper.gallery-swiper
+		.swiper-wrapper
+			.swiper-slide
+				.mba
+					.mba__item
+						img.mba__img(src="img/mba1-before.jpg", alt="Ceiling mould around downlight before drySafe remediation — Mosman")
+						span.mba__label Before
+					.mba__item
+						img.mba__img(src="img/mba1-after.jpg", alt="Ceiling treated and clear after drySafe remediation — Mosman")
+						span.mba__label.mba__label--after After
+				.mba__caption Ceiling remediation — Mosman
+			.swiper-slide
+				.mba
+					.mba__item
+						img.mba__img(loading="lazy", src="img/mba2-before.jpg", alt="Window frame mould before drySafe remediation — Mannering Park")
+						span.mba__label Before
+					.mba__item
+						img.mba__img(loading="lazy", src="img/mba2-after.jpg", alt="Window reveal treated and clear — Mannering Park")
+						span.mba__label.mba__label--after After
+				.mba__caption Window frame remediation — Mannering Park
+			.swiper-slide
+				.mba
+					.mba__item
+						img.mba__img(loading="lazy", src="img/mba3-before.jpg", alt="Raked ceiling and rafter mould before drySafe remediation — Bradbury")
+						span.mba__label Before
+					.mba__item
+						img.mba__img(loading="lazy", src="img/mba3-after.jpg", alt="Raked ceiling treated and clear — Bradbury")
+						span.mba__label.mba__label--after After
+				.mba__caption Ceiling and rafter remediation — Bradbury
+			.swiper-slide
+				.mba
+					.mba__item
+						img.mba__img(loading="lazy", src="img/mba4-before.jpg", alt="Cupboard ceiling corner mould before drySafe remediation — Arncliffe")
+						span.mba__label Before
+					.mba__item
+						img.mba__img(loading="lazy", src="img/mba4-after.jpg", alt="Cupboard corner treated and clear — Arncliffe")
+						span.mba__label.mba__label--after After
+				.mba__caption Cupboard corner remediation — Arncliffe
+			.swiper-slide
+				.mba
+					.mba__item
+						img.mba__img(loading="lazy", src="img/mba5-before.jpg", alt="External column surface mould before drySafe remediation — Westmead")
+						span.mba__label Before
+					.mba__item
+						img.mba__img(loading="lazy", src="img/mba5-after.jpg", alt="Column surface treated and clear — Westmead")
+						span.mba__label.mba__label--after After
+				.mba__caption Surface remediation — Westmead
+		.swiper-button-prev.swiper-button
+		.swiper-button-next.swiper-button

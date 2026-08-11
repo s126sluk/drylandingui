@@ -13,70 +13,91 @@ section.promo.block
                 //- Headline: sentence case, two-tone (blue phrase). Variant pages override heroTitleHtml.
                 - var _titleHtml = (typeof heroTitleHtml !== 'undefined') ? heroTitleHtml : 'Water damage gets worse by the minute — <span class="text-blue">book a certified crew now.</span>'
                 h1.promo__title!= _titleHtml
+                if (typeof isMould !== 'undefined' && isMould)
+                    //- [CP4 v8] Proof row: compressed Nicole card + equal-square
+                    //- before/after carousel, side by side (SS88 11 Aug pm)
+                    .hero-proof
+                        include nicole-card
+                        include beforeafter-hero
 
                 //- Body: single above-the-fold price mention (Sydney = geo above fold). Variant overrides heroBodyHtml.
                 - var _bodyHtml = (typeof heroBodyHtml !== 'undefined') ? heroBodyHtml : 'Sydney\'s certified water damage crews. Book online and skip the $499 assessment fee — packages from <b>$302 + GST*</b>, with a real dispatch time confirmed the moment you book.'
                 .promo__description!= _bodyHtml
 
                 //- Primary CTA — v3 Option 2: label + arrow, white price sub-line, Stripe trust line below
-                .promo__btn
-                    +ctaPrimary('promo__cta cta--hero', 'from $302 + GST* · 60-second booking')
-                    +ctaTrust
+                if (typeof isMould !== 'undefined' && isMould)
+                    //- [CP4 v3] Hero converts on the page itself: compact package
+                    //- picker replaces the Book now button (SS88 item 3, 10 Aug).
+                    .promo__picker
+                        +mouldPicker(null)
+                        +ctaTrust
+                else
+                    //- [v4] Asterisk retained — it is the anchor for the single
+                    //- footer pricing footnote (ACL/ACCC). Do not drop it.
+                    - var _ctaSub = (typeof heroCtaSub !== 'undefined') ? heroCtaSub : 'from $302 + GST* · 60-second booking'
+                    .promo__btn
+                        +ctaPrimary('promo__cta cta--hero', _ctaSub)
+                        +ctaTrust
 
                 //- Two-tier SMS fallback panel (hero placement 1 of 3)
                 +smsPanel('hero')(class="promo__sms-panel")
 
                 //- Trust indicators / risk reduction
                 .promo__trust
-                    .promo__preference
-                        include preference
+                    //- [CP4 v4] The 3 trust bullets are water-only (removed per SS88 10 Aug)
+                    unless (typeof isMould !== 'undefined' && isMould)
+                        .promo__preference
+                            include preference
                     .promo__advantages
                         include advantages
 
             //- 1. Before/after image carousel + testimonials
             //- [A2] Gallery moved below the CTA block (was first in source, buried the H1 on mobile).
             .promo__gallery
-                include gallery
-
+                //- [CP4 v3] Mould: before/after moved OUT of the hero to its own
+                //- section beneath Beau's case study (SS88 order, 10 Aug); the
+                //- snippets below stay — product-agnostic social proof.
+                if (typeof isMould !== 'undefined' && isMould)
+                    include beau-hero
+                else
+                    include gallery
                 //- Testimonial snippets — compact social proof below carousel
-                .promo__snippets
-                    //- [v4] Reviewer names corrected against the real Google reviews.
-                    //- Avatar-to-name pairing here now matches components/reviews.pug.
-                    //- Real people, real words: names only — quotes, avatars, star
-                    //- ratings and the Google mark are untouched.
-                    .snippet
-                        img.snippet__avatar(src="img/review-ava-1.jpg", alt="Pauline Allan")
-                        .snippet__body
-                            .snippet__text "The guys were very professional. Explained things well. Very quick to respond and get on with job."
-                            .snippet__meta
-                                .snippet__stars
-                                    .rating(style="--star-rating: 5;")
-                                .snippet__name Pauline Allan
-                                img.snippet__google(src="img/google-icon.svg", alt="Google")
-                    .snippet
-                        img.snippet__avatar(src="img/review-ava-2.jpg", alt="Kim Crumpton (Jonthill Staff)")
-                        .snippet__body
-                            .snippet__text "They are professional and friendly and keep their promises & commitments. Seems simple, but it's not ..."
-                            .snippet__meta
-                                .snippet__stars
-                                    .rating(style="--star-rating: 5;")
-                                .snippet__name Kim Crumpton (Jonthill Staff)
-                                img.snippet__google(src="img/google-icon.svg", alt="Google")
-                    .snippet
-                        img.snippet__avatar(src="img/review-ava-3.jpg", alt="Nicole Wilding Forbes")
-                        .snippet__body
-                            .snippet__text "Promptly contacted us after our insurance claim was lodged. Followed up, and came out to ...."
-                            .snippet__meta
-                                .snippet__stars
-                                    .rating(style="--star-rating: 5;")
-                                .snippet__name Nicole Wilding Forbes
-                                img.snippet__google(src="img/google-icon.svg", alt="Google")
-                    .snippet
-                        img.snippet__avatar(src="img/review-ava-4.jpg", alt="Phil Kells")
-                        .snippet__body
-                            .snippet__text "It was a relief to have them attend and get our premises to a usable state so quickly"
-                            .snippet__meta
-                                .snippet__stars
-                                    .rating(style="--star-rating: 5;")
-                                .snippet__name Phil Kells
-                                img.snippet__google(src="img/google-icon.svg", alt="Google")
+                //- [CP4 v4] Snippet testimonials are water-only; mould shows Beau above
+                unless (typeof isMould !== 'undefined' && isMould)
+                    .promo__snippets
+                        .snippet
+                            img.snippet__avatar(src="img/review-ava-1.jpg", alt="Pauline Allan")
+                            .snippet__body
+                                .snippet__text "The guys were very professional. Explained things well. Very quick to respond and get on with job."
+                                .snippet__meta
+                                    .snippet__stars
+                                        .rating(style="--star-rating: 5;")
+                                    .snippet__name Pauline Allan
+                                    img.snippet__google(src="img/google-icon.svg", alt="Google")
+                        .snippet
+                            img.snippet__avatar(src="img/review-ava-2.jpg", alt="Kim Crumpton (Jonthill Staff)")
+                            .snippet__body
+                                .snippet__text "They are professional and friendly and keep their promises & commitments. Seems simple, but it's not ..."
+                                .snippet__meta
+                                    .snippet__stars
+                                        .rating(style="--star-rating: 5;")
+                                    .snippet__name Kim Crumpton (Jonthill Staff)
+                                    img.snippet__google(src="img/google-icon.svg", alt="Google")
+                        .snippet
+                            img.snippet__avatar(src="img/review-ava-3.jpg", alt="Nicole Wilding Forbes")
+                            .snippet__body
+                                .snippet__text "Promptly contacted us after our insurance claim was lodged. Followed up, and came out to ...."
+                                .snippet__meta
+                                    .snippet__stars
+                                        .rating(style="--star-rating: 5;")
+                                    .snippet__name Nicole Wilding Forbes
+                                    img.snippet__google(src="img/google-icon.svg", alt="Google")
+                        .snippet
+                            img.snippet__avatar(src="img/review-ava-4.jpg", alt="Phil Kells")
+                            .snippet__body
+                                .snippet__text "It was a relief to have them attend and get our premises to a usable state so quickly"
+                                .snippet__meta
+                                    .snippet__stars
+                                        .rating(style="--star-rating: 5;")
+                                    .snippet__name Phil Kells
+                                    img.snippet__google(src="img/google-icon.svg", alt="Google")

@@ -1,21 +1,25 @@
 //- 4a/4b — Value prop cards (copy finalised)
 .advantages
-    h2.h5.advantages__title.text-center.text-semibold Trusted by 1000+ Sydney Homeowners to Stop Water Damage Fast
+    - var _advTitle = (typeof isMould !== 'undefined' && isMould) ? 'Trusted by 1000+ Sydney Homeowners to Remove Mould Properly' : 'Trusted by 1000+ Sydney Homeowners to Stop Water Damage Fast'
+    h2.h5.advantages__title.text-center.text-semibold= _advTitle
     .advantages__grid
         .advantages__card
             .advantages__card-icon
                 svg(width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg")
                     path(d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round")
             .advantages__card-body
-                h3.advantages__card-title Rapid Response, Every Time
-                p.advantages__card-text Book online and your dispatch is confirmed in seconds, not callbacks.
+                - var _adv1t = (typeof isMould !== 'undefined' && isMould) ? 'Controlled Remediation Process' : 'Rapid Response, Every Time'
+                - var _adv1x = (typeof isMould !== 'undefined' && isMould) ? 'HEPA vacuum and TGA-listed anti-microbial — not painted over.' : 'Book online and your dispatch is confirmed in seconds, not callbacks.'
+                h3.advantages__card-title= _adv1t
+                p.advantages__card-text= _adv1x
         .advantages__card
             .advantages__card-icon
                 svg(width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg")
                     path(d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="var(--blue)" stroke-width="1.5" stroke-linejoin="round")
             .advantages__card-body
+                - var _adv2x = (typeof isMould !== 'undefined' && isMould) ? "One of Sydney's longest-serving remediation teams." : "One of Sydney's longest-serving water damage teams."
                 h3.advantages__card-title 30+ Years of Proven Experience
-                p.advantages__card-text One of Sydney's longest-serving water damage teams.
+                p.advantages__card-text= _adv2x
         .advantages__card
             .advantages__card-icon
                 svg(width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg")

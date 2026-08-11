@@ -1,0 +1,62 @@
+//- [CP4] On-page mould packages (item 7): cards render directly on the landing
+//- page; Select opens the order modal (details + checkout hand-off). Pricing is
+//- a JS map mirroring the approved sheet — production should swap to a fetch of
+//- /api/cp1/products?service_line=mould so the sheet stays the single source.
+section.mpk.block#packages
+	.container
+		h2.mpk__title.text-center.text-uppercase Choose your <span class="text-blue">mould package</span>
+		p.mpk__sub.text-center See your price now — choose a package and book in the same minute.
+		+mouldPicker(null, true)
+
+	//- ── Order modal ──
+	.mpk-modal(hidden)
+		.mpk-modal__overlay(data-close)
+		.mpk-modal__dialog(role="dialog" aria-modal="true" aria-label="Complete your booking")
+			button.mpk-modal__close(type="button" data-close aria-label="Close") &times;
+			h3.mpk-modal__title Complete your booking
+			//- [CP4 v5-spec] Both packages shown and switchable; clicked one
+			//- highlighted. Rooms stepper reinstated (count drives the tier:
+			//- 1 = single rate, 2–3 = per-room 2–3 rate, 4+ = per-room 4+ rate).
+			.mpk-modal__pkgs(role="radiogroup" aria-label="Package")
+				button.mpk-modal__pkgopt.mpk-modal__pkgopt--basic(type="button" data-pkg="basic" aria-pressed="false")
+					span.mpk-modal__pkgopt-name Basic Savings (Mould)
+					span.mpk-modal__pkgopt-hint(data-modal="hint-basic") from $425 + GST
+				button.mpk-modal__pkgopt.mpk-modal__pkgopt--care(type="button" data-pkg="care" aria-pressed="false")
+					span.mpk-modal__pkgopt-flag Most popular
+					span.mpk-modal__pkgopt-name drySafe Care (Mould)
+					span.mpk-modal__pkgopt-hint(data-modal="hint-care") from $590 + GST
+			.mpk-modal__rooms
+				span.mpk-modal__rooms-label Rooms
+				button.mpk-modal__step(type="button" data-step="-1" aria-label="Fewer rooms") &minus;
+				span.mpk-modal__count(data-modal="count") 1
+				button.mpk-modal__step(type="button" data-step="1" aria-label="More rooms") +
+			.mpk-modal__mathline(data-modal="mathline") 1 room × $590 = $590 + GST
+			form.mpk-modal__form(novalidate)
+				input.mpk-modal__input(type="text" name="name" placeholder="Full name" autocomplete="name" required)
+				input.mpk-modal__input(type="tel" name="phone" placeholder="Mobile number" autocomplete="tel" required)
+				input.mpk-modal__input(type="email" name="email" placeholder="Email" autocomplete="email" required)
+				input.mpk-modal__input(type="text" name="address" placeholder="Property address" autocomplete="street-address" required)
+				//- [CP4 v5] Acknowledgements per SS88 (10 Aug). (a) staining, (b) package
+				//- inclusions — merged with the earlier wall/ceiling scope box to avoid
+				//- near-duplicate ticks. (c) mould-specific T&C copy is PENDING; the
+				//- terms box below binds to the current T&Cs until that lands.
+				label.mpk-modal__check
+					input(type="checkbox" name="ack_staining" required)
+					span I acknowledge that staining of walls and ceilings due to mould contamination may not be removed during the process. The process alleviates the contamination on the surface; however, residual staining may require further treatment, including encapsulation and re-painting.
+				label.mpk-modal__check
+					input(type="checkbox" name="ack_inclusions" required)
+					span I have read and understood the inclusions of my selected package as shown in the package details. Packages cover the listed surfaces only (such as walls and ceilings) — ductwork, air conditioning systems, subfloors and wall cavities are not included.
+				label.mpk-modal__check
+					input(type="checkbox" name="terms" required)
+					span I accept the terms and conditions.
+				.mpk-modal__total
+					span Total
+					span.mpk-modal__total-val(data-modal="total") $590 + GST
+				button.mpk-modal__pay.cta(type="submit")
+					span.cta__label Continue to secure checkout
+				.cta-trust
+					svg.cta-trust__icon(width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true")
+						rect(x="4" y="10" width="16" height="11" rx="2.5" stroke="currentColor" stroke-width="2")
+						path(d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2")
+					| Secure Stripe checkout
+				.mpk-modal__notice(hidden)
