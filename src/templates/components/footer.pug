@@ -20,4 +20,10 @@ footer.footer.text-center
             //- the single footnote for every asterisked from-price on the site
             //- ($302 + GST* in the hero body and the CTA sub-line, both pages).
             .footer__disclaimer *From-prices are per room and exclude GST, any after-hours surcharge and package upgrades. After-hours surcharges are calculated at the time of booking based on drySafe's business-hours schedule.
-            .footer__copy &copy;2026 Ekon Enterprises Pty Ltd · ACN 061 879 141, trading as drySafe
+            //- [CP4 v5-spec, SS88 11 Aug] Legal identity -> DrySafe Response Group.
+            //- Wording = candidate (b), ACN retained; candidate (a) is the T&C
+            //- contact-block style — CONFIRM with SS88 before production push.
+            //- DELIBERATE SITE-WIDE EDIT: this partial is shared by index,
+            //- wet-carpet-drying, privacy AND mould-remediation, so the water
+            //- byte-identical check relaxes to "footer legal line only" here.
+            .footer__copy &copy;2026 Ekon Enterprises Pty Ltd · ACN 061 879 141, trading as DrySafe Response Group
