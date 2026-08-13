@@ -41,9 +41,9 @@ module.exports = [
     "slug": "carpet-flood-damage",
     "title": "Carpet Flood Damage: What Floodwater Does & What Can Be Saved",
     "description": "Floodwater is dirtier and spreads further than a burst pipe. What flood damage does to carpet, underlay and subfloor — and how to tell what's salvageable. Book online.",
-    "published": null,
-    "image": null,
-    "alt": null
+    "published": "2026-08-13",
+    "image": "carpet-flood-damage.jpg",
+    "alt": "Standing water pooled across pale carpet in an empty Australian living room, the flooded area darker than the dry carpet around it"
   },
   {
     "slug": "water-damage",
