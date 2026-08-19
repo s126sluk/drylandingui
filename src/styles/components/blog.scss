@@ -79,6 +79,10 @@
 .blog-index__thumb {
   display: block;
   width: 100%;
+  // height:auto is REQUIRED (same as .blog-post__hero) — without it the img's
+  // height="1350" attribute pins the box tall, overriding aspect-ratio, and
+  // object-fit:cover crops the landscape thumb into a tall vertical slice.
+  height: auto;
   max-width: 480px;
   aspect-ratio: 16 / 9;
   object-fit: cover;
