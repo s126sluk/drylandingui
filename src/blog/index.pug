@@ -11,8 +11,9 @@ prepend head
 
 block article
   article.blog-index
-    h1 drySafe Blog
+    h1 Guides
     -
+      var _months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
       var published = (typeof posts !== 'undefined' ? posts : [])
         .filter(function (p) { return p.published; })
         .sort(function (a, b) { return String(b.published).localeCompare(String(a.published)); });
@@ -27,6 +28,11 @@ block article
                 img.blog-index__thumb(src="/img/blog/" + p.image, alt=p.alt, loading="lazy", width="2400", height="1350")
             h2.blog-index__title
               a(href="/blog/" + p.slug + "/")= p.title
-            p.blog-index__date
-              time(datetime=p.published)= p.published
             p.blog-index__excerpt= p.description
+            //- Date below the excerpt, formatted from the Y-M-D parts directly —
+            //- NOT new Date(iso), which renders the day before in some timezones.
+            -
+              var _dp = String(p.published).split('-');
+              var _dateFmt = _dp.length === 3 ? (parseInt(_dp[2], 10) + ' ' + _months[parseInt(_dp[1], 10) - 1] + ' ' + _dp[0]) : p.published;
+            p.blog-index__date
+              time(datetime=p.published)= _dateFmt

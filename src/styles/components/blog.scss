@@ -23,7 +23,9 @@
   aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: 1rem;
-  margin-bottom: 1.5rem;
+  // Constrain the hero to the same centred reading column as the article body.
+  max-width: 760px;
+  margin: 0 auto 1.5rem;
 }
 
 // The in-article booking CTA. The posts use `a.btn-primary`, but the site has
@@ -68,7 +70,14 @@
 }
 
 .blog-index__item {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+  &:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
 }
 
 .blog-index__thumb-link {
@@ -83,8 +92,56 @@
   // height="1350" attribute pins the box tall, overriding aspect-ratio, and
   // object-fit:cover crops the landscape thumb into a tall vertical slice.
   height: auto;
-  max-width: 480px;
+  // No max-width cap — the thumb fills the centred column at 16:9.
   aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: 1rem;
+}
+
+// ── Blog design pass ──────────────────────────────────────────────
+// Centred ~760px reading column for the index and posts, so full-width desktop
+// text isn't hard to read / left-stranded on wide screens. Sits in .container.
+.blog-index,
+.blog-post {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Index post titles: the site brand blue, no underline (default link blue +
+// purple-visited + underline was the biggest undesigned tell). Colour from
+// --blue (#2488EA), the existing brand link colour — no new colour introduced.
+.blog-index__title a {
+  color: var(--blue);
+  text-decoration: none;
+
+  &:visited {
+    color: var(--blue);
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.blog-index__excerpt {
+  margin: 0.5rem 0 0;
+}
+
+// Date sits below the excerpt — small and muted.
+.blog-index__date {
+  margin: 0.75rem 0 0;
+  font-size: 0.85rem;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+// In-article prose links: the brand blue instead of raw default blue /
+// purple-visited (underline kept for in-text readability). The .btn-primary
+// CTA is a separate rule and stays untouched.
+.blog-post p a {
+  color: var(--blue);
+
+  &:visited {
+    color: var(--blue);
+  }
 }
