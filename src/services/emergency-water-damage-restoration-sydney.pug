@@ -1,0 +1,78 @@
+//- Merged service page (Sonny's D1) — the emergency + water-damage drafts
+//- combined into ONE page targeting both queries, killing the cannibalisation.
+//- Copy is merged-and-expanded from the two real drySafe drafts (emergency +
+//- water-damage restoration); packages/pricing trace to real drySafe figures.
+//- Built on the service-page template; services.js gates it published:null.
+extends _service
+
+prepend head
+  - const slug = "emergency-water-damage-restoration-sydney"
+  - const _meta = (typeof services !== 'undefined' ? services : []).find(function (p) { return p.slug === slug; }) || {}
+  - const pageTitle = _meta.title
+  - const pageDescription = _meta.description
+
+block service-body
+  //- Re-lookup in body scope so the FAQ mixin gets the registry faq array.
+  - var _svc = (typeof services !== 'undefined' ? services : []).find(function (p) { return p.slug === slug; }) || {}
+
+  h1 Emergency Water Damage Restoration in Sydney
+
+  p.service-page__lede When water is spreading through your home right now — a burst flexi-hose under the sink, a washing-machine hose that's let go, or storm water forcing in through the roof — it's an emergency, and the clock starts the moment it happens. drySafe handles emergency water damage restoration across Sydney, fully self-serve, so the response never waits on a callback or a quote.
+
+  p Water damage is rarely as contained as it looks. Within the first hours it soaks down through carpet into the underlay, wicks up the base of plasterboard walls, and tracks along the subfloor and into timber framing — well beyond the wet patch you can actually see. That hidden spread is what turns a manageable spill into warped boards, lifting skirting, odour and lasting structural repair. It's also why the response on the first day counts for more than almost anything that happens later.
+
+  a.btn-primary(href='https://drysafe.vercel.app/get-started?utm_source=website') Book &amp; pay online
+
+  section.service-page__process
+    h2 What happens on an emergency job
+    p Restoration done properly is a sequence, not a mop and a fan pointed at the damp. On a drySafe job it runs in order, and each step earns the next:
+    ul
+      li #[strong Assessment] — we map how far the water has actually travelled using moisture readings, and check the water category, so the plan matches the real spread rather than the surface.
+      li #[strong Extraction] — the standing and absorbed water is drawn out of carpet, underlay and hard floors before drying starts, because you can't dry a room that's still holding water.
+      li #[strong Drying] — high-velocity air movers push air across the wet materials while a dehumidifier pulls the released moisture out of the room, so the structure itself dries rather than just the surface skinning over.
+      li #[strong Verified dry] — readings taken against the IICRC S500 dry standard confirm the home is genuinely back to normal, and the result is documented for your own records and your insurer.
+
+  section.service-page__area
+    h2 Across Greater Sydney, seven days
+    p drySafe works throughout Greater Sydney — the City of Parramatta, Cumberland, Ryde and The Hills among the council areas covered. Local matters most in an emergency: the sooner the equipment is on site and running, the more of the home and its contents come through intact. Booking is built for that speed — booked online, confirmed on the spot, no callback — so nothing stalls on hold while the water keeps moving.
+
+  section.service-page__packages
+    h2 What's included
+    p Two levels, so an emergency response can start straight away and scale to how deep the water went:
+    ul
+      li #[strong drySafe Basic] covers the emergency essentials: high-velocity air movers and a surface moisture assessment — enough to get drying underway and to see where the water has reached.
+      li #[strong drySafe Care] adds dehumidification and full moisture analytics, tracking the dry-down through to a verified, documented result. It's the option when water has gone deep or reached materials that hold moisture and need measuring over days, not hours.
+
+  section.service-page__pricing
+    h2 What it costs
+    p A traditional water-damage response usually starts with a paid call-out — around #[strong $499] for someone to attend and quote before any work happens. drySafe replaces that step with a fixed online price: book and pay online from #[strong $302], and drying is underway without the assessment fee. Booking online instead of paying for a traditional call-out saves you nearly 40%.
+    p.service-page__disclaimer *From-prices are per room and exclude GST, any after-hours surcharge and package upgrades. After-hours surcharges are calculated at the time of booking based on drySafe's business-hours schedule.
+
+  a.btn-primary(href='https://drysafe.vercel.app/get-started?utm_source=website') Book &amp; pay online
+
+  section.service-page__proof
+    h2 The work, and who stands behind it
+    .service-page__ba
+      figure.service-page__ba-item
+        img(loading="lazy", src="img/ba3-carpet-before.jpg", alt="Water damage darkening the beige carpet down a Sydney apartment hallway before drying", width="810", height="1080")
+        figcaption Before
+      figure.service-page__ba-item
+        img(loading="lazy", src="img/ba3-carpet-after.jpg", alt="drySafe air movers and a dehumidifier running on the same carpet to dry it out", width="810", height="1080")
+        figcaption Drying underway
+    blockquote.service-page__quote
+      p “The team arrived on time and the work was set up professionally and efficiently. Their friendly and polite manner left me with great impressions.”
+      cite — Eddie Lee, Google review
+    .service-page__accreditation
+      img.service-page__logo(loading="lazy", src="img/iicrc-certified.png", alt="IICRC", width="300", height="110")
+      img.service-page__logo(loading="lazy", src="img/ria-member.png", alt="Restoration Industry Association Australasia member", width="2785", height="1688")
+
+  +serviceFaq(_svc.faq)
+
+  section.service-page__links
+    h2 Related reading
+    ul
+      li Soaked carpet is the most common water emergency — see our guide to #[a(href='/blog/wet-carpet-drying-guide') wet carpet drying: what to expect and how long it takes].
+      li More about drySafe and how self-serve booking works: #[a(href='https://drysafe.sydney/') drysafe.sydney].
+
+  p If water's coming through your Sydney home, the single fastest thing you can do is get proper drying started — self-serve, day or night, before it spreads any further.
+  a.btn-primary(href='https://drysafe.vercel.app/get-started?utm_source=website') Book &amp; pay online
