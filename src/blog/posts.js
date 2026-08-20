@@ -31,11 +31,11 @@ module.exports = [
   },
   {
     "slug": "dry-wet-carpet",
-    "title": "Can You Dry a Wet Carpet Yourself? When DIY Works and When It Doesn't",
+    "title": "Can You Dry a Wet Carpet Yourself? Where the DIY Line Is",
     "description": "Drying a wet carpet — when you can safely do it yourself and when it's a job for proper drying. The DIY threshold, the water you can't see, and how to be sure. Book online.",
     "published": null,
-    "image": null,
-    "alt": null
+    "image": "dry-wet-carpet.jpg",
+    "alt": "Wet carpet meeting a white skirting board in an Australian home, the soaked area darker than the dry carpet in front of it"
   },
   {
     "slug": "carpet-flood-damage",
