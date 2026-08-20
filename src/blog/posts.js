@@ -25,9 +25,9 @@ module.exports = [
     "slug": "how-to-dry-wet-carpet",
     "title": "How to Dry Wet Carpet: A Step-by-Step Guide",
     "description": "How to dry a wet carpet after a leak or flood — extract first, get air moving, and how to tell when it's a job for professional drying gear. Book online.",
-    "published": null,
-    "image": null,
-    "alt": null
+    "published": "2026-08-20",
+    "image": "how-to-dry-wet-carpet.jpg",
+    "alt": "Water soaked into grey carpet along a hallway in an Australian home, the wet area darker than the dry carpet in front of it and beyond"
   },
   {
     "slug": "dry-wet-carpet",
