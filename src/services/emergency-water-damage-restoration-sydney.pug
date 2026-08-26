@@ -4,13 +4,13 @@
 //- water-damage restoration); packages/pricing trace to real drySafe figures.
 //- Built on the service-page template; services.js gates it published:null.
 //-
-//- DESIGN PASS (redesign brief): presentation restyled to the landing page's
-//- design language (promo-style hero, advantages/how/process cards, reviews-style
-//- proof, faq/accordion styling). COPY IS FROZEN — every word below is unchanged
-//- from the content-complete revision; only markup/structure and the two-tone H1
-//- highlight are new. Trust-row points are the brief's compliant set (no
-//- attendance/availability/experience/volume/"certified" claims). CTAs use the
-//- shared +ctaPrimary/+ctaTrust mixins, not plain .btn-primary.
+//- DESIGN PASS (redesign + polish): presentation restyled to the landing page's
+//- design language (promo-style hero, advantages trust cards, experience-card
+//- steps, reviews-style testimonial, real .accordion FAQ). COPY IS FROZEN —
+//- every word below is unchanged from the content-complete revision; only
+//- markup/structure and the two-tone H1 highlight are new. Trust-row points are
+//- the brief's compliant set (no attendance/availability/experience/volume/
+//- "certified" claims). CTAs use the shared +ctaPrimary/+ctaTrust mixins.
 extends _service
 
 prepend head
@@ -20,7 +20,7 @@ prepend head
   - const pageDescription = _meta.description
 
 block service-body
-  //- Re-lookup in body scope so the FAQ mixin gets the registry faq array.
+  //- Re-lookup in body scope so the FAQ loop gets the registry faq array.
   - var _svc = (typeof services !== 'undefined' ? services : []).find(function (p) { return p.slug === slug; }) || {}
 
   //- ── Hero (promo-style: ratings badge → two-tone H1 → lede → CTA) ──
@@ -37,13 +37,9 @@ block service-body
         +ctaTrust
 
   //- ── Compliant trust row (advantages-style; brief's sanctioned points) ──
+  //- "Secure Stripe checkout" is carried by the hero +ctaTrust line above, so
+  //- it is intentionally NOT repeated here (3 cards).
   ul.service-trust
-    li.service-trust__card
-      span.service-trust__icon
-        svg(width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg")
-          rect(x="4" y="10" width="16" height="11" rx="2.5" stroke="var(--blue)" stroke-width="1.6")
-          path(d="M8 10V7a4 4 0 0 1 8 0v3" stroke="var(--blue)" stroke-width="1.6" stroke-linecap="round")
-      span.service-trust__text Secure Stripe checkout
     li.service-trust__card
       span.service-trust__icon
         svg(width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg")
@@ -65,21 +61,21 @@ block service-body
 
   p.service-lead Water damage is rarely as contained as it looks. Within the first hours it soaks down through carpet into the underlay, wicks up the base of plasterboard walls, and tracks along the subfloor and into timber framing — well beyond the wet patch you can actually see. That hidden spread is what turns a manageable spill into warped boards, lifting skirting, odour and lasting structural repair. It's also why what happens in the first day counts for more than almost anything that comes later.
 
-  //- ── What happens on an emergency job (how/process-style steps) ──
+  //- ── What happens on an emergency job (experience-card steps) ──
   section.service-section.service-steps
     h2.service-section__title What happens on an emergency job
     p.service-section__intro Restoration done properly is a sequence, not a mop and a fan pointed at the damp. On a drySafe job it runs in order, and each step earns the next:
-    ol.service-steps__grid
-      li.service-step
+    .experience__grid
+      .experience__card.service-step
         span.service-step__num 1
         p.service-step__text #[strong Assessment] — we map how far the water has actually travelled using moisture readings, and check the water category, so the plan matches the real spread rather than the surface.
-      li.service-step
+      .experience__card.service-step
         span.service-step__num 2
         p.service-step__text #[strong Extraction] — the standing and absorbed water is drawn out of carpet, underlay and hard floors before drying starts, because you can't dry a room that's still holding water.
-      li.service-step
+      .experience__card.service-step
         span.service-step__num 3
         p.service-step__text #[strong Drying] — high-velocity air movers push air across the wet materials while a dehumidifier pulls the released moisture out of the room, so the structure itself dries rather than just the surface skinning over.
-      li.service-step
+      .experience__card.service-step
         span.service-step__num 4
         p.service-step__text #[strong Verified dry] — readings taken against the IICRC S500 dry standard confirm the home is genuinely back to normal, and the result is documented for your own records and your insurer.
 
@@ -113,7 +109,7 @@ block service-body
       .service-cta-row
         +ctaPrimary('')
 
-  //- ── Proof: before/after + testimonial + accreditation ──
+  //- ── Proof: before/after + testimonial (accreditation dropped — footer carries logos) ──
   section.service-section.service-proof
     h2.service-section__title The work, and who stands behind it
     .service-page__ba
@@ -128,13 +124,38 @@ block service-body
       blockquote.service-testimonial__quote
         p “The team arrived on time and the work was set up professionally and efficiently. Their friendly and polite manner left me with great impressions.”
         cite.service-testimonial__cite
-          span.service-testimonial__ava(style="--bg-color: #AB47BC;", data-letter="E")
+          span.service-testimonial__ava(data-letter="E")
           span.service-testimonial__name Eddie Lee, Google review
-    .service-page__accreditation
-      img.service-page__logo(loading="lazy", src="img/iicrc-certified.png", alt="IICRC", width="300", height="110")
-      img.service-page__logo(loading="lazy", src="img/ria-member.png", alt="Restoration Industry Association Australasia member", width="2785", height="1688")
 
-  +serviceFaq(_svc.faq)
+  //- ── FAQ — the landing's two-column .faq-grid component ──
+  //- Reuses the landing's global classes (.faq-grid / .accordion — styled in
+  //- faq.scss + accordion.scss, no shared-file edits) with the SAME _svc.faq
+  //- array that feeds the FAQPage JSON-LD in _service.pug, so the two can never
+  //- drift. Photo left, accordion right, "FAQ" heading, CTA below. main.js
+  //- accordion() wires the rows by class. Caret is inline (the #caret-down
+  //- sprite is only included on index.pug, not the service layout).
+  section.service-section.service-faq
+    .faq-grid
+      .faq-grid__title
+        h2.faq__title.text-uppercase FAQ
+      .faq-grid__img
+        img.img-rounded.faq__img(loading="lazy", src="img/faq-img.jpg", alt="", width="1200", height="800")
+      .faq-grid__accordion
+        .faq__accordion
+          .accordion
+            each item, i in (_svc.faq || [])
+              .accordion-item.card.card-primary-outline
+                .accordion-item__header
+                  h3.h4.accordion-item__title= item.q
+                  button.accordion-item__btn.btn.btn-small.btn-transparent(type="button", aria-expanded="false", aria-controls='svc-faq-item-' + i, id='svc-accordion-btn-' + i)
+                    span.sr-only Toggle answer
+                    svg.service-faq__caret(width="16", height="10", viewBox="0 0 16 10", fill="none", xmlns="http://www.w3.org/2000/svg")
+                      path(d="M1 1l7 7 7-7", stroke="currentColor", stroke-width="2", stroke-linecap="round", stroke-linejoin="round")
+                .accordion-item__body(id='svc-faq-item-' + i, role="region", aria-labelledby='svc-accordion-btn-' + i)
+                  .h5= item.a
+      .faq-grid__btn
+        .faq__btn.text-center
+          +ctaPrimary('')
 
   //- ── Related reading ──
   section.service-section.service-links
