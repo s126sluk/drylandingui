@@ -43,6 +43,14 @@
     text-align: justify;
     -webkit-hyphens: auto;
     hyphens: auto;
+
+    // Mobile: justification on a ~250–350px column opens large word gaps even
+    // with hyphenation, and this is a mobile-primary page — so left-align below
+    // the tablet breakpoint. Hyphenation stays on to keep long words (e.g.
+    // "dehumidification") from overflowing the narrow column.
+    @media screen and (max-width: 767px) {
+      text-align: left;
+    }
   }
 
   // ── Section heading treatment ─────────────────────────────────────
@@ -279,6 +287,44 @@
     strong {
       color: var(--blue);
     }
+  }
+
+  // ── Line icons for the package inclusions (2 per card) ────────────
+  .service-package__inclusions {
+    list-style: none;
+    margin: 1.1rem 0 0;
+    padding: 1.1rem 0 0;
+    border-top: 1px solid var(--lightgray);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 0.75rem;
+  }
+
+  .service-inclusion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.45rem;
+  }
+
+  .service-inclusion__icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+
+    svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .service-inclusion__label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--dark);
   }
 
   // ── Area card ─────────────────────────────────────────────────────
