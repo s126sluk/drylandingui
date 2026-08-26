@@ -1,40 +1,301 @@
-// Service-page structural styles. Reuses the site's container/card language;
-// introduces no new fonts or brand colours. Kept scoped under .service-page so
-// nothing here leaks into other pages.
+// Service-page styles. Redesigned to the landing page's design language:
+// promo-style hero, advantages/how/process-style cards, reviews-style proof,
+// faq/accordion styling. Reuses the site's design tokens (--blue, the green CTA
+// gradient, 1rem card rounding, --light page ground) and introduces no new fonts
+// or brand colours. Everything is scoped under .service-page so nothing leaks.
+//
+// The page renders inside main > article.service-page > .container, so sections
+// here are rounded card "bands" on the --light body ground rather than
+// full-bleed colour blocks (which would need layout changes out of scope here).
 
 .service-page {
-  // Readable measure for long-form service copy (matches the blog feel).
-  h1 {
-    margin-bottom: 1rem;
+  // Vertical rhythm between the stacked sections.
+  > .service-hero,
+  > .service-trust,
+  > .service-lead,
+  > .service-section,
+  > .service-faq,
+  > .service-close {
+    margin-top: 1.5rem;
+
+    @media screen and (min-width: 768px) {
+      margin-top: 2.25rem;
+    }
   }
 
-  h2 {
-    margin-top: 2rem;
-    margin-bottom: 0.75rem;
+  > .service-hero {
+    margin-top: 1rem;
   }
 
   p {
-    text-align: justify;
-    -webkit-hyphens: auto;
-    hyphens: auto;
-  }
-
-  &__lede {
-    font-size: 1.05rem;
-  }
-
-  &__disclaimer {
-    font-size: 0.85rem;
-    opacity: 0.75;
     text-align: left;
   }
 
-  // Before/after proof band.
+  // ── Section heading treatment: brand-blue kicker bar under the title ──
+  .service-section__title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+
+    @media screen and (min-width: 768px) {
+      font-size: 1.875rem;
+    }
+  }
+
+  .service-section__intro {
+    color: var(--darkgray);
+    margin-bottom: 1.25rem;
+  }
+
+  // ── Hero ──────────────────────────────────────────────────────────
+  &  .service-hero__inner {
+    background: var(--white);
+    border-radius: 1rem;
+    border: 1px solid var(--lightgray);
+    padding: 1.5rem 1.25rem;
+    box-shadow: 2px 2px 12px rgba(60, 66, 70, 0.12);
+
+    @media screen and (min-width: 992px) {
+      padding: 2.25rem 2rem;
+    }
+  }
+
+  .service-hero__title {
+    // Sentence case (override the global heading transform); two-tone via .text-blue.
+    text-transform: none;
+    line-height: 1.15;
+    margin-bottom: 0.85rem;
+  }
+
+  .service-hero__lede {
+    font-size: 1.05rem;
+    color: var(--darkgray);
+    margin-bottom: 1.25rem;
+  }
+
+  .service-hero__cta {
+    .cta {
+      width: 100%;
+      min-height: 48px;
+    }
+
+    @media screen and (min-width: 768px) {
+      .cta {
+        width: auto;
+        min-width: 260px;
+      }
+
+      .cta-trust {
+        justify-content: flex-start;
+        margin-left: 2px;
+      }
+    }
+  }
+
+  // ── Compliant trust row (advantages-style) ────────────────────────
+  .service-trust {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+
+    @media screen and (min-width: 560px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media screen and (min-width: 992px) {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+  }
+
+  .service-trust__card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--white);
+    border: 1px solid var(--lightgray);
+    border-radius: 1rem;
+    padding: 0.9rem 1rem;
+  }
+
+  .service-trust__icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--lightblue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      display: block;
+    }
+  }
+
+  .service-trust__text {
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--dark);
+  }
+
+  // Lead paragraph directly under the trust row.
+  .service-lead {
+    font-size: 1.05rem;
+    color: var(--darkgray);
+  }
+
+  // ── Steps (how/process-style, numbered) ───────────────────────────
+  .service-steps__grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+
+    @media screen and (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+  }
+
+  .service-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: var(--white);
+    border: 1px solid var(--lightgray);
+    border-radius: 1rem;
+    padding: 1.25rem;
+  }
+
+  .service-step__num {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--green);
+    border: 5px solid var(--softgreen);
+    color: #fff;
+    font-weight: 800;
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  // Frozen sentence kept intact and inline (identical rendered text); the copy's
+  // own leading <strong> label just gets colour emphasis.
+  .service-step__text {
+    margin: 0;
+    color: var(--darkgray);
+    font-size: 0.95rem;
+    line-height: 1.5;
+
+    strong {
+      color: var(--dark);
+    }
+  }
+
+  // ── Packages ──────────────────────────────────────────────────────
+  .service-packages__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+
+    @media screen and (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+  }
+
+  .service-package {
+    // .card .card-white .card-rounded already give padding/border/1rem radius.
+    border-top: 3px solid var(--blue);
+  }
+
+  // Frozen sentence kept intact and inline; the copy's own leading <strong>
+  // package name gets colour + slight size emphasis (words unchanged).
+  .service-package__text {
+    margin: 0;
+    color: var(--darkgray);
+    line-height: 1.55;
+
+    strong {
+      color: var(--blue);
+      font-size: 1.05rem;
+    }
+  }
+
+  // ── Area card ─────────────────────────────────────────────────────
+  .service-area__card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: var(--lightblue);
+    border-radius: 1rem;
+    padding: 1.5rem 1.25rem;
+
+    @media screen and (min-width: 768px) {
+      padding: 1.75rem 1.75rem;
+    }
+  }
+
+  .service-area__icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      display: block;
+    }
+  }
+
+  .service-area__body {
+    .service-section__title {
+      margin-bottom: 0.4rem;
+    }
+
+    p {
+      margin: 0;
+      color: var(--darkgray);
+    }
+  }
+
+  // ── Pricing card (figures unchanged, deliberately not amplified) ──
+  .service-pricing__card {
+    background: var(--white);
+    border: 1px solid var(--lightgray);
+    border-left: 4px solid var(--blue);
+    border-radius: 1rem;
+    padding: 1.5rem 1.25rem;
+
+    @media screen and (min-width: 992px) {
+      padding: 2rem;
+    }
+
+    // Prices ride the body font — no scaling up. strong stays the copy's own bold.
+    p {
+      color: var(--darkgray);
+    }
+  }
+
+  // ── Before/after proof band ───────────────────────────────────────
   &__ba {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
-    margin: 1rem 0;
+    margin: 1.25rem 0;
   }
 
   &__ba-item {
@@ -47,101 +308,204 @@
       aspect-ratio: 4 / 3;
       object-fit: cover;
       border-radius: 1rem;
+      border: 1px solid var(--lightgray);
     }
 
     figcaption {
-      margin-top: 0.35rem;
+      margin-top: 0.5rem;
       font-weight: 700;
       text-align: center;
+      color: var(--dark);
     }
   }
 
-  &__quote {
-    margin: 1.5rem 0;
-    padding: 1rem 1.25rem;
-    border-left: 4px solid #1d8a1a;
+  // ── Testimonial (reviews-style card) ──────────────────────────────
+  .service-testimonial {
+    margin: 1.25rem 0;
+
+    .service-testimonial__rating {
+      margin-bottom: 0.75rem;
+    }
+  }
+
+  .service-testimonial__quote {
+    margin: 0;
 
     p {
-      text-align: left;
+      font-size: 1.05rem;
       font-style: italic;
+      color: var(--dark);
+      margin-bottom: 0.85rem;
     }
+  }
 
-    cite {
-      display: block;
-      margin-top: 0.5rem;
-      font-style: normal;
+  .service-testimonial__cite {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-style: normal;
+  }
+
+  .service-testimonial__ava {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: var(--bg-color);
+    color: #fff;
+
+    &:before {
+      content: attr(data-letter);
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
       font-weight: 700;
     }
   }
 
+  .service-testimonial__name {
+    font-weight: 700;
+    color: var(--dark);
+  }
+
+  // ── Accreditation logos ───────────────────────────────────────────
   &__accreditation {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 1.5rem;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--lightgray);
   }
 
   &__logo {
-    height: 64px;
+    height: 60px;
     width: auto;
   }
 
-  // FAQ accordion — native <details>/<summary>, no JS needed.
-  &__faq {
-    margin-top: 2rem;
+  &__disclaimer {
+    font-size: 0.85rem;
+    opacity: 0.75;
+    text-align: left;
+  }
+
+  // ── Related reading ───────────────────────────────────────────────
+  .service-links__list {
+    margin: 0;
+    padding-left: 1.1rem;
+
+    li {
+      margin-bottom: 0.5rem;
+      color: var(--darkgray);
+    }
+
+    a {
+      color: var(--blue);
+      font-weight: 600;
+    }
+  }
+
+  // ── Closing CTA band ──────────────────────────────────────────────
+  .service-close {
+    background: var(--lightblue);
+    border-radius: 1rem;
+    padding: 2rem 1.25rem;
+    text-align: center;
+
+    @media screen and (min-width: 992px) {
+      padding: 2.75rem 2rem;
+    }
+  }
+
+  .service-close__text {
+    max-width: 60ch;
+    margin: 0 auto 1.25rem;
+    font-size: 1.05rem;
+    color: var(--dark);
+    text-align: center;
+  }
+
+  // ── CTA row (centre the shared green button) ──────────────────────
+  .service-cta-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+
+    .cta {
+      min-width: 260px;
+    }
+  }
+}
+
+// ── FAQ accordion — native <details>/<summary>, styled to the accordion look ──
+.service-page__faq {
+  .service-section__title,
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+
+    @media screen and (min-width: 768px) {
+      font-size: 1.875rem;
+    }
   }
 }
 
 .service-faq__item {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 0.75rem 0;
+  background: var(--white);
+  border: 1px solid var(--lightgray);
+  border-radius: 1rem;
+  padding: 0 1.1rem;
+  margin-bottom: 0.6rem;
+  transition: border-color 0.2s ease;
+
+  &[open] {
+    border-color: var(--softblue);
+  }
 }
 
 .service-faq__q {
   cursor: pointer;
   font-weight: 700;
+  color: var(--dark);
   list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+
+  // Chevron indicator (rotates when open) — pure CSS, no JS.
+  &::after {
+    content: "";
+    flex-shrink: 0;
+    width: 11px;
+    height: 11px;
+    border-right: 2px solid var(--blue);
+    border-bottom: 2px solid var(--blue);
+    transform: rotate(45deg);
+    transition: transform 0.25s ease;
+    margin-right: 4px;
+  }
 }
 
 .service-faq__q::-webkit-details-marker {
   display: none;
 }
 
-.service-faq__a p {
-  text-align: left;
-  margin-top: 0.5rem;
+.service-faq__item[open] .service-faq__q::after {
+  transform: rotate(-135deg);
 }
 
-// The in-page booking CTA. Like the blog, the site has no .btn-primary style of
-// its own (nav/hero CTAs use .navbtn/.cta mixins), so scope a primary button to
-// the service page that matches the site's green .navbtn language.
-.service-page .btn-primary {
-  display: inline-block;
-  margin: 1rem 0;
-  text-decoration: none;
-  color: #fff;
-  font-weight: 800;
-  font-size: 16px;
-  letter-spacing: 0.2px;
-  padding: 13px 26px;
-  border-radius: 12px;
-  background: linear-gradient(180deg, #2cb128, #1d8a1a);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25),
-    0 3px 8px rgba(29, 138, 26, 0.3);
-  transition: transform 0.06s ease, filter 0.15s ease;
+.service-faq__a {
+  padding-bottom: 1.1rem;
 
-  &:hover {
-    filter: brightness(1.03);
-    color: #fff;
-  }
-
-  &:active {
-    transform: translateY(1px);
-  }
-
-  &:focus-visible {
-    outline: 2px solid rgba(29, 138, 26, 0.6);
-    outline-offset: 2px;
+  p {
+    text-align: left;
+    margin: 0;
+    color: var(--darkgray);
+    line-height: 1.55;
   }
 }
