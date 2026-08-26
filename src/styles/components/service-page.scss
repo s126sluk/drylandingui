@@ -44,12 +44,15 @@
     -webkit-hyphens: auto;
     hyphens: auto;
 
-    // Mobile: justification on a ~250–350px column opens large word gaps even
-    // with hyphenation, and this is a mobile-primary page — so left-align below
-    // the tablet breakpoint. Hyphenation stays on to keep long words (e.g.
-    // "dehumidification") from overflowing the narrow column.
+    // Mobile: justification on a ~250–350px column opens large word gaps, and
+    // auto-hyphenation breaks words mid-line ("hap-pens", "wa-ter"). This is a
+    // mobile-primary page, so below the tablet breakpoint: left-align (ragged
+    // right) AND turn hyphenation off. overflow-wrap guards the rare long word.
     @media screen and (max-width: 767px) {
       text-align: left;
+      -webkit-hyphens: manual;
+      hyphens: manual;
+      overflow-wrap: break-word;
     }
   }
 
@@ -174,6 +177,38 @@
       max-width: none;
       aspect-ratio: auto;
       margin: 0;
+    }
+  }
+
+  // ── Mobile hero ───────────────────────────────────────────────────
+  // FIX 3: the landing's stacked hero has NO card chrome — content is plain
+  // text on the light ground. Match it: drop the content card and the image
+  // card so the two read as one hero unit, not two disconnected cards.
+  // FIX 2: portrait 4:5 fills a whole viewport on its own and buries useful
+  // content below the fold, with dead wall at the top. Use a shorter, wider
+  // 3:2 slot and push the crop to the lower frame (equipment + wet patch).
+  @media screen and (max-width: 767px) {
+    .service-hero__inner {
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      padding: 0;
+    }
+
+    .service-hero__media {
+      margin-top: 1rem;
+    }
+
+    .service-hero__img {
+      max-width: none;
+      // height:auto lets aspect-ratio drive the height; without it the img's
+      // height="645" attribute (specificity 0) wins and aspect-ratio is ignored.
+      height: auto;
+      aspect-ratio: 3 / 2;
+      object-position: center 62%;
+      border: none;
+      border-radius: 0;
     }
   }
 
