@@ -127,35 +127,28 @@ block service-body
           span.service-testimonial__ava(data-letter="E")
           span.service-testimonial__name Eddie Lee, Google review
 
-  //- ── FAQ — the landing's two-column .faq-grid component ──
-  //- Reuses the landing's global classes (.faq-grid / .accordion — styled in
-  //- faq.scss + accordion.scss, no shared-file edits) with the SAME _svc.faq
-  //- array that feeds the FAQPage JSON-LD in _service.pug, so the two can never
-  //- drift. Photo left, accordion right, "FAQ" heading, CTA below. main.js
-  //- accordion() wires the rows by class. Caret is inline (the #caret-down
-  //- sprite is only included on index.pug, not the service layout).
+  //- ── FAQ — single-column .accordion (no photo; heading matches the page) ──
+  //- Uses the global .accordion (styled in accordion.scss — main.js accordion()
+  //- wires the rows by class, no shared-file edits) with the SAME _svc.faq array
+  //- that feeds the FAQPage JSON-LD in _service.pug, so the two can never drift.
+  //- Heading uses .service-section__title so it's the same size as every other
+  //- section heading on the page. Caret is inline (the #caret-down sprite is
+  //- only included on index.pug, not the service layout).
   section.service-section.service-faq
-    .faq-grid
-      .faq-grid__title
-        h2.faq__title.text-uppercase FAQ
-      .faq-grid__img
-        img.img-rounded.faq__img(loading="lazy", src="img/faq-img.jpg", alt="", width="684", height="684")
-      .faq-grid__accordion
-        .faq__accordion
-          .accordion
-            each item, i in (_svc.faq || [])
-              .accordion-item.card.card-primary-outline
-                .accordion-item__header
-                  h3.h4.accordion-item__title= item.q
-                  button.accordion-item__btn.btn.btn-small.btn-transparent(type="button", aria-expanded="false", aria-controls='svc-faq-item-' + i, id='svc-accordion-btn-' + i)
-                    span.sr-only Toggle answer
-                    svg.service-faq__caret(width="16", height="10", viewBox="0 0 16 10", fill="none", xmlns="http://www.w3.org/2000/svg")
-                      path(d="M1 1l7 7 7-7", stroke="currentColor", stroke-width="2", stroke-linecap="round", stroke-linejoin="round")
-                .accordion-item__body(id='svc-faq-item-' + i, role="region", aria-labelledby='svc-accordion-btn-' + i)
-                  .h5= item.a
-      .faq-grid__btn
-        .faq__btn.text-center
-          +ctaPrimary('')
+    h2.service-section__title FAQ
+    .accordion
+      each item, i in (_svc.faq || [])
+        .accordion-item.card.card-primary-outline
+          .accordion-item__header
+            h3.h4.accordion-item__title= item.q
+            button.accordion-item__btn.btn.btn-small.btn-transparent(type="button", aria-expanded="false", aria-controls='svc-faq-item-' + i, id='svc-accordion-btn-' + i)
+              span.sr-only Toggle answer
+              svg.service-faq__caret(width="16", height="10", viewBox="0 0 16 10", fill="none", xmlns="http://www.w3.org/2000/svg")
+                path(d="M1 1l7 7 7-7", stroke="currentColor", stroke-width="2", stroke-linecap="round", stroke-linejoin="round")
+          .accordion-item__body(id='svc-faq-item-' + i, role="region", aria-labelledby='svc-accordion-btn-' + i)
+            .h5= item.a
+    .service-cta-row
+      +ctaPrimary('')
 
   //- ── Related reading ──
   section.service-section.service-links
