@@ -470,15 +470,23 @@
       transform: rotate(180deg);
     }
 
+    // Keep the green gradient, but drop the soft drop-shadow: in a PDF the
+    // shadow renders as a green halo that reads like a rendering fault.
     .cta {
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
+      box-shadow: none;
     }
   }
 
   // The site header is position:sticky; in print that can detach and float
-  // mid-page. Pin it in normal flow so it stays a header, next to the logo.
+  // mid-page. Pin it in normal flow so it stays a header, next to the logo —
+  // and drop its button halo too (same green-halo artifact as the CTA).
   .site-header {
     position: static;
+
+    .navbtn {
+      box-shadow: none;
+    }
   }
 }
