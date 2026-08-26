@@ -4,13 +4,13 @@
 //- water-damage restoration); packages/pricing trace to real drySafe figures.
 //- Built on the service-page template; services.js gates it published:null.
 //-
-//- DESIGN PASS (redesign brief): presentation restyled to the landing page's
-//- design language (promo-style hero, advantages/how/process cards, reviews-style
-//- proof, faq/accordion styling). COPY IS FROZEN — every word below is unchanged
-//- from the content-complete revision; only markup/structure and the two-tone H1
-//- highlight are new. Trust-row points are the brief's compliant set (no
-//- attendance/availability/experience/volume/"certified" claims). CTAs use the
-//- shared +ctaPrimary/+ctaTrust mixins, not plain .btn-primary.
+//- DESIGN PASS (redesign + polish): presentation restyled to the landing page's
+//- design language (promo-style hero, advantages trust cards, experience-card
+//- steps, reviews-style testimonial, real .accordion FAQ). COPY IS FROZEN —
+//- every word below is unchanged from the content-complete revision; only
+//- markup/structure and the two-tone H1 highlight are new. Trust-row points are
+//- the brief's compliant set (no attendance/availability/experience/volume/
+//- "certified" claims). CTAs use the shared +ctaPrimary/+ctaTrust mixins.
 extends _service
 
 prepend head
@@ -20,30 +20,34 @@ prepend head
   - const pageDescription = _meta.description
 
 block service-body
-  //- Re-lookup in body scope so the FAQ mixin gets the registry faq array.
+  //- Re-lookup in body scope so the FAQ loop gets the registry faq array.
   - var _svc = (typeof services !== 'undefined' ? services : []).find(function (p) { return p.slug === slug; }) || {}
 
-  //- ── Hero (promo-style: ratings badge → two-tone H1 → lede → CTA) ──
+  //- ── Hero — two-column (reuses .promo__inner: content ~55% / media ~45%) ──
+  //- Left column content is unchanged; right column is a single fixed 4:5 image.
+  //- .promo__inner / .promo__content / .promo__gallery come from promo.scss
+  //- (global — not edited); the content stays FIRST in source so below 1200px it
+  //- stacks with the H1 leading and the image below the CTA. Hero-media-specific
+  //- rules (the 4:5 image slot) live in service-page.scss.
   section.service-hero
-    .service-hero__inner
-      .google-ratings
-        .rating(style="--star-rating: 5")
-        img.google-ratings__icon(src="img/google-icon.svg", alt="Google")
-        span.google-ratings__label Google Reviews — 5.0 Rating
-      h1.service-hero__title Emergency Water Damage &amp; <span class="text-blue">Flood Restoration</span> in Sydney
-      p.service-hero__lede When water is spreading through your home right now — a burst flexi-hose under the sink, a washing-machine hose that's let go, storm water through the roof, or flooding through the ground floor — it's an emergency, and the clock starts the moment it happens. drySafe handles emergency water damage restoration across Sydney, fully self-serve — you book and pay online, with no callback or quote to arrange first.
-      .service-hero__cta
-        +ctaPrimary('cta--hero', 'No callback to arrange')
-        +ctaTrust
+    .promo__inner
+      .promo__content.service-hero__inner
+        .google-ratings
+          .rating(style="--star-rating: 5")
+          img.google-ratings__icon(src="img/google-icon.svg", alt="Google")
+          span.google-ratings__label Google Reviews — 5.0 Rating
+        h1.service-hero__title Emergency Water Damage &amp; <span class="text-blue">Flood Restoration</span> in Sydney
+        p.service-hero__lede When water is spreading through your home right now — a burst flexi-hose under the sink, a washing-machine hose that's let go, storm water through the roof, or flooding through the ground floor — it's an emergency, and the clock starts the moment it happens. drySafe handles emergency water damage restoration across Sydney, fully self-serve — you book and pay online, with no callback or quote to arrange first.
+        .service-hero__cta
+          +ctaPrimary('cta--hero', 'No callback to arrange')
+          +ctaTrust
+      .promo__gallery.service-hero__media
+        img.service-hero__img(src="img/services/emergency-hero.jpg", alt="A dehumidifier and air mover drying a water-damaged carpet in a Sydney home", width="516", height="645")
 
   //- ── Compliant trust row (advantages-style; brief's sanctioned points) ──
+  //- "Secure Stripe checkout" is carried by the hero +ctaTrust line above, so
+  //- it is intentionally NOT repeated here (3 cards).
   ul.service-trust
-    li.service-trust__card
-      span.service-trust__icon
-        svg(width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg")
-          rect(x="4" y="10" width="16" height="11" rx="2.5" stroke="var(--blue)" stroke-width="1.6")
-          path(d="M8 10V7a4 4 0 0 1 8 0v3" stroke="var(--blue)" stroke-width="1.6" stroke-linecap="round")
-      span.service-trust__text Secure Stripe checkout
     li.service-trust__card
       span.service-trust__icon
         svg(width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg")
@@ -65,21 +69,21 @@ block service-body
 
   p.service-lead Water damage is rarely as contained as it looks. Within the first hours it soaks down through carpet into the underlay, wicks up the base of plasterboard walls, and tracks along the subfloor and into timber framing — well beyond the wet patch you can actually see. That hidden spread is what turns a manageable spill into warped boards, lifting skirting, odour and lasting structural repair. It's also why what happens in the first day counts for more than almost anything that comes later.
 
-  //- ── What happens on an emergency job (how/process-style steps) ──
+  //- ── What happens on an emergency job (experience-card steps) ──
   section.service-section.service-steps
     h2.service-section__title What happens on an emergency job
     p.service-section__intro Restoration done properly is a sequence, not a mop and a fan pointed at the damp. On a drySafe job it runs in order, and each step earns the next:
-    ol.service-steps__grid
-      li.service-step
+    .experience__grid
+      .experience__card.service-step
         span.service-step__num 1
         p.service-step__text #[strong Assessment] — we map how far the water has actually travelled using moisture readings, and check the water category, so the plan matches the real spread rather than the surface.
-      li.service-step
+      .experience__card.service-step
         span.service-step__num 2
         p.service-step__text #[strong Extraction] — the standing and absorbed water is drawn out of carpet, underlay and hard floors before drying starts, because you can't dry a room that's still holding water.
-      li.service-step
+      .experience__card.service-step
         span.service-step__num 3
         p.service-step__text #[strong Drying] — high-velocity air movers push air across the wet materials while a dehumidifier pulls the released moisture out of the room, so the structure itself dries rather than just the surface skinning over.
-      li.service-step
+      .experience__card.service-step
         span.service-step__num 4
         p.service-step__text #[strong Verified dry] — readings taken against the IICRC S500 dry standard confirm the home is genuinely back to normal, and the result is documented for your own records and your insurer.
 
@@ -90,8 +94,43 @@ block service-body
     .service-packages__grid
       .service-package.card.card-white.card-rounded
         p.service-package__text #[strong drySafe Basic] covers the emergency essentials: high-velocity air movers and a surface moisture assessment — enough to begin drying the affected materials and to see where the water has reached.
+        //- Line icons for what's in this package. Labels reuse the inclusion
+        //- wording; SVGs are aria-hidden since the visible label carries meaning.
+        ul.service-package__inclusions
+          li.service-inclusion
+            span.service-inclusion__icon
+              svg(viewBox="0 0 24 24", fill="none", stroke-width="1.6", stroke-linecap="round", stroke-linejoin="round", aria-hidden="true", xmlns="http://www.w3.org/2000/svg")
+                path(d="M2.5 8h10a2.6 2.6 0 1 0 -2.6 -2.6", stroke="var(--blue)")
+                path(d="M2.5 12h13.5a2.7 2.7 0 1 1 -2.7 2.7", stroke="var(--blue)")
+                path(d="M2.5 16h8a2.3 2.3 0 1 1 -2.3 2.3", stroke="var(--blue)")
+            span.service-inclusion__label High-velocity air movers
+          li.service-inclusion
+            span.service-inclusion__icon
+              svg(viewBox="0 0 24 24", fill="none", stroke-width="1.6", stroke-linecap="round", stroke-linejoin="round", aria-hidden="true", xmlns="http://www.w3.org/2000/svg")
+                circle(cx="10", cy="9.5", r="5.3", stroke="var(--blue)")
+                path(d="M13.9 13.4 18.6 18", stroke="var(--blue)")
+                path(d="M3.5 20.5h8", stroke="var(--blue)")
+                path(d="M10 6.7c1.5 1.9 2.2 3 2.2 4a2.2 2.2 0 0 1-4.4 0c0-1 .7-2.1 2.2-4z", stroke="var(--blue)")
+            span.service-inclusion__label Surface moisture assessment
       .service-package.card.card-white.card-rounded
         p.service-package__text #[strong drySafe Care] adds dehumidification and full moisture analytics, tracking the dry-down through to a verified, documented result. It's the option when water has gone deep or reached materials that hold moisture and need measuring over days, not hours.
+        ul.service-package__inclusions
+          li.service-inclusion
+            span.service-inclusion__icon
+              svg(viewBox="0 0 24 24", fill="none", stroke-width="1.6", stroke-linecap="round", stroke-linejoin="round", aria-hidden="true", xmlns="http://www.w3.org/2000/svg")
+                path(d="M12 2.8c2.7 3 4 5 4 6.9a4 4 0 0 1-8 0c0-1.9 1.3-3.9 4-6.9z", stroke="var(--blue)")
+                path(d="M5.5 20.4h13", stroke="var(--blue)")
+                path(d="M12 13.4v4.6M9.6 15.6l2.4 2.4 2.4-2.4", stroke="var(--blue)")
+            span.service-inclusion__label Dehumidification
+          li.service-inclusion
+            span.service-inclusion__icon
+              svg(viewBox="0 0 24 24", fill="none", stroke-width="1.6", stroke-linecap="round", stroke-linejoin="round", aria-hidden="true", xmlns="http://www.w3.org/2000/svg")
+                path(d="M5 4v15.5h15", stroke="var(--blue)")
+                path(d="M7.5 8 11 12l3-1.6 4 5.1", stroke="var(--blue)")
+                circle(cx="7.5", cy="8", r="1.15", fill="var(--blue)", stroke="none")
+                circle(cx="14", cy="10.4", r="1.15", fill="var(--blue)", stroke="none")
+                circle(cx="18", cy="15.5", r="1.15", fill="var(--blue)", stroke="none")
+            span.service-inclusion__label Moisture analytics
 
   //- ── Across Greater Sydney (area card) ──
   section.service-section.service-area
@@ -113,7 +152,7 @@ block service-body
       .service-cta-row
         +ctaPrimary('')
 
-  //- ── Proof: before/after + testimonial + accreditation ──
+  //- ── Proof: before/after + testimonial (accreditation dropped — footer carries logos) ──
   section.service-section.service-proof
     h2.service-section__title The work, and who stands behind it
     .service-page__ba
@@ -128,13 +167,31 @@ block service-body
       blockquote.service-testimonial__quote
         p “The team arrived on time and the work was set up professionally and efficiently. Their friendly and polite manner left me with great impressions.”
         cite.service-testimonial__cite
-          span.service-testimonial__ava(style="--bg-color: #AB47BC;", data-letter="E")
+          span.service-testimonial__ava(data-letter="E")
           span.service-testimonial__name Eddie Lee, Google review
-    .service-page__accreditation
-      img.service-page__logo(loading="lazy", src="img/iicrc-certified.png", alt="IICRC", width="300", height="110")
-      img.service-page__logo(loading="lazy", src="img/ria-member.png", alt="Restoration Industry Association Australasia member", width="2785", height="1688")
 
-  +serviceFaq(_svc.faq)
+  //- ── FAQ — single-column .accordion (no photo; heading matches the page) ──
+  //- Uses the global .accordion (styled in accordion.scss — main.js accordion()
+  //- wires the rows by class, no shared-file edits) with the SAME _svc.faq array
+  //- that feeds the FAQPage JSON-LD in _service.pug, so the two can never drift.
+  //- Heading uses .service-section__title so it's the same size as every other
+  //- section heading on the page. Caret is inline (the #caret-down sprite is
+  //- only included on index.pug, not the service layout).
+  section.service-section.service-faq
+    h2.service-section__title FAQ
+    .accordion
+      each item, i in (_svc.faq || [])
+        .accordion-item.card.card-primary-outline
+          .accordion-item__header
+            h3.h4.accordion-item__title= item.q
+            button.accordion-item__btn.btn.btn-small.btn-transparent(type="button", aria-expanded="false", aria-controls='svc-faq-item-' + i, id='svc-accordion-btn-' + i)
+              span.sr-only Toggle answer
+              svg.service-faq__caret(width="16", height="10", viewBox="0 0 16 10", fill="none", xmlns="http://www.w3.org/2000/svg")
+                path(d="M1 1l7 7 7-7", stroke="currentColor", stroke-width="2", stroke-linecap="round", stroke-linejoin="round")
+          .accordion-item__body(id='svc-faq-item-' + i, role="region", aria-labelledby='svc-accordion-btn-' + i)
+            .h5= item.a
+    .service-cta-row
+      +ctaPrimary('')
 
   //- ── Related reading ──
   section.service-section.service-links
@@ -145,6 +202,6 @@ block service-body
 
   //- ── Closing CTA band ──
   section.service-close
-    p.service-close__text If water's coming through your Sydney home, drySafe is fully self-serve — the booking's done online in a few minutes, and proper drying is what draws the water back out of the materials themselves.
+    p.service-close__text Drying is what pulls the water back out of the materials. Readings confirm when it's done.
     .service-cta-row
       +ctaPrimary('')

@@ -1,6 +1,6 @@
 // Service-page styles. Redesigned to the landing page's design language:
-// promo-style hero, advantages/how/process-style cards, reviews-style proof,
-// faq/accordion styling. Reuses the site's design tokens (--blue, the green CTA
+// promo-style hero, advantages/experience-style cards, reviews-style proof,
+// real .accordion FAQ. Reuses the site's design tokens (--blue, the green CTA
 // gradient, 1rem card rounding, --light page ground) and introduces no new fonts
 // or brand colours. Everything is scoped under .service-page so nothing leaks.
 //
@@ -9,29 +9,54 @@
 // full-bleed colour blocks (which would need layout changes out of scope here).
 
 .service-page {
-  // Vertical rhythm between the stacked sections.
-  > .service-hero,
-  > .service-trust,
-  > .service-lead,
-  > .service-section,
-  > .service-faq,
-  > .service-close {
-    margin-top: 1.5rem;
+  // ── One vertical-gap value between ALL top-level sections ──────────
+  --svc-gap: 1.75rem;
 
-    @media screen and (min-width: 768px) {
-      margin-top: 2.25rem;
+  @media screen and (min-width: 768px) {
+    --svc-gap: 2.5rem;
+  }
+
+  // Section-level blocks are children of the inner .container, NOT of
+  // .service-page directly (layout wraps the body in main > article > .container).
+  // Target the real section blocks so one rhythm value applies as bottom margin
+  // to every one of them — this is what stops cards/lists colliding with the
+  // next heading.
+  .container > * {
+    margin-bottom: var(--svc-gap);
+  }
+
+  .container > *:last-child {
+    margin-bottom: 0;
+  }
+
+  // ── Justify body prose (mirrors blog.scss .blog-post p:not(.disclaimer)) ──
+  // Clean block edges; hyphens:auto (page is lang="en") stops narrow-screen
+  // rivers. Headings, buttons, captions, the fine-print disclaimer and the
+  // centred closing line are deliberately excluded.
+  .service-hero__lede,
+  .service-lead,
+  .service-section__intro,
+  .service-step__text,
+  .service-package__text,
+  .service-area__body p,
+  .service-pricing__card p:not(.service-page__disclaimer) {
+    text-align: justify;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+
+    // Mobile: justification on a ~250–350px column opens large word gaps, and
+    // auto-hyphenation breaks words mid-line ("hap-pens", "wa-ter"). This is a
+    // mobile-primary page, so below the tablet breakpoint: left-align (ragged
+    // right) AND turn hyphenation off. overflow-wrap guards the rare long word.
+    @media screen and (max-width: 767px) {
+      text-align: left;
+      -webkit-hyphens: manual;
+      hyphens: manual;
+      overflow-wrap: break-word;
     }
   }
 
-  > .service-hero {
-    margin-top: 1rem;
-  }
-
-  p {
-    text-align: left;
-  }
-
-  // ── Section heading treatment: brand-blue kicker bar under the title ──
+  // ── Section heading treatment ─────────────────────────────────────
   .service-section__title {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
@@ -48,7 +73,7 @@
   }
 
   // ── Hero ──────────────────────────────────────────────────────────
-  &  .service-hero__inner {
+  .service-hero__inner {
     background: var(--white);
     border-radius: 1rem;
     border: 1px solid var(--lightgray);
@@ -74,39 +99,129 @@
   }
 
   .service-hero__cta {
+    // Centre the CTA button and its Stripe trust line within the hero.
+    text-align: center;
+
     .cta {
       width: 100%;
-      min-height: 48px;
+      min-height: 56px;
+      padding: 18px 36px 16px;
+    }
+
+    .cta__label {
+      font-size: 19px;
+    }
+
+    .cta__sub {
+      font-size: 14px;
     }
 
     @media screen and (min-width: 768px) {
       .cta {
         width: auto;
-        min-width: 260px;
-      }
-
-      .cta-trust {
-        justify-content: flex-start;
-        margin-left: 2px;
+        min-width: 320px;
       }
     }
   }
 
-  // ── Compliant trust row (advantages-style) ────────────────────────
+  // ── Hero media column (single fixed 4:5 image) ────────────────────
+  // The column width + row/stack breakpoints come from .promo__gallery
+  // (promo.scss). Reset promo's small-screen edge-bleed and bottom margin so
+  // the image keeps its rounding and the section rhythm stays uniform.
+  .service-hero .promo__gallery {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+
+  .service-hero__img {
+    display: block;
+    width: 100%;
+    max-width: 516px;
+    margin-inline: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 1rem;
+    border: 1px solid var(--lightgray);
+  }
+
+  // At the two-column breakpoint, pin the media column to the fixed 516px slot
+  // and let content take the rest. Without this, promo's 45% column grows wider
+  // than 516px on ultra-wide screens (>=1540px) and the capped image floats
+  // centred inside it with empty space either side. Pinning the column makes the
+  // image fill it flush — against the content gap on the left and the container
+  // edge on the right — matching the content card's height.
+  @media screen and (min-width: 1200px) {
+    .service-hero .promo__content {
+      width: auto;
+      flex: 1 1 0;
+      min-width: 0;
+    }
+
+    .service-hero .promo__gallery {
+      width: auto;
+      flex: 0 0 516px;
+      position: relative; // containing block for the absolutely-placed image
+    }
+
+    // Take the image out of flow so its intrinsic 4:5 height (645px) no longer
+    // dictates the row height. The flex row then stretches both columns to the
+    // CONTENT card's natural height, so the content fills its card (no dead
+    // space, H1 stays level with the image top) and the image fills the slot
+    // via object-fit:cover. Slot ratio therefore tracks the content height.
+    .service-hero__img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      aspect-ratio: auto;
+      margin: 0;
+    }
+  }
+
+  // ── Mobile hero ───────────────────────────────────────────────────
+  // FIX 3: the landing's stacked hero has NO card chrome — content is plain
+  // text on the light ground. Match it: drop the content card and the image
+  // card so the two read as one hero unit, not two disconnected cards.
+  // FIX 2: portrait 4:5 fills a whole viewport on its own and buries useful
+  // content below the fold, with dead wall at the top. Use a shorter, wider
+  // 3:2 slot and push the crop to the lower frame (equipment + wet patch).
+  @media screen and (max-width: 767px) {
+    .service-hero__inner {
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      padding: 0;
+    }
+
+    .service-hero__media {
+      margin-top: 1rem;
+    }
+
+    .service-hero__img {
+      max-width: none;
+      // height:auto lets aspect-ratio drive the height; without it the img's
+      // height="645" attribute (specificity 0) wins and aspect-ratio is ignored.
+      height: auto;
+      aspect-ratio: 3 / 2;
+      object-position: center 62%;
+      border: none;
+      border-radius: 0;
+    }
+  }
+
+  // ── Compliant trust row (advantages-style; 3 cards) ───────────────
   .service-trust {
     list-style: none;
-    margin: 0;
     padding: 0;
     display: grid;
     grid-template-columns: 1fr;
     gap: 0.75rem;
 
-    @media screen and (min-width: 560px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    @media screen and (min-width: 992px) {
-      grid-template-columns: repeat(4, 1fr);
+    @media screen and (min-width: 768px) {
+      grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
     }
   }
@@ -149,53 +264,40 @@
     color: var(--darkgray);
   }
 
-  // ── Steps (how/process-style, numbered) ───────────────────────────
-  .service-steps__grid {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
+  // The experience grid ships a 2rem bottom margin that would collapse through
+  // the steps section and make its gap 4px larger than every other section.
+  // Zero it so the single --svc-gap rhythm holds uniformly.
+  .service-steps .experience__grid {
+    margin-bottom: 0;
+  }
 
-    @media screen and (min-width: 768px) {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
+  // ── Steps (experience-card treatment; number is the card marker) ──
+  // .experience__grid / .experience__card supply the grid + white rounded card;
+  // here the green number circle replaces the card icon and the frozen sentence
+  // stays intact inline beneath it.
+  .service-step {
+    .service-step__num {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--green);
+      border: 5px solid var(--softgreen);
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 
-  .service-step {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    background: var(--white);
-    border: 1px solid var(--lightgray);
-    border-radius: 1rem;
-    padding: 1.25rem;
-  }
-
-  .service-step__num {
-    flex-shrink: 0;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: var(--green);
-    border: 5px solid var(--softgreen);
-    color: #fff;
-    font-weight: 800;
-    font-size: 1.05rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  // Frozen sentence kept intact and inline (identical rendered text); the copy's
-  // own leading <strong> label just gets colour emphasis.
+  // Body-size text — nothing inside a card is larger than body copy just because
+  // it's in a card. Step and package sentences both inherit the body font size.
   .service-step__text {
     margin: 0;
     color: var(--darkgray);
-    font-size: 0.95rem;
-    line-height: 1.5;
+    line-height: 1.55;
 
     strong {
       color: var(--dark);
@@ -217,10 +319,14 @@
   .service-package {
     // .card .card-white .card-rounded already give padding/border/1rem radius.
     border-top: 3px solid var(--blue);
+    // Equal-height flex column so the inclusion block can be pinned to the
+    // bottom of both cards (grid stretches the two cards to equal height).
+    display: flex;
+    flex-direction: column;
   }
 
   // Frozen sentence kept intact and inline; the copy's own leading <strong>
-  // package name gets colour + slight size emphasis (words unchanged).
+  // package name gets colour emphasis only (body size — no size bump).
   .service-package__text {
     margin: 0;
     color: var(--darkgray);
@@ -228,8 +334,58 @@
 
     strong {
       color: var(--blue);
-      font-size: 1.05rem;
     }
+  }
+
+  // ── Line icons for the package inclusions (2 per card) ────────────
+  // margin-top:auto pins the divider + icon row to the BOTTOM of the card, so
+  // both cards' rows sit on the same line regardless of paragraph length.
+  // The divider (border-top) inset is identical in both cards (card padding).
+  .service-package__inclusions {
+    list-style: none;
+    margin: auto 0 0;
+    padding: 1.1rem 0 0;
+    border-top: 1px solid var(--lightgray);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 0.75rem;
+  }
+
+  .service-inclusion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+  // Chip — matches the house icon chip (trust items / map-pin): pale blue
+  // circle, 40px, with a 24px line icon inside.
+  .service-inclusion__icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--lightblue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      display: block;
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .service-inclusion__label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--dark);
+    // Reserve two lines so a wrapped label (e.g. "Surface moisture assessment")
+    // doesn't push its column out of line with its single-line neighbour.
+    min-height: 2.5em;
   }
 
   // ── Area card ─────────────────────────────────────────────────────
@@ -321,7 +477,7 @@
 
   // ── Testimonial (reviews-style card) ──────────────────────────────
   .service-testimonial {
-    margin: 1.25rem 0;
+    margin: 1.25rem 0 0;
 
     .service-testimonial__rating {
       margin-bottom: 0.75rem;
@@ -346,13 +502,14 @@
     font-style: normal;
   }
 
+  // Brand-blue circle + white initial (matches the reviews avatar language).
   .service-testimonial__ava {
     position: relative;
     width: 38px;
     height: 38px;
     border-radius: 50%;
     flex-shrink: 0;
-    background: var(--bg-color);
+    background: var(--blue);
     color: #fff;
 
     &:before {
@@ -370,26 +527,41 @@
     color: var(--dark);
   }
 
-  // ── Accreditation logos ───────────────────────────────────────────
-  &__accreditation {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid var(--lightgray);
-  }
-
-  &__logo {
-    height: 60px;
-    width: auto;
-  }
-
   &__disclaimer {
     font-size: 0.85rem;
     opacity: 0.75;
     text-align: left;
+  }
+
+  // ── FAQ — real .accordion (structure/behaviour from accordion.scss) ──
+  .service-faq {
+    .accordion-item__title {
+      font-size: 1.05rem;
+
+      @media screen and (min-width: 768px) {
+        font-size: 1.125rem;
+      }
+    }
+
+    // Compact caret button (override the wide global .btn padding); blue chevron.
+    .accordion-item__btn {
+      flex-shrink: 0;
+      padding: 0;
+      border: none;
+      background: transparent;
+      color: var(--blue);
+      line-height: 0;
+
+      .service-faq__caret {
+        display: block;
+      }
+    }
+
+    .accordion-item__body .h5 {
+      font-weight: 400;
+      color: var(--darkgray);
+      line-height: 1.55;
+    }
   }
 
   // ── Related reading ───────────────────────────────────────────────
@@ -438,74 +610,44 @@
       min-width: 260px;
     }
   }
+
+  // ── Keep the green CTA gradient in PDF/print (item 10) ────────────
+  .cta {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
 }
 
-// ── FAQ accordion — native <details>/<summary>, styled to the accordion look ──
-.service-page__faq {
-  .service-section__title,
-  h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+// ── Print: expand every accordion so answers render in the PDF ───────
+@media print {
+  .service-page {
+    .accordion-item__body {
+      max-height: none !important;
+      overflow: visible !important;
+      margin-top: 1rem !important;
+    }
 
-    @media screen and (min-width: 768px) {
-      font-size: 1.875rem;
+    .accordion-item__btn {
+      transform: rotate(180deg);
+    }
+
+    // Keep the green gradient, but drop the soft drop-shadow: in a PDF the
+    // shadow renders as a green halo that reads like a rendering fault.
+    .cta {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      box-shadow: none;
     }
   }
-}
 
-.service-faq__item {
-  background: var(--white);
-  border: 1px solid var(--lightgray);
-  border-radius: 1rem;
-  padding: 0 1.1rem;
-  margin-bottom: 0.6rem;
-  transition: border-color 0.2s ease;
+  // The site header is position:sticky; in print that can detach and float
+  // mid-page. Pin it in normal flow so it stays a header, next to the logo —
+  // and drop its button halo too (same green-halo artifact as the CTA).
+  .site-header {
+    position: static;
 
-  &[open] {
-    border-color: var(--softblue);
-  }
-}
-
-.service-faq__q {
-  cursor: pointer;
-  font-weight: 700;
-  color: var(--dark);
-  list-style: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem 0;
-
-  // Chevron indicator (rotates when open) — pure CSS, no JS.
-  &::after {
-    content: "";
-    flex-shrink: 0;
-    width: 11px;
-    height: 11px;
-    border-right: 2px solid var(--blue);
-    border-bottom: 2px solid var(--blue);
-    transform: rotate(45deg);
-    transition: transform 0.25s ease;
-    margin-right: 4px;
-  }
-}
-
-.service-faq__q::-webkit-details-marker {
-  display: none;
-}
-
-.service-faq__item[open] .service-faq__q::after {
-  transform: rotate(-135deg);
-}
-
-.service-faq__a {
-  padding-bottom: 1.1rem;
-
-  p {
-    text-align: left;
-    margin: 0;
-    color: var(--darkgray);
-    line-height: 1.55;
+    .navbtn {
+      box-shadow: none;
+    }
   }
 }
