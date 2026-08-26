@@ -21,6 +21,32 @@
 // which this pipeline deliberately does NOT reuse.
 module.exports = [
   {
+    "slug": "emergency-water-damage-restoration-sydney",
+    "title": "Emergency Water Damage Restoration Sydney — drySafe",
+    "description": "Water damage restoration across Sydney — self-serve online booking, extraction and proper drying, verified with moisture readings and documented for your insurer. Book & pay online.",
+    "published": "2026-08-26",
+    "image": null,
+    "alt": null,
+    "faq": [
+      {
+        "q": "How does booking drySafe work?",
+        "a": "drySafe is fully self-serve — you book and pay online and it's confirmed online, with no callback, quote or call-out fee to arrange first."
+      },
+      {
+        "q": "How long does drying take?",
+        "a": "It depends on how much water there was, how far it soaked, and the materials involved — a light soak dries quickly, while a saturated timber floor or concrete slab takes longer. The job is finished when moisture readings confirm the home is back to its normal dry standard, not just dry to the touch."
+      },
+      {
+        "q": "Do I need to leave home during the work?",
+        "a": "In most cases, no. The drying equipment runs while you go about your day. If it's safer to relocate for a while, let drySafe know so it can be coordinated around you."
+      },
+      {
+        "q": "Can you document the job for my insurer?",
+        "a": "Yes. drySafe records moisture readings and photos through the dry-down, so you have a documented result for your own records and to share with your insurer."
+      }
+    ]
+  },
+  {
     "slug": "example-service",
     "title": "Example Service Page (template stub) — drySafe",
     "description": "Template proof page for the drySafe service-page pipeline. Not real content and not for publishing — wired published:null to demonstrate the Service Page Standard.",
