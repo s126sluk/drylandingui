@@ -134,6 +134,32 @@
     border: 1px solid var(--lightgray);
   }
 
+  // At the two-column breakpoint, pin the media column to the fixed 516px slot
+  // and let content take the rest. Without this, promo's 45% column grows wider
+  // than 516px on ultra-wide screens (>=1540px) and the capped image floats
+  // centred inside it with empty space either side. Pinning the column makes the
+  // image fill it flush — against the content gap on the left and the container
+  // edge on the right — matching the content card's height.
+  @media screen and (min-width: 1200px) {
+    .service-hero .promo__content {
+      width: auto;
+      flex: 1 1 0;
+      min-width: 0;
+    }
+
+    .service-hero .promo__gallery {
+      width: auto;
+      flex: 0 0 516px;
+    }
+
+    .service-hero__img {
+      max-width: none;
+      height: 100%;
+      aspect-ratio: auto;
+      margin-inline: 0;
+    }
+  }
+
   // ── Compliant trust row (advantages-style; 3 cards) ───────────────
   .service-trust {
     list-style: none;
