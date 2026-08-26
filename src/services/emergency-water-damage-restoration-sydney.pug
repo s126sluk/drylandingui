@@ -23,18 +23,26 @@ block service-body
   //- Re-lookup in body scope so the FAQ loop gets the registry faq array.
   - var _svc = (typeof services !== 'undefined' ? services : []).find(function (p) { return p.slug === slug; }) || {}
 
-  //- ── Hero (promo-style: ratings badge → two-tone H1 → lede → CTA) ──
+  //- ── Hero — two-column (reuses .promo__inner: content ~55% / media ~45%) ──
+  //- Left column content is unchanged; right column is a single fixed 4:5 image.
+  //- .promo__inner / .promo__content / .promo__gallery come from promo.scss
+  //- (global — not edited); the content stays FIRST in source so below 1200px it
+  //- stacks with the H1 leading and the image below the CTA. Hero-media-specific
+  //- rules (the 4:5 image slot) live in service-page.scss.
   section.service-hero
-    .service-hero__inner
-      .google-ratings
-        .rating(style="--star-rating: 5")
-        img.google-ratings__icon(src="img/google-icon.svg", alt="Google")
-        span.google-ratings__label Google Reviews — 5.0 Rating
-      h1.service-hero__title Emergency Water Damage &amp; <span class="text-blue">Flood Restoration</span> in Sydney
-      p.service-hero__lede When water is spreading through your home right now — a burst flexi-hose under the sink, a washing-machine hose that's let go, storm water through the roof, or flooding through the ground floor — it's an emergency, and the clock starts the moment it happens. drySafe handles emergency water damage restoration across Sydney, fully self-serve — you book and pay online, with no callback or quote to arrange first.
-      .service-hero__cta
-        +ctaPrimary('cta--hero', 'No callback to arrange')
-        +ctaTrust
+    .promo__inner
+      .promo__content.service-hero__inner
+        .google-ratings
+          .rating(style="--star-rating: 5")
+          img.google-ratings__icon(src="img/google-icon.svg", alt="Google")
+          span.google-ratings__label Google Reviews — 5.0 Rating
+        h1.service-hero__title Emergency Water Damage &amp; <span class="text-blue">Flood Restoration</span> in Sydney
+        p.service-hero__lede When water is spreading through your home right now — a burst flexi-hose under the sink, a washing-machine hose that's let go, storm water through the roof, or flooding through the ground floor — it's an emergency, and the clock starts the moment it happens. drySafe handles emergency water damage restoration across Sydney, fully self-serve — you book and pay online, with no callback or quote to arrange first.
+        .service-hero__cta
+          +ctaPrimary('cta--hero', 'No callback to arrange')
+          +ctaTrust
+      .promo__gallery.service-hero__media
+        img.service-hero__img(src="img/services/emergency-hero.jpg", alt="A dehumidifier and air mover drying a water-damaged carpet in a Sydney home", width="516", height="645")
 
   //- ── Compliant trust row (advantages-style; brief's sanctioned points) ──
   //- "Secure Stripe checkout" is carried by the hero +ctaTrust line above, so
