@@ -23,7 +23,7 @@ module.exports = [
   {
     "slug": "emergency-water-damage-restoration-sydney",
     "title": "Emergency Water Damage Restoration Sydney — drySafe",
-    "description": "Emergency water damage restoration across Sydney — self-serve online booking, extraction and proper drying, verified with moisture readings and documented for your insurer. Book & pay online.",
+    "description": "Water damage restoration across Sydney — self-serve online booking, extraction and proper drying, verified with moisture readings and documented for your insurer. Book & pay online.",
     "published": null,
     "image": null,
     "alt": null,
