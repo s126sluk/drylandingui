@@ -88,6 +88,9 @@
   }
 
   .service-hero__cta {
+    // Centre the CTA button and its Stripe trust line within the hero.
+    text-align: center;
+
     .cta {
       width: 100%;
       min-height: 48px;
@@ -97,11 +100,6 @@
       .cta {
         width: auto;
         min-width: 260px;
-      }
-
-      .cta-trust {
-        justify-content: flex-start;
-        margin-left: 2px;
       }
     }
   }
