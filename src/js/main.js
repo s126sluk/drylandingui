@@ -6,7 +6,6 @@ import history from './modules/history'
 import gallery from './modules/gallery'
 import notification from './modules/notification'
 import clickforward from './modules/clickforward'
-import smsdeeplink from './modules/smsdeeplink'
 
 document.addEventListener('DOMContentLoaded', function () {
 	
@@ -17,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	gallery()
 	notification()
 	clickforward()
-	smsdeeplink()
 
 	// AOS.init({
 	// 	offset: 80,

@@ -1,7 +1,7 @@
 section.promo.block
     .container
         .promo__inner
-            //- 2–7. Content block: ratings → headline → CTA → price → SMS → trust
+            //- 2–7. Content block: ratings → headline → CTA → price → trust
             //- [A2] Content now precedes the gallery in source so mobile renders H1 first.
             .promo__content
                 //- 1.2 — Google ratings condensed to one line
@@ -22,9 +22,6 @@ section.promo.block
                 .promo__btn
                     +ctaPrimary('promo__cta cta--hero', 'from $302 + GST* · 60-second booking')
                     +ctaTrust
-
-                //- Two-tier SMS fallback panel (hero placement 1 of 3)
-                +smsPanel('hero')(class="promo__sms-panel")
 
                 //- Trust indicators / risk reduction
                 .promo__trust
